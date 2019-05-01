@@ -1,0 +1,1 @@
+Add new Achievement: "Crown of Horns" - Have at least n (=3?) types of head adornments at once.
