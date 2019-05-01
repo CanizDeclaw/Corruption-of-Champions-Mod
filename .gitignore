@@ -43,3 +43,6 @@ test/SingleRunner.mxml
 
 # sonar-scanner working directory
 /.scannerwork/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
