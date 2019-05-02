@@ -5,4 +5,8 @@
     <RootNamespace>CoC_Lib</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="BodyMods\" />
+  </ItemGroup>
+
 </Project>
