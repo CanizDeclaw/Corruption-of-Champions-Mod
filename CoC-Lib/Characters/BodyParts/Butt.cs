@@ -1,6 +1,6 @@
 ﻿namespace CoC_Lib.Characters.BodyParts
 {
-    public class Butt : IBodyPart
+    public abstract class Butt : AbstractBodyPart
     {
         public enum ButtRating
         {
@@ -22,8 +22,9 @@
             SetToDefault();
         }
         
-        public void SetToDefault()
+        public override void SetToDefault()
         {
+            base.SetToDefault();
             Rating = ButtRating.Buttless;
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace CoC_Lib.Characters.BodyParts
 {
-    public class Beard : IBodyPart
+    public abstract class Beard : AbstractBodyPart
     {
         public enum BeardStyle
         {
@@ -18,8 +18,9 @@
             SetToDefault();
         }
 
-        public void SetToDefault()
+        public override void SetToDefault()
         {
+            base.SetToDefault();
             Style = BeardStyle.Normal;
             Length = 0;
         }

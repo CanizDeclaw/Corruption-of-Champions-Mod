@@ -2,45 +2,23 @@
 
 namespace CoC_Lib.Characters.BodyParts
 {
-    public class DorsalArea : IBodyPart
+    // TODO: This class, VentralArea, and Skin probably need rethinking.  Especially since
+    //       pretty much everything should be able to be colored independently.  Might be
+    //       better to make Torso class and/or put general colorings at body-level.
+    public abstract class DorsalArea : AbstractBodyPart
     {
-        public enum DorsalAreaDecoration
-        {
-            None           = 0,
-            DraconicMane   = 1,
-            DraconicSpikes = 2,
-            SharkFin       = 3,
-        }
-
-        public DorsalAreaDecoration Decoration;  // TODO: Pick a better name.
         public string Color;  // TODO: Better object type and/or setter.
 
-        public bool CanDye
-        {
-            get
-            {
-                switch (Decoration)
-                {
-                    case DorsalAreaDecoration.DraconicMane:
-                        return true;
-                    case DorsalAreaDecoration.None:
-                    case DorsalAreaDecoration.DraconicSpikes:
-                    case DorsalAreaDecoration.SharkFin:
-                        return false;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-        }
+        public abstract bool CanDye { get; }
 
         public DorsalArea()
         {
             SetToDefault();
         }
 
-        public void SetToDefault()
+        public override void SetToDefault()
         {
-            Decoration = DorsalAreaDecoration.None;
+            base.SetToDefault();
             Color = "no";
         }
     }

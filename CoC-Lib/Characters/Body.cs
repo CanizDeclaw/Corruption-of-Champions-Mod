@@ -54,5 +54,10 @@ namespace CoC_Lib.Characters
         public BodyMods.Jewelry Jewelry;
         public BodyMods.Piercings Piercings;
         #endregion Body Modifications
+
+        public Body(Body copyFrom)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

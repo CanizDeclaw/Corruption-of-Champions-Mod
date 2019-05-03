@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BodyMods\" />
+    <Folder Include="Items\Clothing\" />
+    <Folder Include="Items\" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿namespace CoC_Lib.Characters.BodyParts
 {
-    public class Hips : IBodyPart
+    public abstract class Hips : AbstractBodyPart
     {
         public enum HipRating
         {
@@ -20,8 +20,9 @@
             SetToDefault();
         }
 
-        public void SetToDefault()
+        public override void SetToDefault()
         {
+            base.SetToDefault();
             Rating = HipRating.Boyish;
         }
     }

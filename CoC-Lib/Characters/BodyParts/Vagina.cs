@@ -1,15 +1,7 @@
 ﻿namespace CoC_Lib.Characters.BodyParts
 {
-    public class Vagina : IBodyPart
+    public abstract class Vagina : AbstractBodyPart
     {
-        public enum VaginaType
-        {
-            Human         = 0,
-            Equine        = 1,
-            Canine        = 2,
-            BlackSandTrap = 5,
-        }
-
         public enum VaginalWetness
         {
             Dry       = 0,
@@ -33,7 +25,6 @@
 
         public const double DefaultClitLength = 0.5;
 
-        public VaginaType Type;
         public VaginalWetness Wetness;
         public VaginalLooseness Looseness;
         public double ClitLength;
@@ -56,9 +47,9 @@
             SetToDefault();
         }
 
-        public void SetToDefault()
+        public override void SetToDefault()
         {
-            Type = VaginaType.Human;
+            base.SetToDefault();
             Wetness = VaginalWetness.Normal;
             Looseness = VaginalLooseness.Tight;
             ClitLength = DefaultClitLength;

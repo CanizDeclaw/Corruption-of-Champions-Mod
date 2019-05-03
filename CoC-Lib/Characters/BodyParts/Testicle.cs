@@ -1,14 +1,7 @@
 ﻿namespace CoC_Lib.Characters.BodyParts
 {
-    public class Testicle : IBodyPart
+    public abstract class Testicle : AbstractBodyPart
     {
-        public enum TesticleType
-        {
-            Normal = 0,
-            Bunny  = 1, // Bunny 'testicles' == eggs.
-        }
-
-        public TesticleType Type;
         public double CumMultiplier;
         public double Size;
 
@@ -17,9 +10,9 @@
             SetToDefault();
         }
 
-        public void SetToDefault()
+        public override void SetToDefault()
         {
-            Type = TesticleType.Normal;
+            base.SetToDefault();
             CumMultiplier = 1;
             Size = 0;
         }

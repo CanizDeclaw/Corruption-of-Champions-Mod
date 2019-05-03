@@ -1,6 +1,6 @@
 ﻿namespace CoC_Lib.Characters.BodyParts
 {
-    public class Anus : IBodyPart
+    public abstract class Anus : AbstractBodyPart
     {
         public enum AnalWetness
         {
@@ -27,15 +27,14 @@
         // TODO: rationalize virginity across this, vagina, and cock (and mouth?)
         public bool IsVirgin => Looseness == AnalLooseness.Virgin;
 
-        #region Constructors
         public Anus()
         {
             SetToDefault();
         }
-        #endregion Constructors
 
-        public void SetToDefault()
+        public override void SetToDefault()
         {
+            base.SetToDefault();
             Wetness = AnalWetness.Dry;
             Looseness = AnalLooseness.Virgin;
         }
