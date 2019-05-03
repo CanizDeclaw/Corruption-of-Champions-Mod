@@ -1,4 +1,6 @@
-﻿namespace CoC_Lib.Characters.BodyParts
+﻿using System;
+
+namespace CoC_Lib.Characters.BodyParts
 {
     public class Tongue : IBodyPart
     {
@@ -15,6 +17,26 @@
 
         public TongueType Type;
 
+        public bool IsLong
+        {
+            get
+            {
+                switch (Type)
+                {
+                    case TongueType.Demonic:
+                    case TongueType.Draconic:
+                    case TongueType.Echidna:
+                        return true;
+                    case TongueType.Human:
+                    case TongueType.Snake:
+                    case TongueType.Lizard:
+                    case TongueType.Cat:
+                        return false;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
         public Tongue()
         {
             SetToDefault();

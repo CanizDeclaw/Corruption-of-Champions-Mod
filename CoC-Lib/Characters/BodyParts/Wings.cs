@@ -1,4 +1,6 @@
-﻿namespace CoC_Lib.Characters.BodyParts
+﻿using System;
+
+namespace CoC_Lib.Characters.BodyParts
 {
     public class Wings : IBodyPart
     {
@@ -24,6 +26,35 @@
         public WingType Type;
         public string MainColor; // TODO: A better way to do colors
         public string SecondaryColor; // TODO: A better way to do color pairs
+
+        public bool CanFly
+        {
+            get
+            {
+                switch (Type)
+                {
+                    case WingType.BeeLikeLarge:
+                    case WingType.BatLikeLarge:
+                    case WingType.FeatheredLarge:
+                    case WingType.DraconicLarge:
+                    case WingType.GiantDragonfly:
+                    case WingType.Harpy:
+                    case WingType.ImpLarge:
+                        return true;
+                    case WingType.None:
+                    case WingType.BeeLikeSmall:
+                    case WingType.Imp:
+                    case WingType.BatLikeTiny:
+                    case WingType.SharkFin:
+                    case WingType.DraconicSmall:
+                    case WingType.FaerieSmall:
+                    case WingType.FaerieLarge:
+                        return false;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
 
         public Wings()
         {
