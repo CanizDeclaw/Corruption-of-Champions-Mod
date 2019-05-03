@@ -1,6 +1,6 @@
 ﻿namespace CoC_Lib.Characters.BodyParts
 {
-    public class BreastRow : IBodyPart
+    public abstract class BreastRow : AbstractBodyPart
     {
         public enum BreastCup
         {
@@ -222,8 +222,9 @@
             SetToDefault();
         }
 
-        public void SetToDefault()
+        public override void SetToDefault()
         {
+            base.SetToDefault();
             Breasts = 2;
             NipplesPerBreast = 1;
             BreastRating = BreastCup.Flat;

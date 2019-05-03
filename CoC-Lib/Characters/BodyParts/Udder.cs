@@ -1,9 +1,9 @@
 ﻿namespace CoC_Lib.Characters.BodyParts
 {
-    public class Udder : IBodyPart
+    public abstract class Udder : AbstractBodyPart
     {
         // TODO: Improve Udder(s) conceptualization.  Types, number, teats, etc.
-        public bool HasUdder { get; set; }
+        public abstract bool HasUdder { get; }
         /** Udder fullness is a 0-100 slider used for how full the udder is. Recharges per hour. */
         public double Fullness;
         /** Udder refill determines how fast milk comes back per hour. */
@@ -14,9 +14,9 @@
             SetToDefault();
         }
 
-        public void SetToDefault()
+        public override void SetToDefault()
         {
-            HasUdder = false;
+            base.SetToDefault();
             Fullness = 0;
             RefillRate = 5;
         }
