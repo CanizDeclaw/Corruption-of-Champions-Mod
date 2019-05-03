@@ -1,4 +1,6 @@
-﻿namespace CoC_Lib.Characters.BodyParts
+﻿using System;
+
+namespace CoC_Lib.Characters.BodyParts
 {
     public class Tail : IBodyPart
     {
@@ -46,6 +48,51 @@
         public double Webs;
         /** Tail recharge determines how fast webs comes back per hour. */
         public double WebRecharge;
+
+        public bool IsLong
+        {
+            get
+            {
+                switch (Type)
+                {
+                    case TailType.Dog:
+                    case TailType.Demonic:
+                    case TailType.Cow:
+                    case TailType.Shark:
+                    case TailType.Cat:
+                    case TailType.Lizard:
+                    case TailType.Kangaroo:
+                    case TailType.Fox:
+                    case TailType.Draconic:
+                    case TailType.Raccoon:
+                    case TailType.Mouse:
+                    case TailType.Ferret:
+                    case TailType.Behemoth:
+                    case TailType.Scorpion:
+                    case TailType.Salamander:
+                    case TailType.Wolf:
+                    case TailType.Imp:
+                    case TailType.Cockatrice:
+                    case TailType.RedPanda:
+                        return true;
+                    case TailType.None:
+                    case TailType.Horse:
+                    case TailType.SpiderAbdomen:
+                    case TailType.BeeAbdomen:
+                    case TailType.Rabbit:
+                    case TailType.Harpy:
+                    case TailType.Pig:
+                    case TailType.Goat:
+                    case TailType.Rhino:
+                    case TailType.Echidna:
+                    case TailType.Deer:
+                    case TailType.Sheep:
+                        return false;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
 
         public Tail()
         {

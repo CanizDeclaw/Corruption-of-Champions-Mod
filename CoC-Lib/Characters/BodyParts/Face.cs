@@ -1,4 +1,6 @@
-﻿namespace CoC_Lib.Characters.BodyParts
+﻿using System;
+
+namespace CoC_Lib.Characters.BodyParts
 {
     public class Face : IBodyPart
     {
@@ -36,6 +38,92 @@
         }
 
         public FaceType Type;
+
+        public bool HasMuzzle
+        {
+            get
+            {
+                switch (Type)
+                {
+                    case FaceType.Horse:
+                    case FaceType.Dog:
+                    case FaceType.Cat:
+                    case FaceType.Lizard:
+                    case FaceType.Kangaroo:
+                    case FaceType.Fox:
+                    case FaceType.Dragon:
+                    case FaceType.Rhino:
+                    case FaceType.Echidna:
+                    case FaceType.Deer:
+                    case FaceType.Wolf:
+                    case FaceType.RedPanda:
+                        return true;
+                    case FaceType.Human:
+                    case FaceType.CowMinotaur:
+                    case FaceType.SharkTeeth:
+                    case FaceType.SnakeFangs:
+                    case FaceType.Catgirl:
+                    case FaceType.Bunny:
+                    case FaceType.SpiderFangs:
+                    case FaceType.RaccoonMask:
+                    case FaceType.Raccoon:
+                    case FaceType.Buckteeth:
+                    case FaceType.Mouse:
+                    case FaceType.FerretMask:
+                    case FaceType.Ferret:
+                    case FaceType.Pig:
+                    case FaceType.Boar:
+                    case FaceType.Cockatrice:
+                    case FaceType.Beak:
+                        return false;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+        public bool IsHumanish
+        {
+            get
+            {
+                switch (Type)
+                {
+                    case FaceType.Human:
+                    case FaceType.SharkTeeth:
+                    case FaceType.SnakeFangs:
+                    case FaceType.SpiderFangs:
+                        return true;
+                    case FaceType.Horse:
+                    case FaceType.Dog:
+                    case FaceType.CowMinotaur:
+                    case FaceType.Catgirl:
+                    case FaceType.Lizard:
+                    case FaceType.Bunny:
+                    case FaceType.Kangaroo:
+                    case FaceType.Fox:
+                    case FaceType.Dragon:
+                    case FaceType.RaccoonMask:
+                    case FaceType.Raccoon:
+                    case FaceType.Buckteeth:
+                    case FaceType.Mouse:
+                    case FaceType.FerretMask:
+                    case FaceType.Ferret:
+                    case FaceType.Pig:
+                    case FaceType.Boar:
+                    case FaceType.Rhino:
+                    case FaceType.Echidna:
+                    case FaceType.Deer:
+                    case FaceType.Wolf:
+                    case FaceType.Cockatrice:
+                    case FaceType.Beak:
+                    case FaceType.RedPanda:
+                    case FaceType.Cat:
+                        return false;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
 
         public Face()
         {
