@@ -6,7 +6,8 @@ namespace CoC_Lib.Characters.BodyParts
 {
     public abstract class AbstractBodyPart
     {
-        public Species.Type Species { get; private set; }
+        public abstract Species.Type Species { get; }
+        public bool IsIncorporeal { get; private set; } = false;
 
         // TODO: Resetting body parts will probably have to change, since
         //       they're now class-based instead of enum-based.  Mutating

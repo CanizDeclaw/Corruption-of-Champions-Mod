@@ -1,6 +1,7 @@
 ﻿namespace CoC_Lib.Characters
 {
-    public class Creature : Body
+    public class Creature
     {
+        public Body Body { get; }
     }
 }
