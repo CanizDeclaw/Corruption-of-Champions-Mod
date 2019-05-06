@@ -11,7 +11,7 @@ namespace CoC_Lib.Commands.MainMenuCommands
         public override string CanExecuteDescription => "How to play. Starting tips. And hotkeys for easy left-handed play...";
         public override string CanNotExecuteDescription => "";
 
-        public override Func<Game, bool> CanExecute => (_) => true;
+        public override bool CanExecute => true;
         public override Action<Game> NextScene => throw new NotImplementedException();
 
         public InstructionsCommand(Game game)

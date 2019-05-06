@@ -11,7 +11,7 @@ namespace CoC_Lib.Commands.MainMenuCommands
         public override string CanExecuteDescription => "Configure game settings and enable cheats.";
         public override string CanNotExecuteDescription => "";
 
-        public override Func<Game, bool> CanExecute => (_) => true;
+        public override bool CanExecute => true;
         public override Action<Game> NextScene => throw new NotImplementedException();
 
         public OptionsCommand(Game game)

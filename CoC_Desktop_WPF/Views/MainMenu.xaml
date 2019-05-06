@@ -11,7 +11,8 @@
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type coccommands:Command}">
             <Button Content="{Binding ShortName}"
-                    IsEnabled="{Binding CanExecute}">
+                    IsEnabled="{Binding CanExecute}"
+                    ToolTipService.ShowOnDisabled="True">
                 <Button.ToolTip>
                     <StackPanel Width="300">
                         <TextBlock Text="{Binding LongName}" FontSize="14" FontWeight="Bold"/>

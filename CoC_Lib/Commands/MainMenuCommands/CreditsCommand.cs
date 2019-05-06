@@ -11,7 +11,7 @@ namespace CoC_Lib.Commands.MainMenuCommands
         public override string CanExecuteDescription => "See a list of all the cool people who have contributed to content for this game!";
         public override string CanNotExecuteDescription => "";
 
-        public override Func<Game, bool> CanExecute => (_) => true;
+        public override bool CanExecute => true;
         public override Action<Game> NextScene => throw new NotImplementedException();
 
         public CreditsCommand(Game game)
