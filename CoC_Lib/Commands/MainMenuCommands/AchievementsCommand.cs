@@ -11,7 +11,7 @@ namespace CoC_Lib.Commands.MainMenuCommands
         public override string CanExecuteDescription => "View all achievements you have earned so far.";
         public override string CanNotExecuteDescription => "";
 
-        public override Func<Game, bool> CanExecute => (_) => true;
+        public override bool CanExecute => true;
         public override Action<Game> NextScene => throw new NotImplementedException();
 
         public AchievementsCommand(Game game)
