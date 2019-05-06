@@ -14,6 +14,7 @@ namespace CoC_Lib.Commands
     public abstract class Command
     {
         public abstract string ShortName { get; }
+        public abstract string LongName { get; }
         public string Description => CanExecute(Game) ? CanExecuteDescription : CanNotExecuteDescription; 
         public abstract string CanExecuteDescription { get; }
         public abstract string CanNotExecuteDescription { get; }

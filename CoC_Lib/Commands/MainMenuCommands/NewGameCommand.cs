@@ -7,7 +7,8 @@ namespace CoC_Lib.Commands.MainMenuCommands
     public class NewGameCommand : Command
     {
         public override string ShortName => "New Game";
-        public override string CanExecuteDescription => "<h1>New Game</h1><hr>Start a new game.";
+        public override string LongName => "New Game";
+        public override string CanExecuteDescription => "Start a new game.";
         public override string CanNotExecuteDescription => "";
 
         public override Func<Game, bool> CanExecute => (_) => true;

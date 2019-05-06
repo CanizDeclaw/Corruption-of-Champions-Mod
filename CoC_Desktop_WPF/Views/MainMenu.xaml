@@ -11,8 +11,15 @@
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type coccommands:Command}">
             <Button Content="{Binding ShortName}"
-                    IsEnabled="{Binding CanExecute}"
-                    ToolTip="{Binding Description}"/>
+                    IsEnabled="{Binding CanExecute}">
+                <Button.ToolTip>
+                    <StackPanel Width="300">
+                        <TextBlock Text="{Binding LongName}" FontSize="14" FontWeight="Bold"/>
+                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8"/>
+                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>

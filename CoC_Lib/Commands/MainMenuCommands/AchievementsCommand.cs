@@ -7,7 +7,8 @@ namespace CoC_Lib.Commands.MainMenuCommands
     public class AchievementsCommand : Command
     {
         public override string ShortName => "Achievements";
-        public override string CanExecuteDescription => "<h1>Achievements</h1><hr>View all achievements you have earned so far.";
+        public override string LongName => "Achievements";
+        public override string CanExecuteDescription => "View all achievements you have earned so far.";
         public override string CanNotExecuteDescription => "";
 
         public override Func<Game, bool> CanExecute => (_) => true;
