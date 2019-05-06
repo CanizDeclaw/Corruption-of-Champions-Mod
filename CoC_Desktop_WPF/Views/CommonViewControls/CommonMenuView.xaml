@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="CoC_Desktop_WPF.Views.CommonViewControls.CommonMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
+             xmlns:coccommands="clr-namespace:CoC_Lib.Commands;assembly=CoC_Lib"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type coccommands:Command}">
+            <Button Content="{Binding ShortName}"
+                    IsEnabled="{Binding CanExecute}"
+                    ToolTipService.ShowOnDisabled="True">
+                <Button.ToolTip>
+                    <StackPanel Width="300">
+                        <TextBlock Text="{Binding LongName}" FontSize="14" FontWeight="Bold"/>
+                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8"/>
+                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ContentControl Grid.Column="0" Content="{Binding MainMenu}"/>
+        <ContentControl Grid.Column="1" Content="{Binding Data}"/>
+        <ContentControl Grid.Column="2" Content="{Binding Stats}"/>
+        <ContentControl Grid.Column="3" Content="{Binding RankUp}"/>
+        <ContentControl Grid.Column="4" Content="{Binding Perks}"/>
+        <ContentControl Grid.Column="5" Content="{Binding Appearance}"/>
+    </Grid>
+</UserControl>
