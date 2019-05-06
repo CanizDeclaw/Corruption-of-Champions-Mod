@@ -12,7 +12,7 @@ namespace CoC_Lib.Commands.MainMenuCommands
         public override string CanNotExecuteDescription => "";
 
         public override bool CanExecute => true;
-        public override Action<Game> NextScene => throw new NotImplementedException();
+        public override void Execute() => throw new NotImplementedException();
 
         public CreditsCommand(Game game)
             : base(game)

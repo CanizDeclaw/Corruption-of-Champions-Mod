@@ -12,7 +12,7 @@ namespace CoC_Lib.Commands.MainMenuCommands
         public override string CanNotExecuteDescription => "Please start a new game or load an existing save file.";
 
         public override bool CanExecute => Game.InProgress;
-        public override Action<Game> NextScene => throw new NotImplementedException();
+        public override void Execute() => throw new NotImplementedException();
 
         public ContinueCommand(Game game)
             : base(game)
