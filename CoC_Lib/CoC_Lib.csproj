@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Characters\Creatures\" />
     <Folder Include="Items\Clothing\" />
     <Folder Include="Items\" />
     <Folder Include="Scenes\MenuScreens\" />

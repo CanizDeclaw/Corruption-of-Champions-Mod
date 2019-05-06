@@ -63,6 +63,27 @@
     <Compile Include="Views\CommonView.xaml.cs">
       <DependentUpon>CommonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CommonViewControls\CommonLocationSpriteView.xaml.cs">
+      <DependentUpon>CommonLocationSpriteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonViewControls\CommonNavigationView.xaml.cs">
+      <DependentUpon>CommonNavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonViewControls\CommonSceneDescriptionView.xaml.cs">
+      <DependentUpon>CommonSceneDescriptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonViewControls\CommonCharacterSpriteView.xaml.cs">
+      <DependentUpon>CommonCharacterSpriteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonViewControls\CommonStatsView.xaml.cs">
+      <DependentUpon>CommonStatsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonViewControls\CommonActionsView.xaml.cs">
+      <DependentUpon>CommonActionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonViewControls\CommonMenuView.xaml.cs">
+      <DependentUpon>CommonMenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -83,6 +104,34 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CommonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonViewControls\CommonLocationSpriteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonViewControls\CommonNavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonViewControls\CommonSceneDescriptionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonViewControls\CommonCharacterSpriteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonViewControls\CommonStatsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonViewControls\CommonActionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonViewControls\CommonMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

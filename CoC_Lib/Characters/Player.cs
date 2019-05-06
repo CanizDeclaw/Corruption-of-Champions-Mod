@@ -2,5 +2,9 @@
 {
     public class Player : Character
     {
+        public Player()
+        {
+            Name = "Player";
+        }
     }
 }

@@ -4,9 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoC_Desktop_WPF.Views"
+             xmlns:cviews="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <DockPanel>
+        <!-- Top menu bar -->
+        <cviews:CommonMenuView DockPanel.Dock="Top" Height="50"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+            <!-- Top Left: Player stats and game data -->
+            <cviews:CommonStatsView Grid.Column="0" Grid.Row="0"/>
+            <!-- Bottom Left: NPC sprites or something like that -->
+            <cviews:CommonCharacterSpriteView Grid.Column="0" Grid.Row="1"/>
+            <!-- Top Middle: Scene description -->
+            <cviews:CommonSceneDescriptionView Grid.Column="1" Grid.Row="0"/>
+            <!-- Bottom Middle: Actions -->
+            <cviews:CommonActionsView Grid.Column="1" Grid.Row="1"/>
+            <!-- Top Right: Map or similar -->
+            <cviews:CommonNavigationView Grid.Column="2" Grid.Row="0"/>
+            <!-- Bottom Right: Location sprite -->
+            <cviews:CommonLocationSpriteView Grid.Column="2" Grid.Row="1"/>
+        </Grid>
+    </DockPanel>
 </UserControl>
