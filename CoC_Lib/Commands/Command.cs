@@ -20,7 +20,7 @@ namespace CoC_Lib.Commands
 
         protected readonly Game Game;
         public abstract bool CanExecute { get; }
-        public abstract Action<Game> NextScene { get; }
+        public abstract void Execute();
 
         public Command(Game game)
         {
