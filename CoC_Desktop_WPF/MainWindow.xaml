@@ -4,9 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoC_Desktop_WPF"
+        xmlns:views="clr-namespace:CoC_Desktop_WPF.Views"
+        xmlns:models="clr-namespace:CoC_Desktop_WPF.Models"
+        xmlns:coclib="clr-namespace:CoC_Lib;assembly=CoC_Lib"
+        xmlns:cocscenes="clr-namespace:CoC_Lib.Scenes;assembly=CoC_Lib"
         mc:Ignorable="d"
         Title="Corruption of Champions" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Window.DataContext>
+        <models:CoC/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type cocscenes:MainMenu}">
+            <views:MainMenu/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type cocscenes:CommonScene}">
+            <views:CommonView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type cocscenes:CombatScene}">
+            <views:CombatView/>
+        </DataTemplate>
+    </Window.Resources>
+    <DockPanel>
+        <!-- This is where the templating to control which view is visible will appear. -->
+        <ContentControl Content="{Binding Game.CurrentScene}"/>
+    </DockPanel>
 </Window>

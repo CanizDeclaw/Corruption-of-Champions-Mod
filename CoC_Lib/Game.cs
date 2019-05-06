@@ -7,6 +7,7 @@ namespace CoC_Lib
     {
         public ISaveLoad SaveLoad;
         public Player Player;
+        public Scenes.Scene CurrentScene;
 
         /// <summary>
         /// Set all game variables to clean, new-game state.  Used to start a new game,

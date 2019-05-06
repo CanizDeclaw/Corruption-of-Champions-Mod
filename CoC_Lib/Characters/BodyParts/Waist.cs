@@ -9,7 +9,7 @@ namespace CoC_Lib.Characters.BodyParts
     /// Description will initially be just one of [narrow, average, wide].
     /// Might be expanded by species-specific classes to include things like unusually narrow, insectoid waists.
     /// </summary>
-    public class Waist : AbstractBodyPart
+    public abstract class Waist : AbstractBodyPart
     {
     }
 }

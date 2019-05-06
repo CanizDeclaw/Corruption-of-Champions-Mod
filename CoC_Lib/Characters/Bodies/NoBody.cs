@@ -26,18 +26,19 @@ namespace CoC_Lib.Characters.Bodies
         #endregion Head & Neck
 
         #region Upper Body
+        public override Shoulders Shoulders { get; }
         public override Arms Arms { get; }
         public override Claws Claws { get; }
         public override Wings Wings { get; }
+        public override SpinalFeature SpinalFeature { get; }
+        public override Waist Waist { get; }
         #endregion Upper Body
 
         #region Lower Body
-        public override Shoulders Shoulders { get; }
         public override LowerBody LowerBody { get; }
         public override Hips Hips { get; }
         public override Butt Butt { get; }
         public override List<Tail> Tails { get; }
-        public override Waist Waist { get; }
         # endregion Lower Body
 
         #region General Body
