@@ -6,8 +6,9 @@ namespace CoC_Lib
     public class Game
     {
         public ISaveLoad SaveLoad;
+        public bool InProgress;
         public Player Player;
-        public Scenes.Scene CurrentScene;
+        public Scenes.Scene CurrentScene { get; }
 
         /// <summary>
         /// Set all game variables to clean, new-game state.  Used to start a new game,
@@ -24,6 +25,7 @@ namespace CoC_Lib
         {
             SaveLoad = saveLoad;
             ResetGame();
+            CurrentScene = new Scenes.MainMenu(this);
         }
     }
 }

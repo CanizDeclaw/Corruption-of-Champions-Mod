@@ -25,6 +25,7 @@
         </DataTemplate>
     </Window.Resources>
     <DockPanel>
+        <Label DockPanel.Dock="Bottom" Content="{Binding testText}"/>
         <!-- This is where the templating to control which view is visible will appear. -->
         <ContentControl Content="{Binding Game.CurrentScene}"/>
     </DockPanel>

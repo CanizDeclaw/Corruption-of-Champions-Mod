@@ -8,9 +8,9 @@ namespace CoC_Desktop_WPF.Models
 {
     public class CoC
     {
-        private Utilities.SaveLoadPackage saveLoadPackage;
+        private readonly Utilities.SaveLoadPackage saveLoadPackage;
 
-        public CoC_Lib.Game Game;
+        public CoC_Lib.Game Game { get; }
 
         public CoC()
         {

@@ -11,15 +11,20 @@ namespace CoC_Lib.Commands
     /// 
     /// In a GUI each command represents a button.
     /// </summary>
-    public class Command
+    public abstract class Command
     {
-        public string ShortName;
-        public string Description => CanExecute(game) ? CanExecuteDescription : CanNotExecuteDescription; 
-        public string CanExecuteDescription;
-        public string CanNotExecuteDescription;
+        public abstract string ShortName { get; }
+        public string Description => CanExecute(Game) ? CanExecuteDescription : CanNotExecuteDescription; 
+        public abstract string CanExecuteDescription { get; }
+        public abstract string CanNotExecuteDescription { get; }
 
-        protected readonly Game game;
-        public Func<Game, bool> CanExecute;
-        public Action<Game> NextScene;
+        protected readonly Game Game;
+        public abstract Func<Game, bool> CanExecute { get; }
+        public abstract Action<Game> NextScene { get; }
+
+        public Command(Game game)
+        {
+            Game = game;
+        }
     }
 }

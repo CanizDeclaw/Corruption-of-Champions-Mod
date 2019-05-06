@@ -6,5 +6,8 @@ namespace CoC_Lib.Scenes
 {
     public class CombatScene : Scene
     {
+        public CombatScene(Game game)
+            :base(game)
+        { }
     }
 }
