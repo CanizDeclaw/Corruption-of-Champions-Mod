@@ -7,7 +7,8 @@ namespace CoC_Lib.Commands.MainMenuCommands
     public class OptionsCommand : Command
     {
         public override string ShortName => "Options";
-        public override string CanExecuteDescription => "<h1>Options</h1><hr>Configure game settings and enable cheats.";
+        public override string LongName => "Options";
+        public override string CanExecuteDescription => "Configure game settings and enable cheats.";
         public override string CanNotExecuteDescription => "";
 
         public override Func<Game, bool> CanExecute => (_) => true;

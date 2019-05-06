@@ -7,7 +7,8 @@ namespace CoC_Lib.Commands.MainMenuCommands
     public class DataCommand : Command
     {
         public override string ShortName => "Data";
-        public override string CanExecuteDescription => "<h1>Data</h1><hr>Load or manage saved games.";
+        public override string LongName => "Data";
+        public override string CanExecuteDescription => "Load or manage saved games.";
         public override string CanNotExecuteDescription => "";
 
         public override Func<Game, bool> CanExecute => (_) => true;

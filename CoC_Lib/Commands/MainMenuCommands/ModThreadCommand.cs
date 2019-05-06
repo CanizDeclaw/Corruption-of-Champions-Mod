@@ -7,7 +7,8 @@ namespace CoC_Lib.Commands.MainMenuCommands
     public class ModThreadCommand : Command
     {
         public override string ShortName => "Mod Thread";
-        public override string CanExecuteDescription => "<h1>Mod Thread</h1><hr>Check the official mod thread on Fenoxo's forum";
+        public override string LongName => "Mod Thread";
+        public override string CanExecuteDescription => "Check the official mod thread on Fenoxo's forum";
         public override string CanNotExecuteDescription => "";
 
         public override Func<Game, bool> CanExecute => (_) => true;
