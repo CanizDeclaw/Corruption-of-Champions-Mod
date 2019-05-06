@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>CoC_Lib</RootNamespace>
     <AssemblyName>CoC_Lib</AssemblyName>
   </PropertyGroup>
@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Items\Clothing\" />
     <Folder Include="Items\" />
+    <Folder Include="Scenes\MenuScreens\" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,7 @@ namespace CoC_Lib.Characters.BodyParts
         public string Adjective; // TODO: Better way to deal with adjective
         public string FurColor; // TODO: Better way to deal with colors
 
-        public abstract Species.SkinType Type { get; }; // TODO: Probably not the way this should be handled, exactly.
+        public abstract Species.SkinType Type { get; } // TODO: Probably not the way this should be handled, exactly.
         public abstract bool HasFur { get; }
         public abstract bool HasWool { get; }
         public abstract bool HasFeathers { get; }
