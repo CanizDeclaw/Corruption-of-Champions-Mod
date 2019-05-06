@@ -10,9 +10,16 @@ namespace CoC_Lib.Scenes
     /// </summary>
     public abstract class Scene
     {
+        public Game Game { get; }
+
         // Each scene has a max of 15 non-default action choices, not including the static(-ish)
         // choices like "Main Menu" and "Appearance".  Scenes are not guaranteed to use all
         // slots, nor to use them sequentially.
-        public Command[] Commands = new Command[15];
+        public Command[] Commands { get; } = new Command[15];
+
+        public Scene(Game game)
+        {
+            Game = game;
+        }
     }
 }

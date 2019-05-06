@@ -21,5 +21,9 @@ namespace CoC_Lib.Scenes
 
         // The rich text (or HTML?) describing the scene and/or its events.
         public object SceneDescription;
+
+        public CommonScene(Game game)
+            :base(game)
+        { }
     }
 }
