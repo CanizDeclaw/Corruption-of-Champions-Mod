@@ -33,8 +33,8 @@ namespace CoC_Lib
         {
             SaveLoad = saveLoad;
             ResetGame();
-            //CurrentScene = new Scenes.MainMenu(this);
-            CurrentScene = new Scenes.CommonScene(this);
+            CurrentScene = new Scenes.MainMenu(this);
+            //CurrentScene = new Scenes.CommonScene(this);
         }
     }
 }

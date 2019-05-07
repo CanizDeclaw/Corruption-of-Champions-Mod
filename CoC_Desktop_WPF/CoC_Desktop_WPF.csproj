@@ -55,8 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\CoC.cs" />
+    <Compile Include="Utilities\ExtensionMethods.cs" />
+    <Compile Include="Utilities\FlowDocumentConverters.cs" />
+    <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\CoC.cs" />
     <Compile Include="Utilities\SaveLoadPackage.cs" />
+    <Compile Include="Utilities\SceneTextToFlowDocument.cs" />
+    <Compile Include="ViewModels\CommandVM.cs" />
+    <Compile Include="ViewModels\PlayerVM.cs" />
+    <Compile Include="ViewModels\Scenes\CombatSceneVM.cs" />
+    <Compile Include="ViewModels\Scenes\CommonSceneVM.cs" />
+    <Compile Include="ViewModels\Scenes\MainMenuVM.cs" />
+    <Compile Include="ViewModels\SceneVM.cs" />
     <Compile Include="Views\CombatView.xaml.cs">
       <DependentUpon>CombatView.xaml</DependentUpon>
     </Compile>

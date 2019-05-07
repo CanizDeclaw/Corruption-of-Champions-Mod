@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
-             xmlns:coccommands="clr-namespace:CoC_Lib.Commands;assembly=CoC_Lib"
+             xmlns:vms="clr-namespace:CoC_Desktop_WPF.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="1200">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type coccommands:Command}">
+        <DataTemplate DataType="{x:Type vms:CommandVM}">
             <Button Content="{Binding ShortName}"
                     IsEnabled="{Binding CanExecute}"
                     ToolTipService.ShowOnDisabled="True">

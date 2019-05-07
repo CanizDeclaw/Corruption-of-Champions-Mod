@@ -5,28 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoC_Desktop_WPF"
         xmlns:views="clr-namespace:CoC_Desktop_WPF.Views"
-        xmlns:models="clr-namespace:CoC_Desktop_WPF.Models"
+        xmlns:vms="clr-namespace:CoC_Desktop_WPF.ViewModels"
+        xmlns:scenes="clr-namespace:CoC_Desktop_WPF.ViewModels.Scenes"
         xmlns:coclib="clr-namespace:CoC_Lib;assembly=CoC_Lib"
         xmlns:cocscenes="clr-namespace:CoC_Lib.Scenes;assembly=CoC_Lib"
         mc:Ignorable="d"
         Title="Corruption of Champions" Height="800" Width="1200">
     <Window.DataContext>
-        <models:CoC/>
+        <vms:CoC/>
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type cocscenes:MainMenu}">
+        <DataTemplate DataType="{x:Type scenes:MainMenuVM}">
             <views:MainMenu/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type cocscenes:CommonScene}">
+        <DataTemplate DataType="{x:Type scenes:CommonSceneVM}">
             <views:CommonView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type cocscenes:CombatScene}">
+        <DataTemplate DataType="{x:Type scenes:CombatSceneVM}">
             <views:CombatView/>
         </DataTemplate>
     </Window.Resources>
     <DockPanel>
-        <Label DockPanel.Dock="Bottom" Content="{Binding testText}"/>
         <!-- This is where the templating to control which view is visible will appear. -->
-        <ContentControl Content="{Binding Game.CurrentScene}"/>
+        <ContentControl Content="{Binding CurrentScene}"/>
     </DockPanel>
 </Window>

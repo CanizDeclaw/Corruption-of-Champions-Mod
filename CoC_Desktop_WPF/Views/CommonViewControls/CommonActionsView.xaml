@@ -4,9 +4,66 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
+             xmlns:vms="clr-namespace:CoC_Desktop_WPF.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vms:CommandVM}">
+            <Button Content="{Binding ShortName}"
+                    IsEnabled="{Binding CanExecute}"
+                    ToolTipService.ShowOnDisabled="True">
+                <Button.ToolTip>
+                    <StackPanel Width="300">
+                        <TextBlock Text="{Binding LongName}" FontSize="14" FontWeight="Bold"/>
+                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8"/>
+                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Row="0" Grid.Column="0"
+                Content="{Binding Commands[0]}"/>
+        <ContentControl Grid.Row="0" Grid.Column="1"
+                Content="{Binding Commands[1]}"/>
+        <ContentControl Grid.Row="0" Grid.Column="2"
+                Content="{Binding Commands[2]}"/>
+        <ContentControl Grid.Row="0" Grid.Column="3"
+                Content="{Binding Commands[3]}"/>
+        <ContentControl Grid.Row="0" Grid.Column="4"
+                Content="{Binding Commands[4]}"/>
+        <ContentControl Grid.Row="1" Grid.Column="0"
+                Content="{Binding Commands[5]}"/>
+        <ContentControl Grid.Row="1" Grid.Column="1"
+                Content="{Binding Commands[6]}"/>
+        <ContentControl Grid.Row="1" Grid.Column="2"
+                Content="{Binding Commands[7]}"/>
+        <ContentControl Grid.Row="1" Grid.Column="3"
+                Content="{Binding Commands[8]}"/>
+        <ContentControl Grid.Row="1" Grid.Column="4"
+                Content="{Binding Commands[9]}"/>
+        <ContentControl Grid.Row="2" Grid.Column="0"
+                Content="{Binding Commands[10]}"/>
+        <ContentControl Grid.Row="2" Grid.Column="1"
+                Content="{Binding Commands[11]}"/>
+        <ContentControl Grid.Row="2" Grid.Column="2"
+                Content="{Binding Commands[12]}"/>
+        <ContentControl Grid.Row="2" Grid.Column="3"
+                Content="{Binding Commands[13]}"/>
+        <ContentControl Grid.Row="2" Grid.Column="4"
+                Content="{Binding Commands[14]}"/>
     </Grid>
 </UserControl>

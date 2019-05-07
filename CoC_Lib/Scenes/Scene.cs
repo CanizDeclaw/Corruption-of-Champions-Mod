@@ -12,6 +12,9 @@ namespace CoC_Lib.Scenes
     {
         public Game Game { get; }
 
+        // The rich text (or HTML?) describing the scene and/or its events.
+        public string SceneText { get; set; }
+
         // Each scene has a max of 15 non-default action choices, not including the static(-ish)
         // choices like "Main Menu" and "Appearance".  Scenes are not guaranteed to use all
         // slots, nor to use them sequentially.
