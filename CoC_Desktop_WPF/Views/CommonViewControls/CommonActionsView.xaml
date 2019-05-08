@@ -8,7 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="800">
     <UserControl.Resources>
-        <!-- Repeated button bindings -->
         <DataTemplate DataType="{x:Type vms:CommandVM}">
             <Button IsEnabled="{Binding CanExecute}"
                     ToolTipService.ShowOnDisabled="True">
@@ -22,7 +21,6 @@
                 <TextBlock Text="{Binding ShortName}" TextAlignment="Center" VerticalAlignment="Center" Padding="0,4,0,0"/>
             </Button>
         </DataTemplate>
-        <!-- Don't have buttons use the default background -->
         <Style TargetType="{x:Type Button}">
             <Setter Property="FontFamily" Value="{StaticResource Shrewsbury-Titling_Bold}"/>
             <Setter Property="FontSize" Value="18"/>
@@ -35,6 +33,11 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border BorderBrush="Transparent" BorderThickness="0">
                             <Grid>
+                                <Rectangle Name="background">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="{Binding Path=Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentControl},AncestorLevel=2}}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
                                 <ContentPresenter Content="{TemplateBinding Content}"
                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
@@ -42,25 +45,8 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="True">
                                 <Setter Property="Opacity" Value="1"/>
+                                <Setter TargetName="background" Property="Opacity" Value="1"/>
                             </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="{x:Type ContentControl}">
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ContentControl">
-                        <!-- Default opacity is for disable, changed by trigger on IsEnabled==true -->
-                        <Grid>
-                            <Rectangle Name="background" Fill="{TemplateBinding Background}"/>
-                            <ContentPresenter Content="{TemplateBinding Content}"
-                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="background" Property="Opacity" Value="0.5"/>
                             </Trigger>
@@ -83,31 +69,26 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding Commands[0]}">
-            <ContentControl.Background>
-                <ImageBrush ImageSource="/CoC_Desktop_WPF;component/Resources/ui/button0.jpg"/>
-            </ContentControl.Background>
+        <ContentControl Grid.Row="0" Grid.Column="0"
+                        Content="{Binding Commands[0]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button0.jpg">
         </ContentControl>
-        <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding Commands[1]}">
-            <ContentControl.Background>
-                <ImageBrush ImageSource="/CoC_Desktop_WPF;component/Resources/ui/button1.jpg"/>
-            </ContentControl.Background>
+        <ContentControl Grid.Row="0" Grid.Column="1"
+                        Content="{Binding Commands[1]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button1.jpg">
         </ContentControl>
-        <Button Grid.Row="0" Grid.Column="2" Content="{Binding Commands[2]}">
-            <Button.Background>
-                <ImageBrush ImageSource="/CoC_Desktop_WPF;component/Resources/ui/button2.jpg"/>
-            </Button.Background>
-        </Button>
-        <Button Grid.Row="0" Grid.Column="3" Content="{Binding Commands[3]}">
-            <Button.Background>
-                <ImageBrush ImageSource="/CoC_Desktop_WPF;component/Resources/ui/button3.jpg"/>
-            </Button.Background>
-        </Button>
-        <Button Grid.Row="0" Grid.Column="4" Content="{Binding Commands[4]}">
-            <Button.Background>
-                <ImageBrush ImageSource="/CoC_Desktop_WPF;component/Resources/ui/button4.jpg"/>
-            </Button.Background>
-        </Button>
+        <ContentControl Grid.Row="0" Grid.Column="2"
+                        Content="{Binding Commands[2]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button2.jpg">
+        </ContentControl>
+        <ContentControl Grid.Row="0" Grid.Column="3"
+                        Content="{Binding Commands[3]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button3.jpg">
+        </ContentControl>
+        <ContentControl Grid.Row="0" Grid.Column="4"
+                        Content="{Binding Commands[4]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button4.jpg">
+        </ContentControl>
         <Button Grid.Row="1" Grid.Column="0" Content="{Binding Commands[5]}">
             <Button.Background>
                 <ImageBrush ImageSource="/CoC_Desktop_WPF;component/Resources/ui/button5.jpg"/>

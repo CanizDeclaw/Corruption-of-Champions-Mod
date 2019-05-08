@@ -33,8 +33,8 @@ namespace CoC_Lib.Scenes
             // TODO: This is just test data.
             Commands[0] = new Commands.MainMenuCommands.NewGameCommand(game);
             Commands[1] = new RankUpCommand(game);
-            Commands[2] = new Commands.MainMenuCommands.NewGameCommand(game);
-            Commands[3] = new RankUpCommand(game);
+            Commands[5] = new Commands.MainMenuCommands.NewGameCommand(game);
+            Commands[6] = new RankUpCommand(game);
 
             // TODO: Remove this test text.
             SceneText =
