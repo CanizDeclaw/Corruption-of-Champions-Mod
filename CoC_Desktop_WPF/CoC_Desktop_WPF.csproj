@@ -75,6 +75,9 @@
     <Compile Include="Views\CommonView.xaml.cs">
       <DependentUpon>CommonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CommonViewControls\CoCButton.xaml.cs">
+      <DependentUpon>CoCButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CommonViewControls\CommonLocationSpriteView.xaml.cs">
       <DependentUpon>CommonLocationSpriteView.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CommonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonViewControls\CoCButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
