@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CoC_Desktop_WPF.Views.CommonViewControls.CommonStatsView"
+﻿<UserControl x:Class="CoC_Desktop_WPF.Views.CommonViewControls.PlayerStatsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -61,34 +61,34 @@
         </DataTemplate>
     </UserControl.Resources>
     <StackPanel Height="600">
-        <TextBlock Text="{Binding Game.Player.Name}" Style="{StaticResource NameStyle}"/>
+        <TextBlock Text="{Binding Player.Name}" Style="{StaticResource NameStyle}"/>
         <TextBlock Text="◀ Core Stats ▶" Style="{StaticResource HeaderStyle}"/>
-        <ContentControl Content="{Binding Game.Player.Strength}"/>
-        <ContentControl Content="{Binding Game.Player.Toughness}"/>
-        <ContentControl Content="{Binding Game.Player.Speed}"/>
-        <ContentControl Content="{Binding Game.Player.Intelligence}"/>
-        <ContentControl Content="{Binding Game.Player.Libido}"/>
-        <ContentControl Content="{Binding Game.Player.Sensitivity}"/>
-        <ContentControl Content="{Binding Game.Player.Corruption}"/>
+        <ContentControl Content="{Binding Player.Strength}"/>
+        <ContentControl Content="{Binding Player.Toughness}"/>
+        <ContentControl Content="{Binding Player.Speed}"/>
+        <ContentControl Content="{Binding Player.Intelligence}"/>
+        <ContentControl Content="{Binding Player.Libido}"/>
+        <ContentControl Content="{Binding Player.Sensitivity}"/>
+        <ContentControl Content="{Binding Player.Corruption}"/>
         <TextBlock Text="◀ Combat Stats ▶" Style="{StaticResource HeaderStyle}"/>
         <!-- TODO: Custom colors for HP and Lust. -->
-        <ContentControl Content="{Binding Game.Player.HP}"/>
-        <ContentControl Content="{Binding Game.Player.Lust}"/>
-        <ContentControl Content="{Binding Game.Player.Fatigue}"/>
+        <ContentControl Content="{Binding Player.HP}"/>
+        <ContentControl Content="{Binding Player.Lust}"/>
+        <ContentControl Content="{Binding Player.Fatigue}"/>
         <TextBlock Text="◀ Advancement ▶" Style="{StaticResource HeaderStyle}"/>
-        <ContentControl Content="{Binding Game.Player.Level}"/>
-        <ContentControl Content="{Binding Game.Player.XP}"/>
+        <ContentControl Content="{Binding Player.Level}"/>
+        <ContentControl Content="{Binding Player.XP}"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Gems: "/>
-            <TextBlock Text="{Binding Game.Player.Gems}"/>
+            <TextBlock Text="{Binding Player.Gems}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Day: "/>
-            <TextBlock Text="{Binding Game.Day}"/>
+            <TextBlock Text="{Binding Day}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Time: "/>
-            <TextBlock Text="{Binding Game.TimeOfDay}"/>
+            <TextBlock Text="{Binding TimeOfDay}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

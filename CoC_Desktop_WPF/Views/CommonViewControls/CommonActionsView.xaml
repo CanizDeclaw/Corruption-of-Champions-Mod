@@ -22,7 +22,7 @@
             </Button>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid>
+    <Grid DataContext="{Binding CurrentScene}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>

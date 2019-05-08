@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CoC_Desktop_WPF.Views
+namespace CoC_Desktop_WPF.Views.CommonViewControls
 {
     /// <summary>
     /// Interaction logic for MainMenu.xaml
     /// </summary>
-    public partial class MainMenu : UserControl
+    public partial class MainMenuView : UserControl
     {
-        public MainMenu()
+        public MainMenuView()
         {
             InitializeComponent();
         }

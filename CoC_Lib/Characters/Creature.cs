@@ -23,6 +23,12 @@
         public Statistics.LevelStat Level { get; set; }
         public Statistics.XpStat XP { get; set; }
 
+        // Hidden/Unused/Special Stats
+        public Statistics.HungerStat Hunger { get; set; }
+        public Statistics.ObeisanceStat Obeisance { get; set; }
+        public Statistics.EsteemStat Esteem { get; set; } // TODO: Self-Esteem?
+        public Statistics.WillStat Will { get; set; }
+
         // Items & Gems
         public int Gems { get; }
 

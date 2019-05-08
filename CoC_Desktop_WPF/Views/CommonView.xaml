@@ -5,33 +5,48 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoC_Desktop_WPF.Views"
              xmlns:cviews="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
+             xmlns:utils="clr-namespace:CoC_Desktop_WPF.Utilities"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1200">
-    <DockPanel>
+             d:DesignHeight="800" d:DesignWidth="1200"
+             MinHeight="800" MinWidth="1200" Background="White">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+        <utils:ViewboxGridWidthConverter x:Key="ViewboxGridWidthConverter"/>
+        <utils:ViewboxGridHeightConverter x:Key="ViewboxGridHeightConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="{Binding UseViewbox, Converter={StaticResource ViewboxGridWidthConverter}}"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="{Binding UseViewbox, Converter={StaticResource ViewboxGridHeightConverter}}"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
         <!-- Top menu bar -->
-        <cviews:CommonMenuView DockPanel.Dock="Top" Height="50"/>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="150"/>
-            </Grid.RowDefinitions>
-            <!-- Top Left: Player stats and game data -->
-            <cviews:CommonStatsView Grid.Column="0" Grid.Row="0"/>
-            <!-- Bottom Left: NPC sprites or something like that -->
-            <cviews:CommonCharacterSpriteView Grid.Column="0" Grid.Row="1"/>
-            <!-- Top Middle: Scene description -->
-            <cviews:CommonSceneDescriptionView Grid.Column="1" Grid.Row="0"/>
-            <!-- Bottom Middle: Actions -->
-            <cviews:CommonActionsView Grid.Column="1" Grid.Row="1"/>
-            <!-- Top Right: Map or similar -->
-            <cviews:CommonNavigationView Grid.Column="2" Grid.Row="0"/>
-            <!-- Bottom Right: Location sprite -->
-            <cviews:CommonLocationSpriteView Grid.Column="2" Grid.Row="1"/>
-        </Grid>
-    </DockPanel>
+        <cviews:CommonMenuView Grid.Row="0" Grid.ColumnSpan="3"
+                               Visibility="{Binding CommonMenuVisible, Converter={StaticResource VisibilityConverter}}"/>
+        <!-- Top Left: Player stats and game data -->
+        <cviews:PlayerStatsView Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"
+                               Visibility="{Binding PlayerStatsVisible, Converter={StaticResource VisibilityConverter}}"/>
+        <!-- Bottom Left: NPC sprites or something like that -->
+        <cviews:CommonCharacterSpriteView Grid.Row="2" Grid.Column="0"
+                               Visibility="{Binding CharacterSpriteVisible, Converter={StaticResource VisibilityConverter}}"/>
+        <!-- Top Middle: Scene description, Main Menu -->
+        <cviews:CommonSceneDescriptionView Grid.Row="1" Grid.Column="1"
+                               Visibility="{Binding SceneDescriptionVisible, Converter={StaticResource VisibilityConverter}}"/>
+        <cviews:MainMenuView Grid.Row="1" Grid.Column="1"
+                             Visibility="{Binding MainMenuVisible, Converter={StaticResource VisibilityConverter}}"/>
+        <!-- Bottom Middle: Actions -->
+        <cviews:CommonActionsView Grid.Row="2" Grid.Column="1"
+                               Visibility="{Binding CommonButtonsVisible, Converter={StaticResource VisibilityConverter}}"/>
+        <!-- Top Right: Map or similar, Enemy Stats -->
+        <cviews:CommonNavigationView Grid.Row="1" Grid.Column="2"
+                               Visibility="{Binding NavigationVisible, Converter={StaticResource VisibilityConverter}}"/>
+        <!-- Bottom Right: Location sprite -->
+        <cviews:CommonLocationSpriteView Grid.Row="2" Grid.Column="2"
+                               Visibility="{Binding LocationSpriteVisible, Converter={StaticResource VisibilityConverter}}"/>
+    </Grid>
 </UserControl>

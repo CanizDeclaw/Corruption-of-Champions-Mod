@@ -57,6 +57,8 @@
     </ApplicationDefinition>
     <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="Utilities\FlowDocumentConverters.cs" />
+    <Compile Include="Utilities\ViewboxGridHeightConverter.cs" />
+    <Compile Include="Utilities\ViewboxGridWidthConverter.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\CoC.cs" />
     <Compile Include="Utilities\SaveLoadPackage.cs" />
@@ -85,8 +87,8 @@
     <Compile Include="Views\CommonViewControls\CommonCharacterSpriteView.xaml.cs">
       <DependentUpon>CommonCharacterSpriteView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CommonViewControls\CommonStatsView.xaml.cs">
-      <DependentUpon>CommonStatsView.xaml</DependentUpon>
+    <Compile Include="Views\CommonViewControls\PlayerStatsView.xaml.cs">
+      <DependentUpon>PlayerStatsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CommonViewControls\CommonActionsView.xaml.cs">
       <DependentUpon>CommonActionsView.xaml</DependentUpon>
@@ -94,8 +96,11 @@
     <Compile Include="Views\CommonViewControls\CommonMenuView.xaml.cs">
       <DependentUpon>CommonMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainMenu.xaml.cs">
-      <DependentUpon>MainMenu.xaml</DependentUpon>
+    <Compile Include="Views\CommonViewControls\EnemyStatsView.xaml.cs">
+      <DependentUpon>EnemyStatsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonViewControls\MainMenuView.xaml.cs">
+      <DependentUpon>MainMenuView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -133,7 +138,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CommonViewControls\CommonStatsView.xaml">
+    <Page Include="Views\CommonViewControls\PlayerStatsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,7 +150,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainMenu.xaml">
+    <Page Include="Views\CommonViewControls\EnemyStatsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommonViewControls\MainMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

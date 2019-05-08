@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CoC_Desktop_WPF.Views.CommonViewControls
 {
     /// <summary>
-    /// Interaction logic for CommonStatsView.xaml
+    /// Interaction logic for EnemyStatsView.xaml
     /// </summary>
-    public partial class CommonStatsView : UserControl
+    public partial class EnemyStatsView : UserControl
     {
-        public CommonStatsView()
+        public EnemyStatsView()
         {
             InitializeComponent();
         }

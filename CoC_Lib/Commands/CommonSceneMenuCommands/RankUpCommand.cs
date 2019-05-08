@@ -35,6 +35,12 @@ namespace CoC_Lib.Commands.CommonSceneMenuCommands
                 LongName = "Perk Up";
                 CanExecuteDescription = "";
             }
+            else
+            {
+                ShortName = "Level Up";
+                LongName = "Level Up";
+                CanExecuteDescription = "";
+            }
         }
     }
 }
