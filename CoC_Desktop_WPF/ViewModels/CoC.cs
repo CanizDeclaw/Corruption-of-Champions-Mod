@@ -13,7 +13,7 @@ namespace CoC_Desktop_WPF.ViewModels
 
         #region Window variables
         // Scale-with-Window (viewbox) or not
-        public bool ScaleWithWindow { get; protected set; } = false;
+        public bool ScaleWithWindow { get; protected set; } = true;
         public bool DoNotScaleWithWindow => !ScaleWithWindow;
 
         // Startup Width and Height
@@ -42,6 +42,7 @@ namespace CoC_Desktop_WPF.ViewModels
         public bool MainMenuVisible => game.CurrentScene is CoC_Lib.Scenes.MainMenu;
         #endregion Window variables
 
+        public string VersionText => game.VersionText;
 
         public PlayerVM Player => new PlayerVM(game.Player, this);
         public int Day => game.Day;

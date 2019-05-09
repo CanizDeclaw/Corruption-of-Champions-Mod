@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="CoC_Desktop_WPF.Views.CommonViewControls.MainMenuButtonsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
+             xmlns:vms="clr-namespace:CoC_Desktop_WPF.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="90" d:DesignWidth="620">
+    <UserControl.Resources>
+        <!-- Button + Tooltip Styling -->
+        <Style TargetType="{x:Type ToolTip}">
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Height" Value="239"/>
+            <Setter Property="Placement" Value="Top"/>
+            <Setter Property="HorizontalOffset" Value="-13"/>
+            <Setter Property="VerticalOffset" Value="-2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToolTip}">
+                        <Grid Background="Transparent">
+                            <Image Source="/CoC_Desktop_WPF;component/Resources/ui/tooltip.png" Stretch="Fill"/>
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ToolTipHeader" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="{StaticResource Shrewsbury-Titling_Bold}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style x:Key="ToolTipText" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Global Serif"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <DataTemplate DataType="{x:Type vms:CommandVM}">
+            <Button IsEnabled="{Binding CanExecute}"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTipService.ShowDuration="60000">
+                <Button.ToolTip>
+                    <StackPanel Margin="15">
+                        <TextBlock Text="{Binding LongName}" Style="{StaticResource ToolTipHeader}"/>
+                        <Border BorderBrush="Black" BorderThickness="0,1,0,0"/>
+                        <TextBlock Text="{Binding Description}" Style="{StaticResource ToolTipText}"/>
+                    </StackPanel>
+                </Button.ToolTip>
+                <TextBlock Text="{Binding ShortName}" TextAlignment="Center" VerticalAlignment="Center" Padding="0,4,0,0"/>
+            </Button>
+        </DataTemplate>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontFamily" Value="{StaticResource Shrewsbury-Titling_Bold}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Opacity" Value="0.4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="Transparent" BorderThickness="0">
+                            <Grid>
+                                <Rectangle Name="background">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="{Binding Path=Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentControl},AncestorLevel=2}}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter Property="Opacity" Value="1"/>
+                                <Setter TargetName="background" Property="Opacity" Value="1"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="background" Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid DataContext="{Binding CurrentScene}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ContentControl Grid.Row="0" Grid.Column="0"
+                        Content="{Binding Commands[0]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button0.jpg">
+            </ContentControl>
+            <ContentControl Grid.Row="0" Grid.Column="1"
+                        Content="{Binding Commands[1]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button1.jpg">
+            </ContentControl>
+            <ContentControl Grid.Row="0" Grid.Column="2"
+                        Content="{Binding Commands[2]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button2.jpg">
+            </ContentControl>
+            <ContentControl Grid.Row="0" Grid.Column="3"
+                        Content="{Binding Commands[3]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button3.jpg">
+            </ContentControl>
+            <ContentControl Grid.Row="1" Grid.Column="0"
+                        Content="{Binding Commands[4]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button4.jpg">
+            </ContentControl>
+            <ContentControl Grid.Row="1" Grid.Column="1"
+                        Content="{Binding Commands[5]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button5.jpg">
+            </ContentControl>
+            <ContentControl Grid.Row="1" Grid.Column="2"
+                        Content="{Binding Commands[6]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button6.jpg">
+            </ContentControl>
+            <ContentControl Grid.Row="1" Grid.Column="3"
+                        Content="{Binding Commands[7]}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button7.jpg">
+            </ContentControl>
+        </Grid>
+    </Grid>
+</UserControl>

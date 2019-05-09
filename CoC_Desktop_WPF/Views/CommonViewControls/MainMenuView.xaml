@@ -3,53 +3,94 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CoC_Desktop_WPF.Views"
+             xmlns:local="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
              xmlns:vms="clr-namespace:CoC_Desktop_WPF.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="1205">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type vms:CommandVM}">
-            <Button Content="{Binding ShortName}"
-                    IsEnabled="{Binding CanExecute}"
-                    ToolTipService.ShowOnDisabled="True">
-                <Button.ToolTip>
-                    <StackPanel Width="300">
-                        <TextBlock Text="{Binding LongName}" FontSize="14" FontWeight="Bold"/>
-                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8"/>
-                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </Button.ToolTip>
-            </Button>
-        </DataTemplate>
+        <Style x:Key="RegularText" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontFamily" Value="Palatino Linotype"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style x:Key="BoldText" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontFamily" Value="Palatino Linotype"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="UrlText" TargetType="{x:Type Hyperlink}">
+            <Setter Property="FontFamily" Value="Palatino Linotype"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="TextDecorations" Value="None"/>
+        </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <ContentControl Grid.Column="0" Grid.Row="0"
-                            Content="{Binding Commands[0]}"/>
-            <ContentControl Grid.Column="1" Grid.Row="0"
-                            Content="{Binding Commands[1]}"/>
-            <ContentControl Grid.Column="2" Grid.Row="0"
-                            Content="{Binding Commands[2]}"/>
-            <ContentControl Grid.Column="3" Grid.Row="0"
-                            Content="{Binding Commands[3]}"/>
-            <ContentControl Grid.Column="0" Grid.Row="1"
-                            Content="{Binding Commands[4]}"/>
-            <ContentControl Grid.Column="1" Grid.Row="1"
-                            Content="{Binding Commands[5]}"/>
-            <ContentControl Grid.Column="2" Grid.Row="1"
-                            Content="{Binding Commands[6]}"/>
-            <ContentControl Grid.Column="3" Grid.Row="1"
-                            Content="{Binding Commands[7]}"/>
-        </Grid>
-    </Grid>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Bottom" Margin="0,0,4,13">
+            <TextBlock HorizontalAlignment="Right"
+                       Style="{StaticResource BoldText}"
+                       Text="{Binding VersionText}"/>
+            <TextBlock HorizontalAlignment="Right"
+                       Style="{StaticResource BoldText}"
+                       Text="Original Game by Fenoxo"/>
+            <TextBlock HorizontalAlignment="Right"
+                       Style="{StaticResource BoldText}"
+                       Text="Game Mod by Kitteh6660"/>
+            <TextBlock HorizontalAlignment="Right"
+                       Style="{StaticResource BoldText}"
+                       Text="C# Port by Caniz Declaw"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center">
+            <!-- Logo -->
+            <Grid Margin="0,1,0,0">
+                <Image Source="/CoC_Desktop_WPF;component/Resources/ui/CoCLogo.png"
+                       Height="400" Width="600"/>
+            </Grid>
+            <!-- Credits -->
+            <TextBlock HorizontalAlignment="Center"
+                       Style="{StaticResource RegularText}"
+                       Text="Created by Fenoxo, Game Mod by Kitteh6660, C# Port by Caniz Declaw"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Style="{StaticResource BoldText}"
+                           Text="Edited by: "/>
+                <TextBlock Style="{StaticResource RegularText}"
+                           Text="Ashi, SoS, Prisoner416, Zeikfried, et al"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Style="{StaticResource BoldText}"
+                           Text="Open-source contributions by: "/>
+                <TextBlock Style="{StaticResource RegularText}"
+                           Text="aimozg, Amygdala, Cmacleod42, Enterprise2001, Fake-Name, Gedan, Yoffy, et al"/>
+            </StackPanel>
+            <!-- Disclaimer -->
+            <Grid Width="620" Height="90" Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Source="/CoC_Desktop_WPF;component/Resources/ui/disclaimer-bg.png"
+                       Grid.ColumnSpan="2" Stretch="Fill"/>
+                <Image Source="/CoC_Desktop_WPF;component/Resources/ui/warning.png"
+                       Width="60" Height="60" Margin="10, 15"/>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Style="{StaticResource RegularText}"
+                               Text="This is an adult game meant to be played by adults."/>
+                    <TextBlock Style="{StaticResource RegularText}"
+                               Text="Please don't play this game if you're under the age of 18 and certainly don't play if strange and exotic fetishes disgust you."/>
+                    <TextBlock Style="{StaticResource BoldText}"
+                               Text="You have been warned!"/>
+                </StackPanel>
+            </Grid>
+            <!-- Menu Buttons -->
+            <local:MainMenuButtonsView Width="620" Height="90"/>
+            <!-- Fenoxo URL -->
+            <!-- TODO: Make this actually work -->
+            <TextBlock HorizontalAlignment="Center">
+                <Hyperlink Style="{StaticResource UrlText}"
+                           NavigateUri="http://www.fenoxo.com/">www.fenoxo.com</Hyperlink>
+            </TextBlock>
+        </StackPanel>
+    </DockPanel>
 </UserControl>

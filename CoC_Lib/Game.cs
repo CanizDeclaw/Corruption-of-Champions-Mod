@@ -6,6 +6,7 @@ namespace CoC_Lib
     public class Game
     {
         public ISaveLoad SaveLoad;
+        public string VersionText => "1.0.2_mod_2.0.0-alpha (C# Port), Dev Build";
         public bool InProgress;
         public Player Player { get; private set; }
         public TimeSpan GameTime { get; private set; }
@@ -33,8 +34,8 @@ namespace CoC_Lib
         {
             SaveLoad = saveLoad;
             ResetGame();
-            //CurrentScene = new Scenes.MainMenu(this);
-            CurrentScene = new Scenes.CommonScene(this);
+            CurrentScene = new Scenes.MainMenu(this);
+            //CurrentScene = new Scenes.CommonScene(this);
         }
     }
 }

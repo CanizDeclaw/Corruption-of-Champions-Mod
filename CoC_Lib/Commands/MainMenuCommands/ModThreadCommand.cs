@@ -14,6 +14,8 @@ namespace CoC_Lib.Commands.MainMenuCommands
         public override bool CanExecute => true;
         public override void Execute() => throw new NotImplementedException();
 
+        public string ModThreadLink => "https://forum.fenoxo.com/threads/coc-revamp-mod.3/";
+
         public ModThreadCommand(Game game)
             :base(game)
         { }

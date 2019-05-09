@@ -27,6 +27,9 @@
             <RowDefinition MinHeight="600" Height="{Binding UseViewbox, Converter={StaticResource ViewboxGridHeightConverter}}"/>
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
+        <!-- Main Menu, spans entire area -->
+        <cviews:MainMenuView Grid.RowSpan="3" Grid.ColumnSpan="3"
+                             Visibility="{Binding MainMenuVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Top menu bar -->
         <cviews:CommonMenuView Grid.Row="0" Grid.ColumnSpan="3"
                                Visibility="{Binding CommonMenuVisible, Converter={StaticResource VisibilityConverter}}"/>
@@ -36,12 +39,10 @@
         <!-- Bottom Left: NPC sprites or something like that -->
         <cviews:CommonCharacterSpriteView Grid.Row="2" Grid.Column="0"
                                           Visibility="{Binding CharacterSpriteVisible, Converter={StaticResource VisibilityConverter}}"/>
-        <!-- Top Middle: Scene description, Main Menu -->
+        <!-- Top Middle: Scene description -->
         <cviews:CommonSceneDescriptionView Grid.Row="1" Grid.Column="1"
                                            Padding="4,0"
                                            Visibility="{Binding SceneDescriptionVisible, Converter={StaticResource VisibilityConverter}}"/>
-        <cviews:MainMenuView Grid.Row="1" Grid.Column="1"
-                             Visibility="{Binding MainMenuVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Bottom Middle: Actions -->
         <cviews:CommonActionsView Grid.Row="2" Grid.Column="1"
                                            Padding="4,0,22,0"
