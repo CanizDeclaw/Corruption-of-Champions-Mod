@@ -65,6 +65,7 @@
     <Compile Include="Utilities\SaveLoadPackage.cs" />
     <Compile Include="Utilities\SceneTextToFlowDocument.cs" />
     <Compile Include="ViewModels\CommandVM.cs" />
+    <Compile Include="ViewModels\CreatureVM.cs" />
     <Compile Include="ViewModels\PlayerVM.cs" />
     <Compile Include="ViewModels\Scenes\CombatSceneVM.cs" />
     <Compile Include="ViewModels\Scenes\CommonSceneVM.cs" />
@@ -121,7 +122,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\CoCButtonStyle.xaml">
+    <Page Include="Resources\styles\CoCButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\styles\StatsViewStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -536,6 +541,10 @@
     <Resource Include="Resources\ui\time-bg.png" />
     <Resource Include="Resources\ui\tooltip.png" />
     <Resource Include="Resources\ui\warning.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\exclude\monster-goblin_4.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

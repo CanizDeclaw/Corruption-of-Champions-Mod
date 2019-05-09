@@ -7,7 +7,7 @@
              xmlns:cviews="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
              xmlns:utils="clr-namespace:CoC_Desktop_WPF.Utilities"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1205">
+             d:DesignHeight="800" d:DesignWidth="1210">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
         <utils:ViewboxGridWidthConverter x:Key="ViewboxGridWidthConverter"/>
@@ -50,6 +50,8 @@
         <!-- Top Right: Map or similar, Enemy Stats -->
         <cviews:CommonNavigationView Grid.Row="1" Grid.Column="2"
                                      Visibility="{Binding NavigationVisible, Converter={StaticResource VisibilityConverter}}"/>
+        <cviews:EnemyStatsView Grid.Row="1" Grid.Column="2"
+                               Visibility="{Binding EnemyStatsVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Bottom Right: Location sprite -->
         <cviews:CommonLocationSpriteView Grid.Row="2" Grid.Column="2"
                                          Visibility="{Binding LocationSpriteVisible, Converter={StaticResource VisibilityConverter}}"/>

@@ -13,11 +13,11 @@ namespace CoC_Desktop_WPF.ViewModels
 
         #region Window variables
         // Scale-with-Window (viewbox) or not
-        public bool ScaleWithWindow { get; protected set; } = true;
+        public bool ScaleWithWindow { get; protected set; } = false;
         public bool DoNotScaleWithWindow => !ScaleWithWindow;
 
         // Startup Width and Height
-        public int ContentWidth => 1205;
+        public int ContentWidth => 1210;
         public int ContentHeight => 800;
 
         // Common View Controls

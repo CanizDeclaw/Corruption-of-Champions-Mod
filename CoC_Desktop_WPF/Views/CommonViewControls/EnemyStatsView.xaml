@@ -6,7 +6,21 @@
              xmlns:local="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="200">
-    <Grid>
-            
-    </Grid>
+    <UserControl.Background>
+        <ImageBrush ImageSource="/CoC_Desktop_WPF;component/Resources/ui/sidebar1.png" Stretch="Fill"/>
+    </UserControl.Background>
+    <UserControl.Resources>
+        <ResourceDictionary Source="/CoC_Desktop_WPF;component/Resources/styles/StatsViewStyles.xaml"/>
+    </UserControl.Resources>
+    <StackPanel Height="600" Margin="4" DataContext="{Binding CurrentScene}">
+        <TextBlock Text="{Binding Opponent.Name}" Style="{StaticResource NameStyle}"/>
+        <TextBlock Text="◀ General Info ▶" Style="{StaticResource HeaderStyle}"/>
+        <ContentControl Content="{Binding Opponent.Level}"/>
+        <ContentControl Content="{Binding Opponent.Race}"/>
+        <ContentControl Content="{Binding Opponent.Gender}"/>
+        <TextBlock Text="◀ Combat Stats ▶" Style="{StaticResource HeaderStyle}"/>
+        <ContentControl Content="{Binding Opponent.HP}"/>
+        <ContentControl Content="{Binding Opponent.Lust}"/>
+        <ContentControl Content="{Binding Opponent.Fatigue}"/>
+    </StackPanel>
 </UserControl>

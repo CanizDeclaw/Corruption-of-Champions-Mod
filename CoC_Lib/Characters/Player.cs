@@ -5,6 +5,8 @@
         public Player()
         {
             Name = "Player";
+            RaceString = "Human";
+            GenderString = "Herm";
         }
 
         public bool CanLevelUp { get; internal set; }

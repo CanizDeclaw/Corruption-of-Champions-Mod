@@ -4,6 +4,10 @@
     {
         public string Name { get; set; }
         public Body Body { get; set; }
+        public string RaceString { get; set; }
+        public Statistics.RaceStat Race { get; }
+        public string GenderString { get; set; }
+        public Statistics.GenderStat Gender { get; set; }
 
         // Core Stats
         public Statistics.StrengthStat Strength { get; set; }
@@ -34,7 +38,11 @@
 
         public Creature()
         {
-            Name = "";
+            Name = "Goblin";
+            RaceString = "Goblin";
+            Race = new Statistics.RaceStat(this);
+            GenderString = "Female";
+            Gender = new Statistics.GenderStat(this);
 
             Strength = new Statistics.StrengthStat();
             Toughness = new Statistics.ToughnessStat();
