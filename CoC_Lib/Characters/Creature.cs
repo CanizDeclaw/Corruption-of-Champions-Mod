@@ -25,12 +25,12 @@
 
         // Hidden/Unused/Special Stats
         public Statistics.HungerStat Hunger { get; set; }
-        public Statistics.ObeisanceStat Obeisance { get; set; }
-        public Statistics.EsteemStat Esteem { get; set; } // TODO: Self-Esteem?
-        public Statistics.WillStat Will { get; set; }
+        public Statistics.ObedienceStat Obedience { get; set; }
+        public Statistics.SelfEsteemStat SelfEsteem { get; set; }
+        public Statistics.WillpowerStat Willpower { get; set; }
 
         // Items & Gems
-        public int Gems { get; }
+        public Statistics.GemsStat Gems { get; }
 
         public Creature()
         {
@@ -44,14 +44,14 @@
             Sensitivity = new Statistics.SensitivityStat();
             Corruption = new Statistics.CorruptionStat();
 
-
             HP = new Statistics.HpStat();
             Lust = new Statistics.LustStat();
             Fatigue = new Statistics.FatigueStat();
 
-
             Level = new Statistics.LevelStat();
             XP = new Statistics.XpStat();
+
+            Gems = new Statistics.GemsStat();
         }
     }
 }

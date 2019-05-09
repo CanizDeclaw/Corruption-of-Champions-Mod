@@ -19,6 +19,7 @@ namespace CoC_Lib.Scenes
         public RankUpCommand RankUp { get; }
         public PerksCommand Perks { get; }
         public AppearanceCommand Appearance { get; }
+        public Commands.MainMenuCommands.AchievementsCommand Achievements { get; }
 
         public CommonScene(Game game)
             :base(game)
@@ -29,6 +30,7 @@ namespace CoC_Lib.Scenes
             RankUp = new RankUpCommand(game);
             Perks = new PerksCommand(game);
             Appearance = new AppearanceCommand(game);
+            Achievements = new Commands.MainMenuCommands.AchievementsCommand(game);
 
             // TODO: This is just test data.
             Commands[0] = new Commands.MainMenuCommands.NewGameCommand(game);

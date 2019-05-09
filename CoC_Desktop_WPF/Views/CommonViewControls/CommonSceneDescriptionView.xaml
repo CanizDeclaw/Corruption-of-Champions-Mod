@@ -7,6 +7,11 @@
              xmlns:utils="clr-namespace:CoC_Desktop_WPF.Utilities"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-    <FlowDocumentScrollViewer Document="{Binding CurrentScene.SceneText}">
-    </FlowDocumentScrollViewer>
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.4"/>
+        </Grid.Background>
+        <FlowDocumentScrollViewer Document="{Binding CurrentScene.SceneText}">
+        </FlowDocumentScrollViewer>
+    </Grid>
 </UserControl>

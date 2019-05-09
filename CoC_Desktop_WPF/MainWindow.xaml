@@ -8,18 +8,19 @@
         xmlns:vms="clr-namespace:CoC_Desktop_WPF.ViewModels"
         xmlns:scenes="clr-namespace:CoC_Desktop_WPF.ViewModels.Scenes"
         mc:Ignorable="d"
-        Title="Corruption of Champions" Height="828" Width="1200">
+        Title="Corruption of Champions"
+        SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
     <Window.DataContext>
         <vms:CoC/>
     </Window.DataContext>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
     </Window.Resources>
-    <Grid Background="Black">
+    <Grid Name="LayoutRoot" Width="{Binding ContentWidth}" Height="{Binding ContentHeight}" Background="Black">
         <!-- This is where the templating to control which view is visible will appear. -->
-        <Viewbox Visibility="{Binding UseViewbox, Converter={StaticResource VisibilityConverter}}">
+        <Viewbox Visibility="{Binding ScaleWithWindow, Converter={StaticResource VisibilityConverter}}">
             <views:CommonView/>
         </Viewbox>
-        <views:CommonView Visibility="{Binding DoNotUseViewbox, Converter={StaticResource VisibilityConverter}}"/>
+        <views:CommonView Visibility="{Binding DoNotScaleWithWindow, Converter={StaticResource VisibilityConverter}}"/>
     </Grid>
 </Window>

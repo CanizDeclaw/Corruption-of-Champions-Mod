@@ -30,7 +30,7 @@ namespace CoC_Desktop_WPF.ViewModels
         public XpStat XP => player.XP;
 
         // Items & Gems
-        public int Gems => player.Gems;
+        public GemsStat Gems => player.Gems;
 
         public PlayerVM(Player player, CoC game)
         {

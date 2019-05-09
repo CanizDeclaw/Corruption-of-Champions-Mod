@@ -7,8 +7,7 @@
              xmlns:cviews="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
              xmlns:utils="clr-namespace:CoC_Desktop_WPF.Utilities"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1200"
-             MinHeight="800" MinWidth="1200">
+             d:DesignHeight="800" d:DesignWidth="1205">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
         <utils:ViewboxGridWidthConverter x:Key="ViewboxGridWidthConverter"/>
@@ -19,13 +18,13 @@
     </UserControl.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="{Binding UseViewbox, Converter={StaticResource ViewboxGridWidthConverter}}"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="205"/>
+            <ColumnDefinition MinWidth="795" Width="{Binding UseViewbox, Converter={StaticResource ViewboxGridWidthConverter}}"/>
+            <ColumnDefinition Width="205"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="{Binding UseViewbox, Converter={StaticResource ViewboxGridHeightConverter}}"/>
+            <RowDefinition MinHeight="600" Height="{Binding UseViewbox, Converter={StaticResource ViewboxGridHeightConverter}}"/>
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <!-- Top menu bar -->
@@ -33,23 +32,25 @@
                                Visibility="{Binding CommonMenuVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Top Left: Player stats and game data -->
         <cviews:PlayerStatsView Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1"
-                               Visibility="{Binding PlayerStatsVisible, Converter={StaticResource VisibilityConverter}}"/>
+                                Visibility="{Binding PlayerStatsVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Bottom Left: NPC sprites or something like that -->
         <cviews:CommonCharacterSpriteView Grid.Row="2" Grid.Column="0"
-                               Visibility="{Binding CharacterSpriteVisible, Converter={StaticResource VisibilityConverter}}"/>
+                                          Visibility="{Binding CharacterSpriteVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Top Middle: Scene description, Main Menu -->
         <cviews:CommonSceneDescriptionView Grid.Row="1" Grid.Column="1"
-                               Visibility="{Binding SceneDescriptionVisible, Converter={StaticResource VisibilityConverter}}"/>
+                                           Padding="4,0"
+                                           Visibility="{Binding SceneDescriptionVisible, Converter={StaticResource VisibilityConverter}}"/>
         <cviews:MainMenuView Grid.Row="1" Grid.Column="1"
                              Visibility="{Binding MainMenuVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Bottom Middle: Actions -->
         <cviews:CommonActionsView Grid.Row="2" Grid.Column="1"
-                               Visibility="{Binding CommonButtonsVisible, Converter={StaticResource VisibilityConverter}}"/>
+                                           Padding="4,0,22,0"
+                                  Visibility="{Binding CommonButtonsVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Top Right: Map or similar, Enemy Stats -->
         <cviews:CommonNavigationView Grid.Row="1" Grid.Column="2"
-                               Visibility="{Binding NavigationVisible, Converter={StaticResource VisibilityConverter}}"/>
+                                     Visibility="{Binding NavigationVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Bottom Right: Location sprite -->
         <cviews:CommonLocationSpriteView Grid.Row="2" Grid.Column="2"
-                               Visibility="{Binding LocationSpriteVisible, Converter={StaticResource VisibilityConverter}}"/>
+                                         Visibility="{Binding LocationSpriteVisible, Converter={StaticResource VisibilityConverter}}"/>
     </Grid>
 </UserControl>

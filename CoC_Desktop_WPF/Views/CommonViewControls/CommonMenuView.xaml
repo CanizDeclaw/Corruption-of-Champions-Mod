@@ -9,8 +9,7 @@
              d:DesignHeight="50" d:DesignWidth="1200">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type vms:CommandVM}">
-            <Button Content="{Binding ShortName}"
-                    IsEnabled="{Binding CanExecute}"
+            <Button IsEnabled="{Binding CanExecute}"
                     ToolTipService.ShowOnDisabled="True">
                 <Button.ToolTip>
                     <StackPanel Width="300">
@@ -19,8 +18,43 @@
                         <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
                     </StackPanel>
                 </Button.ToolTip>
+                <TextBlock Text="{Binding ShortName}" TextAlignment="Center" VerticalAlignment="Center" Padding="0,4,0,0"/>
             </Button>
         </DataTemplate>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontFamily" Value="{StaticResource Shrewsbury-Titling_Bold}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Opacity" Value="0.4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="Transparent" BorderThickness="0">
+                            <Grid>
+                                <Rectangle Name="background">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="{Binding Path=Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentControl},AncestorLevel=2}}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter Property="Opacity" Value="1"/>
+                                <Setter TargetName="background" Property="Opacity" Value="1"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="background" Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid DataContext="{Binding CurrentScene}">
         <Grid.ColumnDefinitions>
@@ -30,12 +64,28 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ContentControl Grid.Column="0" Content="{Binding MainMenu}"/>
-        <ContentControl Grid.Column="1" Content="{Binding Data}"/>
-        <ContentControl Grid.Column="2" Content="{Binding Stats}"/>
-        <ContentControl Grid.Column="3" Content="{Binding RankUp}"/>
-        <ContentControl Grid.Column="4" Content="{Binding Perks}"/>
-        <ContentControl Grid.Column="5" Content="{Binding Appearance}"/>
+        <ContentControl Grid.Column="0"
+                        Content="{Binding MainMenu}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button1.jpg"/>
+        <ContentControl Grid.Column="1"
+                        Content="{Binding Data}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button2.jpg"/>
+        <ContentControl Grid.Column="2"
+                        Content="{Binding Stats}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button3.jpg"/>
+        <ContentControl Grid.Column="3"
+                        Content="{Binding RankUp}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button4.jpg"/>
+        <ContentControl Grid.Column="4"
+                        Content="{Binding Perks}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button5.jpg"/>
+        <ContentControl Grid.Column="5"
+                        Content="{Binding Appearance}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button6.jpg"/>
+        <ContentControl Grid.Column="6"
+                        Content="{Binding Achievements}"
+                        Tag="/CoC_Desktop_WPF;component/Resources/ui/button7.jpg"/>
     </Grid>
 </UserControl>

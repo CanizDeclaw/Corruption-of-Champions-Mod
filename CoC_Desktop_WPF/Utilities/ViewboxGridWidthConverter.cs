@@ -16,7 +16,7 @@ namespace CoC_Desktop_WPF.Utilities
             {
                 if (useViewbox)
                 {
-                    return "800";
+                    return "795";
                 }
                 else
                 {

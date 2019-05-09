@@ -24,5 +24,12 @@ namespace CoC_Desktop_WPF
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ClearValue(SizeToContentProperty);
+            LayoutRoot.ClearValue(WidthProperty);
+            LayoutRoot.ClearValue(HeightProperty);
+        }
     }
 }

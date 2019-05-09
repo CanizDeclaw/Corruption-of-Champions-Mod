@@ -20,6 +20,7 @@ namespace CoC_Desktop_WPF.ViewModels.Scenes
         public CommandVM RankUp { get; }
         public CommandVM Perks { get; }
         public CommandVM Appearance { get; }
+        public CommandVM Achievements { get; }
 
         // Scene Description
         public FlowDocument SceneText => GetSceneText();
@@ -40,6 +41,7 @@ namespace CoC_Desktop_WPF.ViewModels.Scenes
             RankUp = new CommandVM(cs.RankUp);
             Perks = new CommandVM(cs.Perks);
             Appearance = new CommandVM(cs.Appearance);
+            Achievements = new CommandVM(cs.Achievements);
         }
     }
 }
