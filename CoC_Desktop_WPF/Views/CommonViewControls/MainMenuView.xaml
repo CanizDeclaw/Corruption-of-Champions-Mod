@@ -19,6 +19,14 @@
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <Style x:Key="UEELogoText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource Shrewsbury-Titling_Bold}"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
+        </Style>
         <Style x:Key="UrlText" TargetType="{x:Type Hyperlink}">
             <Setter Property="FontFamily" Value="Palatino Linotype"/>
             <Setter Property="FontSize" Value="20"/>
@@ -47,6 +55,18 @@
             <Grid Margin="0,1,0,0">
                 <Image Source="/CoC_Desktop_WPF;component/Resources/ui/CoCLogo.png"
                        Height="400" Width="600"/>
+                <TextBlock Width="300" Height="70"
+                           Style="{StaticResource UEELogoText}">
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform X="342" Y="70"/>
+                    </TextBlock.RenderTransform>
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="20"/>
+                    </TextBlock.LayoutTransform>
+                        <Run Text="Unofficially"/>
+                        <LineBreak/>
+                        <Run Text="Expanded Edition"/>
+                </TextBlock>
             </Grid>
             <!-- Credits -->
             <TextBlock HorizontalAlignment="Center"
