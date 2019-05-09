@@ -4,19 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:CoC_Desktop_WPF.Views.CommonViewControls"
+             xmlns:utils="clr-namespace:CoC_Desktop_WPF.Utilities"
              xmlns:cocstats="clr-namespace:CoC_Lib.Characters.Statistics;assembly=CoC_Lib"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="200">
     <UserControl.Background>
-        <ImageBrush ImageSource="/CoC_Desktop_WPF;component/Resources/ui/sidebar1.png" Stretch="UniformToFill"/>
+        <ImageBrush ImageSource="/CoC_Desktop_WPF;component/Resources/ui/sidebar1.png" Stretch="Fill"/>
     </UserControl.Background>
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+        <utils:HpStatToColorConverter x:Key="HpStatToColorConverter"/>
         <!-- ProgressBar Styles -->
         <Style x:Key="{x:Type ProgressBar}" TargetType="{x:Type ProgressBar}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ProgressBar">
-                        <Grid x:Name="PART_Track">
+                        <Grid x:Name="PART_Track" Margin="1,0">
                             <Rectangle x:Name="PART_Indicator" HorizontalAlignment="Left" Fill="#600000" Opacity="0.4"/>
                         </Grid>
                     </ControlTemplate>
@@ -27,8 +30,14 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ProgressBar">
-                        <Grid x:Name="PART_Track">
-                            <Rectangle x:Name="PART_Indicator" HorizontalAlignment="Left" Fill="#00c000" Opacity="0.4"/>
+                        <Grid x:Name="PART_Track" Margin="1,0">
+                            <Rectangle x:Name="PART_Indicator" HorizontalAlignment="Left"
+                                       Opacity="0.4"
+                                       Fill="{Binding Path=DataContext,
+                                              RelativeSource={RelativeSource Mode=FindAncestor,
+                                                              AncestorType={x:Type Grid},
+                                                              AncestorLevel=2},
+                                              Converter={StaticResource HpStatToColorConverter}}"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -38,7 +47,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ProgressBar">
-                        <Grid x:Name="PART_Track">
+                        <Grid x:Name="PART_Track" Margin="1,0">
                             <Rectangle x:Name="PART_Indicator" HorizontalAlignment="Left" Fill="#c02020" Opacity="0.4"/>
                         </Grid>
                     </ControlTemplate>
@@ -79,16 +88,30 @@
         <!-- Generic Stat Types -->
         <DataTemplate DataType="{x:Type cocstats:IntegerStat}">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="26"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
                            Style="{StaticResource StatNameStyle}"
                            Text="{Binding Name, StringFormat={}{0}:}"/>
                 <TextBlock HorizontalAlignment="Right"
                            Style="{StaticResource StatValueStyle}"
                            Text="{Binding Value}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-up.png"
+                       Visibility="{Binding HasIncreased, Converter={StaticResource VisibilityConverter}}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-down.png"
+                       Visibility="{Binding HasDecreased, Converter={StaticResource VisibilityConverter}}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="{x:Type cocstats:BoundedScalarIntegerStat}">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="26"/>
+                </Grid.ColumnDefinitions>
                 <ProgressBar Minimum="{Binding Minimum}"
                              Maximum="{Binding Maximum}"
                              Value="{Binding Value, Mode=OneWay}"/>
@@ -99,10 +122,20 @@
                 <TextBlock HorizontalAlignment="Right"
                            Style="{StaticResource StatValueStyle}"
                            Text="{Binding Value}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-up.png"
+                       Visibility="{Binding HasIncreased, Converter={StaticResource VisibilityConverter}}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-down.png"
+                       Visibility="{Binding HasDecreased, Converter={StaticResource VisibilityConverter}}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="{x:Type cocstats:RestrictableBoundedScalarIntegerStat}">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="26"/>
+                </Grid.ColumnDefinitions>
                 <ProgressBar Minimum="{Binding Minimum}"
                              Maximum="{Binding Maximum}"
                              Value="{Binding Value, Mode=OneWay}"
@@ -123,11 +156,21 @@
                     <TextBlock Style="{StaticResource StatValueStyle}"
                                Text="{Binding Maximum}"/>
                 </StackPanel>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-up.png"
+                       Visibility="{Binding HasIncreased, Converter={StaticResource VisibilityConverter}}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-down.png"
+                       Visibility="{Binding HasDecreased, Converter={StaticResource VisibilityConverter}}"/>
             </Grid>
         </DataTemplate>
         <!-- Stat-specific Templates -->
         <DataTemplate DataType="{x:Type cocstats:HpStat}">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="26"/>
+                </Grid.ColumnDefinitions>
                 <ProgressBar Minimum="{Binding Minimum}"
                              Maximum="{Binding Maximum}"
                              Value="{Binding Value, Mode=OneWay}"
@@ -139,10 +182,20 @@
                 <TextBlock HorizontalAlignment="Right"
                            Style="{StaticResource StatValueStyle}"
                            Text="{Binding Value}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-up.png"
+                       Visibility="{Binding HasIncreased, Converter={StaticResource VisibilityConverter}}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-down.png"
+                       Visibility="{Binding HasDecreased, Converter={StaticResource VisibilityConverter}}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="{x:Type cocstats:LustStat}">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="26"/>
+                </Grid.ColumnDefinitions>
                 <ProgressBar Minimum="{Binding Minimum}"
                              Maximum="{Binding Maximum}"
                              Value="{Binding Value, Mode=OneWay}"
@@ -163,10 +216,20 @@
                     <TextBlock Style="{StaticResource StatValueStyle}"
                                Text="{Binding Maximum}"/>
                 </StackPanel>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-up.png"
+                       Visibility="{Binding HasIncreased, Converter={StaticResource VisibilityConverter}}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-down.png"
+                       Visibility="{Binding HasDecreased, Converter={StaticResource VisibilityConverter}}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="{x:Type cocstats:FatigueStat}">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="26"/>
+                </Grid.ColumnDefinitions>
                 <ProgressBar Minimum="{Binding Minimum}"
                              Maximum="{Binding Maximum}"
                              Value="{Binding Value, Mode=OneWay}"/>
@@ -182,10 +245,20 @@
                     <TextBlock Style="{StaticResource StatValueStyle}"
                                Text="{Binding Maximum}"/>
                 </StackPanel>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-up.png"
+                       Visibility="{Binding HasIncreased, Converter={StaticResource VisibilityConverter}}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-down.png"
+                       Visibility="{Binding HasDecreased, Converter={StaticResource VisibilityConverter}}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="{x:Type cocstats:LevelStat}">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="26"/>
+                </Grid.ColumnDefinitions>
                 <!-- No progress bar for level -->
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
                            Style="{StaticResource StatNameStyle}"
@@ -193,10 +266,20 @@
                 <TextBlock HorizontalAlignment="Right"
                            Style="{StaticResource StatValueStyle}"
                            Text="{Binding Value}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-up.png"
+                       Visibility="{Binding HasIncreased, Converter={StaticResource VisibilityConverter}}"/>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-down.png"
+                       Visibility="{Binding HasDecreased, Converter={StaticResource VisibilityConverter}}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="{x:Type cocstats:XpStat}">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="26"/>
+                </Grid.ColumnDefinitions>
                 <ProgressBar Minimum="{Binding Minimum}"
                              Maximum="{Binding Maximum}"
                              Value="{Binding Value, Mode=OneWay}"/>
@@ -212,10 +295,13 @@
                     <TextBlock Style="{StaticResource StatValueStyle}"
                                Text="{Binding Maximum}"/>
                 </StackPanel>
+                <Image Grid.Column="1"
+                       Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-up.png"
+                       Visibility="{Binding CanLevelUp, Converter={StaticResource VisibilityConverter}}"/>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
-    <StackPanel Height="600">
+    <StackPanel Height="600" Margin="4">
         <TextBlock Text="{Binding Player.Name}" Style="{StaticResource NameStyle}"/>
         <TextBlock Text="◀ Core Stats ▶" Style="{StaticResource HeaderStyle}"/>
         <ContentControl Content="{Binding Player.Strength}"/>

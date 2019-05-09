@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="Utilities\FlowDocumentConverters.cs" />
+    <Compile Include="Utilities\HpStatToColorConverter.cs" />
     <Compile Include="Utilities\ViewboxGridHeightConverter.cs" />
     <Compile Include="Utilities\ViewboxGridWidthConverter.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />

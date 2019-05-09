@@ -31,7 +31,7 @@
         <cviews:CommonMenuView Grid.Row="0" Grid.ColumnSpan="3"
                                Visibility="{Binding CommonMenuVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Top Left: Player stats and game data -->
-        <cviews:PlayerStatsView Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1"
+        <cviews:PlayerStatsView Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"
                                 Visibility="{Binding PlayerStatsVisible, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Bottom Left: NPC sprites or something like that -->
         <cviews:CommonCharacterSpriteView Grid.Row="2" Grid.Column="0"
