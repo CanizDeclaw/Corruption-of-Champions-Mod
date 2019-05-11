@@ -1,8 +1,11 @@
 ﻿using CoC_Lib.Documents;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Markup;
+using HorizontalAlignment = CoC_Lib.Documents.HorizontalAlignment;
 
 namespace CoC_Desktop_WPF.Utilities.Documents
 {
@@ -12,6 +15,7 @@ namespace CoC_Desktop_WPF.Utilities.Documents
         protected FlowDocument document;
         protected Dictionary<string, TextBox> textboxes;
         protected Dictionary<string, ComboBox> comboboxes;
+        protected Dictionary<string, Section> mutableSections;
 
         private Block _currentBlock = null;
         protected Block CurrentBlock
@@ -37,7 +41,12 @@ namespace CoC_Desktop_WPF.Utilities.Documents
         /// <returns></returns>
         public ISceneDocument Clear()
         {
+            CurrentBlock = null;
             document.Blocks.Clear();
+            textboxes.Clear();
+            comboboxes.Clear();
+            mutableSections.Clear();
+
             return this;
         }
 
@@ -122,6 +131,63 @@ namespace CoC_Desktop_WPF.Utilities.Documents
                 CurrentBlock = null;
             }
             throw new System.ArgumentException();
+        }
+        /// <summary>
+        /// Adds a section to the scene document that can be mutated later.
+        /// </summary>
+        /// <param name="sectionKey">The key with which to access this particular section.</param>
+        /// <returns>The ISceneDocument the mutable section has been added to.</returns>
+        public ISceneDocument AddMutableSection(string sectionKey)
+        {
+            var section = new Section();
+            mutableSections.Add(sectionKey, section);
+            // Mutable sections are intended to be an entire empty block, so we first push the section,
+            // then we push null to force a new block.
+            CurrentBlock = section;
+            CurrentBlock = null;
+
+            return this;
+        }
+        /// <summary>
+        /// Replaces the contents of a mutable section.  The replacement should be the `Description`
+        /// from another `ISceneDocument`.
+        /// </summary>
+        /// <param name="key">The key to access the previously created mutable section.  Section will be
+        ///                   created if it doesn't already exist.</param>
+        /// <param name="replacement">The replacement contents. Should be the `Description` from
+        ///                           another `ISceneDocument`.</param>
+        /// <returns>The ISceneDocument the mutable section is a part of.</returns>
+        public ISceneDocument MutateSection(string sectionKey, object replacement)
+        {
+            var section = mutableSections[sectionKey];
+            if (section != null)
+            {
+                section.Blocks.Clear();
+            }
+            else
+            {
+                // Be nice and add the section if it doesn't exist.
+                section = new Section();
+                mutableSections[sectionKey] = section;
+                CurrentBlock = section;
+                CurrentBlock = null;
+            }
+
+            // FlowDocument elements can only belong to one owner, so wtf must ensue.
+            var from = (FlowDocument)replacement;
+            var ms = new MemoryStream();
+            XamlWriter.Save(from, ms);
+            ms.Position = 0;
+            var fd = (FlowDocument)XamlReader.Load(ms);
+
+            var blocks = new List<Block>();
+            foreach (var block in fd.Blocks)
+            {
+                blocks.Add(block);
+            }
+            section.Blocks.AddRange(blocks);
+
+            return this;
         }
         #endregion Block Elements
 
@@ -298,10 +364,12 @@ namespace CoC_Desktop_WPF.Utilities.Documents
             var combobox = new ComboBox
             {
                 IsEditable = false,
-                ItemsSource = list
+                ItemsSource = list,
+                Width = 200,
             };
             comboboxes.Add(key, combobox);
             var inline = new InlineUIContainer(combobox);
+            inline.BaselineAlignment = System.Windows.BaselineAlignment.TextBottom;
             AddInline(inline);
             return this;
         }
@@ -354,6 +422,7 @@ namespace CoC_Desktop_WPF.Utilities.Documents
         }
         public Dictionary<string, TextBox> Textboxes => textboxes;
         public Dictionary<string, ComboBox> Comboboxes => comboboxes;
+        public Dictionary<string, Section> MutableSections => mutableSections;
 
         public SceneFlowDocument(ImageManager imageManager)
         {
@@ -361,6 +430,7 @@ namespace CoC_Desktop_WPF.Utilities.Documents
             document = new FlowDocument();
             textboxes = new Dictionary<string, TextBox>();
             comboboxes = new Dictionary<string, ComboBox>();
+            mutableSections = new Dictionary<string, Section>();
         }
     }
 }

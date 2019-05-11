@@ -60,6 +60,22 @@ namespace CoC_Lib.Documents
         /// <param name="sceneDocument">The ISceneDocument to be added as a section to the current ISceneDocument.</param>
         /// <returns>The ISceneDocument the sceneDocument has been added to.</returns>
         ISceneDocument AddSection(ISceneDocument sceneDocument);
+        /// <summary>
+        /// Adds a section to the scene document that can be mutated later.
+        /// </summary>
+        /// <param name="sectionKey">The key with which to access this particular section.</param>
+        /// <returns>The ISceneDocument the mutable section has been added to.</returns>
+        ISceneDocument AddMutableSection(string sectionKey);
+        /// <summary>
+        /// Replaces the contents of a mutable section.  The replacement should be the `Description`
+        /// from another `ISceneDocument`.
+        /// </summary>
+        /// <param name="key">The key to access the previously created mutable section.  Section will be
+        ///                   created if it doesn't already exist.</param>
+        /// <param name="replacement">The replacement contents. Should be the `Description` from
+        ///                           another `ISceneDocument`.</param>
+        /// <returns>The ISceneDocument the mutable section is a part of.</returns>
+        ISceneDocument MutateSection(string key, object replacement);
         #endregion Block Elements
 
         #region Inline Elements
