@@ -16,11 +16,14 @@ namespace CoC_Lib
         {
             SaveLoad = saveLoad;
             SceneDocumentCreator = sdc;
+
+            GameFlags = new Dictionary<string, Flags.GameFlag>();
+
             ResetGame();
-            //CurrentScene = new Scenes.MainMenu(this);
+            CurrentScene = new Scenes.MainMenu(this);
             //CurrentScene = new Scenes.CommonScene(this);
             //CurrentScene = new Scenes.CombatScene(this);
-            CurrentScene = new Scenes.CharacterCreation.CharacterCreationScene(this);
+            //CurrentScene = new Scenes.CharacterCreation.CharacterCreationScene(this);
         }
 
         #region Game properties
@@ -36,6 +39,7 @@ namespace CoC_Lib
             }
         }
         // Game Time
+        public TimeSpan GameTime { get; internal set; }
         public int Day => GameTime.Days;
         public TimeSpan TimeOfDay => GameTime.Subtract(TimeSpan.FromDays(Day));
 
@@ -47,9 +51,19 @@ namespace CoC_Lib
             internal set
             {
                 _player = value;
+                if (InProgress == false && value != null)
+                {
+                    InProgress = true;
+                }
+                else if (value == null & InProgress == true)
+                {
+                    InProgress = false;
+                }
                 OnPropertyChanged();
             }
         }
+
+        public Dictionary<string, Flags.GameFlag> GameFlags;
 
         // Current scene
         private Scenes.Scene _currentScene;
@@ -69,9 +83,6 @@ namespace CoC_Lib
         // Utilities
         internal ISaveLoad SaveLoad;
         internal Documents.ISceneDocumentCreator SceneDocumentCreator;
-
-        // Game Properties
-        public TimeSpan GameTime { get; internal set; }
 
         // Scene Management
         protected Stack<Scenes.Scene> SceneStack = new Stack<Scenes.Scene>();

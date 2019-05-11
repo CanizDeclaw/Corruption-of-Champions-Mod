@@ -9,7 +9,7 @@ namespace CoC_Lib.Scenes
     /// <summary>
     /// This is the the type of scene throughout most of the game.  Camp, NPC interactions, etc.
     /// </summary>
-    public class CommonScene : Scene
+    public abstract class CommonScene : Scene
     {
         // Always-present commands for a CommonScene
         // Not always visible or selectable, though.
@@ -30,8 +30,6 @@ namespace CoC_Lib.Scenes
             ShowCommonMenu = true;
             #endregion UI Hints
 
-            SetDescription();
-
             MainMenu = new MainMenuCommand(game);
             Data = new DataCommand(game);
             Stats = new StatsCommand(game);
@@ -41,7 +39,7 @@ namespace CoC_Lib.Scenes
             Achievements = new Commands.MainMenuCommands.AchievementsCommand(game);
         }
 
-        private void SetDescription()
+        private void SetTestDescription()
         {
             // TODO: Remove this test text.
             SceneDescription.Clear();

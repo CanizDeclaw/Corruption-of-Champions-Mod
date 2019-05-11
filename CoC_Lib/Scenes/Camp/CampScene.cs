@@ -9,5 +9,10 @@ namespace CoC_Lib.Scenes.Camp
         public CampScene(Game game)
             :base(game)
         { }
+
+        protected override void SetDescription()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

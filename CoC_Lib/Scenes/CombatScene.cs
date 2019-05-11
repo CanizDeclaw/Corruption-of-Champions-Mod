@@ -4,12 +4,13 @@ using System.Text;
 
 namespace CoC_Lib.Scenes
 {
-    public class CombatScene : Scene
+    // This class is intentionally not derivable.  Combat is managed directly by this class.
+    public sealed class CombatScene : Scene
     {
         // TODO: Just using a Player for testing.
         public Characters.Creature Opponent { get; }
 
-        public CombatScene(Game game)
+        public CombatScene(Game game, Characters.Creature Opponent)
             : base(game)
         {
             #region UI Hints
@@ -18,10 +19,12 @@ namespace CoC_Lib.Scenes
             ShowCommonMenu = false;
             #endregion UI Hints
 
-            Opponent = new Characters.Creature();
+            this.Opponent = Opponent;
         }
 
-        private void SetDescription()
+        protected override void SetDescription() { }
+
+        private void SetTestDescription()
         {
             // TODO: Remove this test text.
             SceneDescription.Clear();

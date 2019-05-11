@@ -11,5 +11,10 @@ namespace CoC_Lib.Scenes.GenericScenes
         {
             SceneDescription.AddSection(sceneText);
         }
+
+        protected override void SetDescription()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

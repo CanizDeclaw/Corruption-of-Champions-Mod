@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CoC_Desktop_WPF.ViewModels
 {
-    public class CommandVM : BaseVM
+    public class CommandVM : BaseVM, ICommand
     {
         private CoC_Lib.Commands.Command command;
 
@@ -40,6 +41,7 @@ namespace CoC_Desktop_WPF.ViewModels
                     break;
                 case "CanExecute":
                     OnPropertyChanged("CanExecute");
+                    CanExecuteChanged?.Invoke(this, new EventArgs());
                     break;
                 default:
                     break;
@@ -121,5 +123,11 @@ namespace CoC_Desktop_WPF.ViewModels
                 }
             }
         }
+
+        public event EventHandler CanExecuteChanged;
+
+        bool ICommand.CanExecute(object parameter) => command.CanExecute;
+
+        void ICommand.Execute(object parameter) => command.Execute();
     }
 }

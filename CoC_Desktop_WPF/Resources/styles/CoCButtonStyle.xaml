@@ -36,8 +36,9 @@
     <!-- General Command Button Style -->
     <DataTemplate DataType="{x:Type vms:CommandVM}">
         <Button IsEnabled="{Binding CanExecute}"
-                    ToolTipService.ShowOnDisabled="True"
-                    ToolTipService.ShowDuration="60000">
+                Command="{TemplateBinding Content}"
+                ToolTipService.ShowOnDisabled="True"
+                ToolTipService.ShowDuration="60000">
             <Button.ToolTip>
                 <StackPanel Margin="15">
                     <TextBlock Text="{Binding LongName}" Style="{StaticResource ToolTipHeader}"/>

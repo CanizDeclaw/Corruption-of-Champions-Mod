@@ -39,5 +39,10 @@ namespace CoC_Lib.Scenes
             Commands[6] = Credits;
             Commands[7] = ModThread;
         }
+
+        protected override void SetDescription()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

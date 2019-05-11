@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,8 @@ namespace CoC_Desktop_WPF.ViewModels
         public int ContentHeight => 800;
 
         // Common View Controls
-        public bool CommonMenuVisible => game.CurrentScene is CoC_Lib.Scenes.CommonScene;
-        public bool PlayerStatsVisible
-            => game.CurrentScene is CoC_Lib.Scenes.CommonScene
-            || game.CurrentScene is CoC_Lib.Scenes.CombatScene;
+        public bool CommonMenuVisible => game.CurrentScene.ShowCommonMenu;
+        public bool PlayerStatsVisible => game.CurrentScene.ShowPlayerStats;
         public bool CharacterSpriteVisible { get; protected set; } = false;
         public bool SceneDescriptionVisible
             => game.CurrentScene is CoC_Lib.Scenes.CommonScene
@@ -37,7 +36,7 @@ namespace CoC_Desktop_WPF.ViewModels
         public bool LocationSpriteVisible { get; protected set; } = false;
 
         // Combat Controls
-        public bool EnemyStatsVisible => game.CurrentScene is CoC_Lib.Scenes.CombatScene;
+        public bool EnemyStatsVisible => game.CurrentScene.ShowOpponentStats;
 
         // Main Menu Controls
         public bool MainMenuVisible => game.CurrentScene is CoC_Lib.Scenes.MainMenu;
@@ -67,9 +66,34 @@ namespace CoC_Desktop_WPF.ViewModels
             }
         }
 
+        private void OnCommandPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "CurrentScene":
+                    OnPropertyChanged("CurrentScene");
+                    OnPropertyChanged("CommonMenuVisible");
+                    OnPropertyChanged("PlayerStatsVisible");
+                    OnPropertyChanged("CharacterSpriteVisible");
+                    OnPropertyChanged("SceneDescriptionVisible");
+                    OnPropertyChanged("CommonButtonsVisible");
+                    OnPropertyChanged("NavigationVisible");
+                    OnPropertyChanged("LocationSpriteVisible");
+                    OnPropertyChanged("EnemyStatsVisible");
+                    OnPropertyChanged("MainMenuVisible");
+                    OnPropertyChanged("Player");
+                    OnPropertyChanged("Day");
+                    OnPropertyChanged("TimeOfDay");
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public CoC()
         {
             game = new CoC_Lib.Game(new Utilities.SaveLoadPackage(), new Utilities.Documents.SceneFlowDocumentCreator(ImageManager));
+            game.PropertyChanged += OnCommandPropertyChanged;
         }
     }
 }

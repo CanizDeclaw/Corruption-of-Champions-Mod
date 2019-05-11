@@ -3,23 +3,53 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoC_Lib.Scenes.CharacterCreation.Commands
+namespace CoC_Lib.Scenes.CharacterCreation
 {
     class SetNameCommand : Command
     {
-        public override string ShortName => "Set Name";
+        public override string ShortName
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(TextBoxContent) && specialCharacters.ContainsKey(TextBoxContent))
+                {
+                    return "Continue On";
+                }
+                else
+                {
+                    return "Set Name";
+                }
+            }
+        }
         public override string LongName => "Set Name";
-        public override string CanExecuteDescription => $"Set your name to \"{TextBoxContent}\"";
+        public override string CanExecuteDescription
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(TextBoxContent) && specialCharacters.ContainsKey(TextBoxContent))
+                {
+                    return $"Set your name to \"{TextBoxContent}\", safe in the knowledge there's absolutely nothing special about you at all.  Yet.";
+                }
+                else
+                {
+                    return $"Set your name to \"{TextBoxContent}\".";
+                }
+            }
+        }
         public override string CanNotExecuteDescription => "Please enter a name into the textbox.";
 
         public override bool CanExecute => !string.IsNullOrWhiteSpace(TextBoxContent);
         public override void Execute()
         {
-            throw new NotImplementedException();
+            var player = new Characters.Player() { Name = TextBoxContent };
+            Game.Player = player;
+            Game.PushScene(new ChooseGenderScene(Game));
+            Game.NextScene();
         }
 
         protected string nameBoxKey;
         protected string comboBoxKey;
+        protected readonly Dictionary<string, SpecialCharacter> specialCharacters;
 
         protected string _textBoxContent;
         protected string TextBoxContent
@@ -31,6 +61,7 @@ namespace CoC_Lib.Scenes.CharacterCreation.Commands
                 {
                     _textBoxContent = value;
                     OnPropertyChanged();
+                    OnPropertyChanged("ShortName");
                     OnPropertyChanged("CanExecute");
                     OnPropertyChanged("Description");
                     ChangeTextBoxEvents[nameBoxKey]?.Invoke(value);
@@ -44,9 +75,12 @@ namespace CoC_Lib.Scenes.CharacterCreation.Commands
             get => _comboBoxSelection;
             set
             {
-                _comboBoxSelection = value;
-                TextBoxContent = value;
-                OnPropertyChanged();
+                if (_comboBoxSelection != value)
+                {
+                    _comboBoxSelection = value;
+                    TextBoxContent = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -61,9 +95,10 @@ namespace CoC_Lib.Scenes.CharacterCreation.Commands
         public event ChangeTextBoxDelegate ChangeTextBoxEvent;
         public event ChangeComboBoxDelegate ChangeComboBoxEvent;
 
-        public SetNameCommand(Game game, string nameBoxKey, string comboBoxKey)
+        public SetNameCommand(Game game, Dictionary<string, SpecialCharacter> specialCharacters, string nameBoxKey, string comboBoxKey)
             :base(game)
         {
+            this.specialCharacters = specialCharacters;
             this.nameBoxKey = nameBoxKey;
             this.comboBoxKey = comboBoxKey;
             TextBoxChangedDelegates.Add(nameBoxKey, OnTextBoxChanged);

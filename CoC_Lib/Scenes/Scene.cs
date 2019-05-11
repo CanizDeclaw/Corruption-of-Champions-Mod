@@ -31,6 +31,11 @@ namespace CoC_Lib.Scenes
         /// The rich text (or HTML?) describing the scene and/or its events.
         /// </summary>
         public Documents.ISceneDocument SceneDescription { get; }
+        /// <summary>
+        /// Set the scene description.  This should *NOT* be called by base classes, as derived
+        /// classes may need to set up special IO or load date in their constructors.
+        /// </summary>
+        protected abstract void SetDescription();
 
         /// <summary>
         /// Each scene has a max of 15 non-default action choices, not including the static(-ish)

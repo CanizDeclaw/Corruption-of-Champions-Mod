@@ -59,7 +59,7 @@ namespace CoC_Desktop_WPF.Utilities.Documents
         {
             // Headers are intended to be an entire block, so we first push the header, then
             // we push null to force a new block.
-            CurrentBlock = new Paragraph(new Italic(new Underline(new Run(headerText))));
+            CurrentBlock = new Paragraph(new Bold(new Underline(new Run(headerText))));
             CurrentBlock = null;
             return this;
         }
@@ -123,12 +123,27 @@ namespace CoC_Desktop_WPF.Utilities.Documents
             if (sceneDocument.Description is FlowDocument doc)
             {
                 var section = new Section();
-                section.Blocks.AddRange(doc.Blocks);
+
+                // FlowDocument elements can only belong to one owner, so wtf must ensue.
+                var from = doc;
+                var ms = new MemoryStream();
+                XamlWriter.Save(from, ms);
+                ms.Position = 0;
+                var fd = (FlowDocument)XamlReader.Load(ms);
+
+                var blocks = new List<Block>();
+                foreach (var block in fd.Blocks)
+                {
+                    blocks.Add(block);
+                }
+                section.Blocks.AddRange(blocks);
 
                 // Sections are intended to be an entire block, so we first push the section, then
                 // we push null to force a new block.
                 CurrentBlock = section;
                 CurrentBlock = null;
+
+                return this;
             }
             throw new System.ArgumentException();
         }
@@ -409,7 +424,7 @@ namespace CoC_Desktop_WPF.Utilities.Documents
                 var inlines = TextParser.TextToInlines(text);
                 return inlines;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 incompleteTags = true;
             }
@@ -427,7 +442,12 @@ namespace CoC_Desktop_WPF.Utilities.Documents
         public SceneFlowDocument(ImageManager imageManager)
         {
             ImageManager = imageManager;
-            document = new FlowDocument();
+            document = new FlowDocument()
+            {
+                TextAlignment = System.Windows.TextAlignment.Left,
+                FontFamily = new System.Windows.Media.FontFamily("Global Serif"),
+                FontSize = 20,
+            };
             textboxes = new Dictionary<string, TextBox>();
             comboboxes = new Dictionary<string, ComboBox>();
             mutableSections = new Dictionary<string, Section>();

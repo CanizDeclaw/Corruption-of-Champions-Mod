@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CoC_Lib.Scenes.CharacterCreation
@@ -20,28 +21,37 @@ namespace CoC_Lib.Scenes.CharacterCreation
             ShowCommonMenu = false;
             #endregion UI Hints
 
-            SetDescription();
-            Commands[0] = new Commands.SetNameCommand(game, nameBoxKey, comboBoxKey);
-            Commands[0].ChangeTextBoxEvents[nameBoxKey] += (string name) => UpdateSpecialCharDescription(name);
             specialCharacters = new SpecialCharacters(game).GetSpecialCharactersDictionary();
+            Commands[0] = new Commands.SetNameCommand(game, specialCharacters, nameBoxKey, comboBoxKey);
+            Commands[0].ChangeTextBoxEvents[nameBoxKey] += (string name) => UpdateSpecialCharDescription(name); // We only need this once.
+            Commands[1] = new Commands.UseSpecialName(game, specialCharacters, nameBoxKey, comboBoxKey);
+            SetDescription();
         }
 
         private void UpdateSpecialCharDescription(string name)
         {
-            Documents.ISceneDocument section;
+            var section = Game.SceneDocumentCreator.NewSceneDocument();
+            section.AddHeader(name);
             if (specialCharacters.ContainsKey(name))
             {
-                section = specialCharacters[name].Description;
+                section.AddSection(specialCharacters[name].Description);
+                if (specialCharacters[name].SkipCustomization)
+                {
+                    section.AddParagraph(@"This character is pre-customized, and customization will be skipped if you choose ""SpecialName""");
+                }
+                else
+                {
+                    section.AddParagraph(@"This character, while having some peculiar differences from the norm, will still be customizable if you choose ""SpecialName"".");
+                }
             }
             else
             {
-                section = Game.SceneDocumentCreator.NewSceneDocument();
-                section.AddParagraph("");
+                section.AddParagraph("You're a fairly normal person, really.");
             }
             SceneDescription.MutateSection(specialCharDescKey, section.Description);
         }
 
-        private void SetDescription()
+        protected override void SetDescription()
         {
             SceneDescription.Clear();
             SceneDescription.NewParagraph();
@@ -64,42 +74,7 @@ namespace CoC_Lib.Scenes.CharacterCreation
 
         private List<string> GetSpecialCharacterNames()
         {
-            return new List<string>()
-            {
-                "Without pre-defined history:",
-                "Aria",
-                "Bertram",
-                "Charaun",
-                "Cody",
-                "Galatea",
-                "Gundam",
-                "Hikari",
-                "Katti",
-                "Lucina",
-                "Navorn",
-                "Rope",
-                "Sora",
-                "With pre-defined history:",
-                "Annetta",
-                "Ceveo",
-                "Charlie",
-                "Chimera",
-                "Etis",
-                "Isaac",
-                "Leah",
-                "Lukaz",
-                "Mara",
-                "Mihari",
-                "Mirvanna",
-                "Nami",
-                "Nixi",
-                "Prismere",
-                "Rann Rayla",
-                "Sera",
-                "Siveen",
-                "Tyriana",
-                "Vahdunbrii",
-            };
+            return specialCharacters.Keys.ToList();
         }
     }
 }
