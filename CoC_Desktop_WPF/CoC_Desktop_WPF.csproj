@@ -55,9 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utilities\Documents\SceneFlowDocument.cs" />
+    <Compile Include="Utilities\Documents\SceneFlowDocumentCreator.cs" />
+    <Compile Include="Utilities\Documents\TextParser.cs" />
     <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="Utilities\FlowDocumentConverters.cs" />
     <Compile Include="Utilities\HpStatToColorConverter.cs" />
+    <Compile Include="Utilities\ImageManager.cs" />
     <Compile Include="Utilities\ViewboxGridHeightConverter.cs" />
     <Compile Include="Utilities\ViewboxGridWidthConverter.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />

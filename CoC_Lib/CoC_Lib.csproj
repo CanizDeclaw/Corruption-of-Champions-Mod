@@ -11,6 +11,7 @@
     <Folder Include="Items\Clothing\" />
     <Folder Include="Items\" />
     <Folder Include="Scenes\MenuScreens\" />
+    <Folder Include="Scenes\Ingnam\" />
   </ItemGroup>
 
 </Project>

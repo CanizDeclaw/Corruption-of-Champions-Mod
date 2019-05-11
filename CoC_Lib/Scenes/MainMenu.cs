@@ -7,11 +7,8 @@ namespace CoC_Lib.Scenes
 {
     public class MainMenu : Scene
     {
-        /*
-         * TODO:
-         * Rethink this whole thing.
-         * Big problem: How to reduce typing the same things while also making it easy for WPF use.
-         */
+        // These are here just to make it more explicit in this particular case.
+        // The Commands[] still works.
         public ContinueCommand Continue;
         public NewGameCommand NewGame;
         public DataCommand Data;

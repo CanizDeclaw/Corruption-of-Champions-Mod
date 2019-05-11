@@ -18,7 +18,7 @@ namespace CoC_Desktop_WPF.ViewModels.Scenes
         public FlowDocument SceneText => GetSceneText();
         protected FlowDocument GetSceneText()
         {
-            return (FlowDocument)XamlReader.Parse(combatScene.SceneText);
+            return (FlowDocument)combatScene.SceneDescription.Description;
         }
 
         public CombatSceneVM(CombatScene cs, CoC game)

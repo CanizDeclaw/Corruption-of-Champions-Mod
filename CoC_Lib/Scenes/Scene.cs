@@ -12,17 +12,29 @@ namespace CoC_Lib.Scenes
     {
         public Game Game { get; }
 
-        // The rich text (or HTML?) describing the scene and/or its events.
-        public string SceneText { get; set; }
+        /// <summary>
+        /// Whether or not the common menu is usable in this scene.  Defaults to false.
+        /// </summary>
+        public bool ShowCommonMenu { get; protected set; } = false;
 
-        // Each scene has a max of 15 non-default action choices, not including the static(-ish)
-        // choices like "Main Menu" and "Appearance".  Scenes are not guaranteed to use all
-        // slots, nor to use them sequentially.
+        /// <summary>
+        /// The rich text (or HTML?) describing the scene and/or its events.
+        /// </summary>
+        public Documents.ISceneDocument SceneDescription { get; }
+
+        /// <summary>
+        /// Each scene has a max of 15 non-default action choices, not including the static(-ish)
+        /// choices like "Main Menu" and "Appearance".  Scenes are not guaranteed to use all
+        /// slots, nor to use them sequentially.
+        /// 
+        /// In a GUI these should probably be layed out as 3 rows of 5 buttons each.
+        /// </summary>
         public Command[] Commands { get; } = new Command[15];
 
         public Scene(Game game)
         {
             Game = game;
+            SceneDescription = Game.SceneDocumentCreator.NewSceneDocument();
         }
     }
 }

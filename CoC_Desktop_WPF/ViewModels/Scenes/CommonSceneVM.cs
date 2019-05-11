@@ -26,9 +26,7 @@ namespace CoC_Desktop_WPF.ViewModels.Scenes
         public FlowDocument SceneText => GetSceneText();
         protected FlowDocument GetSceneText()
         {
-            var run = new Run(commonScene.SceneText);
-            var document = new FlowDocument(new Paragraph(run));
-            return document;
+            return (FlowDocument)commonScene.SceneDescription.Description;
         }
 
         public CommonSceneVM(CommonScene cs, CoC game)

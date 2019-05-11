@@ -10,6 +10,7 @@ namespace CoC_Desktop_WPF.ViewModels
     public class CoC : BaseVM
     {
         internal readonly CoC_Lib.Game game;
+        internal Utilities.ImageManager ImageManager { get; } = new Utilities.ImageManager(@"ImagePack\");
 
         #region Window variables
         // Scale-with-Window (viewbox) or not
@@ -68,7 +69,7 @@ namespace CoC_Desktop_WPF.ViewModels
 
         public CoC()
         {
-            game = new CoC_Lib.Game(new Utilities.SaveLoadPackage());
+            game = new CoC_Lib.Game(new Utilities.SaveLoadPackage(), new Utilities.Documents.SceneFlowDocumentCreator(ImageManager));
         }
     }
 }
