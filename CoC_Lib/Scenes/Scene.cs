@@ -8,7 +8,7 @@ namespace CoC_Lib.Scenes
     /// <summary>
     /// Abstract base class for all scene classes.
     /// </summary>
-    public abstract class Scene
+    public abstract class Scene : NotifyPropertyChangedBase
     {
         #region UI Hints
         /// <summary>

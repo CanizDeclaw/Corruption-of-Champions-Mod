@@ -39,12 +39,6 @@ namespace CoC_Lib.Scenes
             Perks = new PerksCommand(game);
             Appearance = new AppearanceCommand(game);
             Achievements = new Commands.MainMenuCommands.AchievementsCommand(game);
-
-            // TODO: This is just test data.
-            Commands[0] = new Commands.MainMenuCommands.NewGameCommand(game);
-            Commands[1] = new RankUpCommand(game);
-            Commands[5] = new Commands.MainMenuCommands.NewGameCommand(game);
-            Commands[6] = new RankUpCommand(game);
         }
 
         private void SetDescription()

@@ -7,9 +7,12 @@ namespace CoC_Lib.Scenes.CharacterCreation
     class CharacterCreationScene : CommonScene
     {
         private readonly string nameBoxKey = "name";
+        private readonly string comboBoxKey = "specialNames";
+        private readonly string specialCharDescKey = "specialCharDescription";
+        private readonly Dictionary<string, SpecialCharacter> specialCharacters;
 
         public CharacterCreationScene(Game game)
-            :base(game)
+            : base(game)
         {
             #region UI Hints
             ShowPlayerStats = false;
@@ -18,7 +21,24 @@ namespace CoC_Lib.Scenes.CharacterCreation
             #endregion UI Hints
 
             SetDescription();
-            Commands[0] = new Commands.SetNameCommand(game, nameBoxKey);
+            Commands[0] = new Commands.SetNameCommand(game, nameBoxKey, comboBoxKey);
+            Commands[0].ChangeTextBoxEvents[nameBoxKey] += (string name) => UpdateSpecialCharDescription(name);
+            specialCharacters = new SpecialCharacters(game).GetSpecialCharactersDictionary();
+        }
+
+        private void UpdateSpecialCharDescription(string name)
+        {
+            Documents.ISceneDocument section;
+            if (specialCharacters.ContainsKey(name))
+            {
+                section = specialCharacters[name].Description;
+            }
+            else
+            {
+                section = Game.SceneDocumentCreator.NewSceneDocument();
+                section.AddParagraph("");
+            }
+            SceneDescription.MutateSection(specialCharDescKey, section.Description);
         }
 
         private void SetDescription()
@@ -38,6 +58,48 @@ namespace CoC_Lib.Scenes.CharacterCreation
             SceneDescription.NewParagraph();
             SceneDescription.AddText(@"What is your name? ");
             SceneDescription.AddInputBox(nameBoxKey);
+            SceneDescription.AddComboBox(GetSpecialCharacterNames(), comboBoxKey);
+            SceneDescription.AddMutableSection(specialCharDescKey);
+        }
+
+        private List<string> GetSpecialCharacterNames()
+        {
+            return new List<string>()
+            {
+                "Without pre-defined history:",
+                "Aria",
+                "Bertram",
+                "Charaun",
+                "Cody",
+                "Galatea",
+                "Gundam",
+                "Hikari",
+                "Katti",
+                "Lucina",
+                "Navorn",
+                "Rope",
+                "Sora",
+                "With pre-defined history:",
+                "Annetta",
+                "Ceveo",
+                "Charlie",
+                "Chimera",
+                "Etis",
+                "Isaac",
+                "Leah",
+                "Lukaz",
+                "Mara",
+                "Mihari",
+                "Mirvanna",
+                "Nami",
+                "Nixi",
+                "Prismere",
+                "Rann Rayla",
+                "Sera",
+                "Siveen",
+                "Tyriana",
+                "Vahdunbrii",
+            };
         }
     }
 }
