@@ -12,15 +12,19 @@ namespace CoC_Lib.Commands
     /// </summary>
     public abstract class Command
     {
+        protected readonly Game Game;
+
         public abstract string ShortName { get; }
         public abstract string LongName { get; }
         public string Description => CanExecute ? CanExecuteDescription : CanNotExecuteDescription; 
         public abstract string CanExecuteDescription { get; }
         public abstract string CanNotExecuteDescription { get; }
 
-        protected readonly Game Game;
         public abstract bool CanExecute { get; }
         public abstract void Execute();
+
+        public List<string> TextboxKeys { get; } = new List<string>();
+        public List<string> ComboBoxKeys { get; } = new List<string>();
 
         public Command(Game game)
         {

@@ -14,7 +14,7 @@ namespace CoC_Desktop_WPF.ViewModels
             Game = game;
 
             Commands = scene.Commands
-                .Select(c => c == null ? null : new CommandVM(c))
+                .Select(c => c == null ? null : new CommandVM(scene, c))
                 .ToArray();
         }
     }

@@ -33,13 +33,13 @@ namespace CoC_Desktop_WPF.ViewModels.Scenes
             :base(cs, game)
         {
             commonScene = cs;
-            MainMenu = new CommandVM(cs.MainMenu);
-            Data = new CommandVM(cs.Data);
-            Stats = new CommandVM(cs.Stats);
-            RankUp = new CommandVM(cs.RankUp);
-            Perks = new CommandVM(cs.Perks);
-            Appearance = new CommandVM(cs.Appearance);
-            Achievements = new CommandVM(cs.Achievements);
+            MainMenu = new CommandVM(cs, cs.MainMenu);
+            Data = new CommandVM(cs, cs.Data);
+            Stats = new CommandVM(cs, cs.Stats);
+            RankUp = new CommandVM(cs, cs.RankUp);
+            Perks = new CommandVM(cs, cs.Perks);
+            Appearance = new CommandVM(cs, cs.Appearance);
+            Achievements = new CommandVM(cs, cs.Achievements);
         }
     }
 }

@@ -16,9 +16,22 @@ namespace CoC_Desktop_WPF.ViewModels
         public bool CanExecute => command.CanExecute;
 
 
-        public CommandVM(CoC_Lib.Commands.Command command)
+        public CommandVM(CoC_Lib.Scenes.Scene scene, CoC_Lib.Commands.Command command)
         {
             this.command = command;
+
+            // Register textboxes
+            if (command.TextboxKeys.Count > 0)
+            {
+                var sd = (Utilities.Documents.SceneFlowDocument)scene.SceneDescription;
+                var textboxes = sd.Textboxes;
+            }
+            // Register comboboxes
+            if (command.ComboBoxKeys.Count > 0)
+            {
+                var sd = (Utilities.Documents.SceneFlowDocument)scene.SceneDescription;
+                var comboboxes = sd.Comboboxes;
+            }
         }
     }
 }
