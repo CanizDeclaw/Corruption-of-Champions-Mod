@@ -40,6 +40,7 @@ namespace CoC_Lib.Scenes
 
             // TODO: Remove this test text.
             SceneDescription.NewParagraph();
+            SceneDescription.AddFigureImage("npc/amily", Documents.HorizontalAlignment.Left);
             SceneDescription.AddText(
                 @"The offer is shocking... and yet, strangely enticing. You cannot help but
 				think that it's nice to meet somebody who, even if they are more sexually

@@ -18,8 +18,8 @@ namespace CoC_Lib
             SceneDocumentCreator = sdc;
             ResetGame();
             //CurrentScene = new Scenes.MainMenu(this);
-            //CurrentScene = new Scenes.CommonScene(this);
-            CurrentScene = new Scenes.CombatScene(this);
+            CurrentScene = new Scenes.CommonScene(this);
+            //CurrentScene = new Scenes.CombatScene(this);
         }
 
         #region Game properties
