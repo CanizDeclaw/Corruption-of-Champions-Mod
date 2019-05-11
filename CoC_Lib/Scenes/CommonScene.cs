@@ -22,8 +22,16 @@ namespace CoC_Lib.Scenes
         public Commands.MainMenuCommands.AchievementsCommand Achievements { get; }
 
         public CommonScene(Game game)
-            :base(game)
+            : base(game)
         {
+            #region UI Hints
+            ShowPlayerStats = true;
+            ShowOpponentStats = false;
+            ShowCommonMenu = true;
+            #endregion UI Hints
+
+            SetDescription();
+
             MainMenu = new MainMenuCommand(game);
             Data = new DataCommand(game);
             Stats = new StatsCommand(game);
@@ -37,8 +45,12 @@ namespace CoC_Lib.Scenes
             Commands[1] = new RankUpCommand(game);
             Commands[5] = new Commands.MainMenuCommands.NewGameCommand(game);
             Commands[6] = new RankUpCommand(game);
+        }
 
+        private void SetDescription()
+        {
             // TODO: Remove this test text.
+            SceneDescription.Clear();
             SceneDescription.NewParagraph();
             SceneDescription.AddFigureImage("npc/amily", Documents.HorizontalAlignment.Left);
             SceneDescription.AddText(

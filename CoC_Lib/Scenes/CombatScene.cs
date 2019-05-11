@@ -10,11 +10,21 @@ namespace CoC_Lib.Scenes
         public Characters.Creature Opponent { get; }
 
         public CombatScene(Game game)
-            :base(game)
+            : base(game)
         {
-            Opponent = new Characters.Creature();
+            #region UI Hints
+            ShowPlayerStats = true;
+            ShowOpponentStats = true;
+            ShowCommonMenu = false;
+            #endregion UI Hints
 
+            Opponent = new Characters.Creature();
+        }
+
+        private void SetDescription()
+        {
             // TODO: Remove this test text.
+            SceneDescription.Clear();
             SceneDescription.NewParagraph();
             SceneDescription.AddFigureImage(@"monster\goblin", Documents.HorizontalAlignment.Left);
             SceneDescription.AddText(@"<b>You are fighting the goblin:</b>");
