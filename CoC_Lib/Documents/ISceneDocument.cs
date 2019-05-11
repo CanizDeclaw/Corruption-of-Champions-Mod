@@ -22,6 +22,12 @@ namespace CoC_Lib.Documents
     }
     public interface ISceneDocument
     {
+        /// <summary>
+        /// Clear the document's contents.
+        /// </summary>
+        /// <returns></returns>
+        ISceneDocument Clear();
+
         #region Block Elements
         /// <summary>
         /// A Header is a paragraph containing a TextRun that is set to bold and underline.

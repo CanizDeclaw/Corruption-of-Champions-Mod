@@ -31,6 +31,16 @@ namespace CoC_Desktop_WPF.Utilities.Documents
         protected const System.Windows.FigureUnitType DefaultFigureUnitType = System.Windows.FigureUnitType.Page;
 
         #region ISceneDocument Implementation
+        /// <summary>
+        /// Clear the document's contents.
+        /// </summary>
+        /// <returns></returns>
+        public ISceneDocument Clear()
+        {
+            document.Blocks.Clear();
+            return this;
+        }
+
         #region Block Elements
         /// <summary>
         /// A Header is a paragraph containing a TextRun that is set to bold and underline.
@@ -273,8 +283,10 @@ namespace CoC_Desktop_WPF.Utilities.Documents
         public ISceneDocument AddInputBox(string key)
         {
             var textbox = new TextBox();
+            textbox.Width = 250;
             textboxes.Add(key, textbox);
             var inline = new InlineUIContainer(textbox);
+            inline.BaselineAlignment = System.Windows.BaselineAlignment.TextBottom;
             AddInline(inline);
             return this;
         }
@@ -329,7 +341,7 @@ namespace CoC_Desktop_WPF.Utilities.Documents
                 var inlines = TextParser.TextToInlines(text);
                 return inlines;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 incompleteTags = true;
             }
