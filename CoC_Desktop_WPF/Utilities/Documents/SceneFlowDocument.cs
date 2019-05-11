@@ -28,7 +28,7 @@ namespace CoC_Desktop_WPF.Utilities.Documents
         }
 
         protected const double DefaultImageWidth = 0.5;
-        protected const System.Windows.FigureUnitType DefaultFigureUnitType = System.Windows.FigureUnitType.Column;
+        protected const System.Windows.FigureUnitType DefaultFigureUnitType = System.Windows.FigureUnitType.Page;
 
         #region ISceneDocument Implementation
         #region Block Elements

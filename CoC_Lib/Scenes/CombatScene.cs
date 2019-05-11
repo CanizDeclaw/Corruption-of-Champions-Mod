@@ -16,7 +16,7 @@ namespace CoC_Lib.Scenes
 
             // TODO: Remove this test text.
             SceneDescription.NewParagraph();
-            SceneDescription.AddInlineImage(@"monster\goblin");
+            SceneDescription.AddFigureImage(@"monster\goblin", Documents.HorizontalAlignment.Left);
             SceneDescription.AddText(@"<b>You are fighting the goblin:</b>");
             SceneDescription.AddLineBreak();
             SceneDescription.AddText(@"

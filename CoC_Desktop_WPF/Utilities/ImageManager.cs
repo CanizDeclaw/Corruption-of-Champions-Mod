@@ -25,7 +25,7 @@ namespace CoC_Desktop_WPF.Utilities
                 var index = random.Next(files.Count());
                 var file = files[index];
 
-                var bmap = new BitmapImage(new Uri(file));
+                var bmap = new BitmapImage(new Uri(file, UriKind.RelativeOrAbsolute));
                 return new Image
                 {
                     Source = bmap
