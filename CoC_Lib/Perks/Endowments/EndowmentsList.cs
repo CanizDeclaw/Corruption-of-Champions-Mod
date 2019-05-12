@@ -26,4 +26,5 @@ namespace CoC_Lib.Perks.Endowments
             new Fertile(),
             new WetVagina(),
         };
+    }
 }
