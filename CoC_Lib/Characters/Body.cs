@@ -5,6 +5,13 @@ using CoC_Lib.Characters.BodyParts;
 
 namespace CoC_Lib.Characters
 {
+    public enum Sex
+    {
+        Male,
+        Female,
+        Hermaphrodite,
+        Sexless
+    }
     public abstract class Body
     {
         #region Non-Sexual Characteristics
@@ -59,6 +66,28 @@ namespace CoC_Lib.Characters
         public bool HasBreasts => Breasts.Count > 0;
         public bool HasCock => Cocks.Count > 0;
         public bool HasVagina => Vaginas.Count > 0;
+        public Sex Sex
+        {
+            get
+            {
+                if (HasCock && HasVagina)
+                {
+                    return Sex.Hermaphrodite;
+                }
+                else if (HasCock)
+                {
+                    return Sex.Male;
+                }
+                else if (HasVagina)
+                {
+                    return Sex.Female;
+                }
+                else
+                {
+                    return Sex.Sexless;
+                }
+            }
+        }
         #endregion Sexual Characteristics
 
         #region Body Modifications

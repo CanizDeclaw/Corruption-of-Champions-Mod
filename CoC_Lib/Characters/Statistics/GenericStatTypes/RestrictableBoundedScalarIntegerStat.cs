@@ -12,5 +12,9 @@ namespace CoC_Lib.Characters.Statistics
         // that can be modified to have, say, a minimum amount of lust.
         public abstract int RestrictedMinimum { get; }
         public abstract int RestrictedMaximum { get; }
+
+        public RestrictableBoundedScalarIntegerStat(Creature creature)
+            : base(creature)
+        { }
     }
 }

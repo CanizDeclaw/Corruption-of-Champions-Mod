@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CoC_Lib.Characters.BodyParts;
+using CoC_Lib.Scenes.CharacterCreation.BreastSizeCommands;
 
 namespace CoC_Lib.Scenes.CharacterCreation
 {
@@ -9,15 +11,19 @@ namespace CoC_Lib.Scenes.CharacterCreation
         public BreastSize(Game game)
             : base(game)
         {
-            Commands[0] = new Flat(game);
-            Commands[1] = new A_Cup(game);
-            Commands[2] = new B_Cup(game);
-            Commands[3] = new C_Cup(game);
-            Commands[4] = new D_Cup(game);
-            if (true)
+            var sizes = new BreastRow.BreastCup[]
+                {
+                    BreastRow.BreastCup.Flat,
+                    BreastRow.BreastCup.A,
+                    BreastRow.BreastCup.B,
+                    BreastRow.BreastCup.C,
+                    BreastRow.BreastCup.D,
+                };
+            for (int i = 0; i < sizes.Length; i++)
             {
-                Commands[14] = new Commands.CommonCommands.BackCommand(game);
+                Commands[i] = new BreastSizeCommand(game, sizes[i]);
             }
+            Commands[14] = new Commands.CommonCommands.BackCommand(game);
         }
 
         protected override void SetDescription()

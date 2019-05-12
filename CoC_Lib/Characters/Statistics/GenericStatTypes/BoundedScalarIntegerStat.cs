@@ -8,5 +8,9 @@ namespace CoC_Lib.Characters.Statistics
     {
         public abstract int Minimum { get; }
         public abstract int Maximum { get; }
+
+        public BoundedScalarIntegerStat(Creature creature)
+            :base(creature)
+        { }
     }
 }

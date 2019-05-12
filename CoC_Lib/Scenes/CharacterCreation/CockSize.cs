@@ -14,10 +14,7 @@ namespace CoC_Lib.Scenes.CharacterCreation
             {
                 Commands[i] = new CockSizeCommand(game, sizes[i]);
             }
-            if (true)
-            {
-                Commands[14] = new Commands.CommonCommands.BackCommand(game);
-            }
+            Commands[14] = new Commands.CommonCommands.BackCommand(game);
         }
 
         protected override void SetDescription()

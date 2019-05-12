@@ -51,9 +51,13 @@
             Intelligence = new Statistics.IntelligenceStat();
             Libido = new Statistics.LibidoStat();
             Sensitivity = new Statistics.SensitivityStat();
-            Corruption = new Statistics.CorruptionStat();
 
-            HP = new Statistics.HpStat();
+            Corruption = new Statistics.CorruptionStat();
+            Hunger = new Statistics.HungerStat();
+            Obedience = new Statistics.ObedienceStat();
+            SelfEsteem = new Statistics.SelfEsteemStat();
+            Willpower = new Statistics.WillpowerStat();
+
             Lust = new Statistics.LustStat();
             Fatigue = new Statistics.FatigueStat();
 
@@ -61,6 +65,9 @@
             XP = new Statistics.XpStat();
 
             Gems = new Statistics.GemsStat();
+
+            // TODO: This (along with other stats) needs to consider other character stats + perks
+            HP = new Statistics.HpStat();
         }
 
         public Creature(Body body)

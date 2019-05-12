@@ -8,6 +8,10 @@ namespace CoC_Lib.Characters.Statistics
     {
         public override string Name => "Gems";
         public override string Description => "";
-        public override int Value => 0;
+        public override int Value { get; set; } = 0;
+
+        public GemsStat(Creature creature)
+            : base(creature)
+        { }
     }
 }

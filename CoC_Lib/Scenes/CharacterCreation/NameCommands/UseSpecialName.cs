@@ -18,6 +18,15 @@ namespace CoC_Lib.Scenes.CharacterCreation
         {
             var player = new Characters.Player() { Name = TextBoxContent };
             Game.Player = player;
+            if (specialCharacters.ContainsKey(TextBoxContent) && specialCharacters[TextBoxContent].SkipCustomization)
+            {
+                Game.PushScene(new GameModeSettings(Game));
+            }
+            else
+            {
+                Game.PushScene(new ChooseSex(Game));
+            }
+            Game.NextScene();
         }
 
         protected string nameBoxKey;
