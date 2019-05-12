@@ -123,7 +123,7 @@ namespace CoC_Lib
         internal void NewGame()
         {
             ResetGame();
-            CurrentScene = new Scenes.CharacterCreation.CharacterCreationScene(this);
+            CurrentScene = new Scenes.CharacterCreation.BeginCharacterCreation(this);
         }
         #endregion Internal API
     }

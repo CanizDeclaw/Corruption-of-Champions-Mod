@@ -23,6 +23,7 @@ namespace CoC_Lib.Commands
         public string Description => CanExecute ? CanExecuteDescription : CanNotExecuteDescription; 
         public abstract string CanExecuteDescription { get; }
         public abstract string CanNotExecuteDescription { get; }
+        public bool IsVisible { get; protected set; } = true;
 
         public abstract bool CanExecute { get; }
         public abstract void Execute();

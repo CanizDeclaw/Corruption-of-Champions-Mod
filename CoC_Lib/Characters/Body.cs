@@ -9,54 +9,62 @@ namespace CoC_Lib.Characters
     {
         #region Non-Sexual Characteristics
         #region Head & Neck
-        public abstract Antennae Antennae { get; }
-        public abstract Beard Beard { get; }
-        public abstract Ears Ears { get; }
-        public abstract Eyes Eyes { get; }
-        public abstract Face Face { get; }
-        public abstract Gills Gills { get; }
-        public abstract Hair Hair { get; }
-        public abstract Horns Horns { get; }
-        public abstract Neck Neck { get; }
-        public abstract Tongue Tongue { get; }
+        public Antennae Antennae { get; }
+        public Beard Beard { get; }
+        public Ears Ears { get; }
+        public Eyes Eyes { get; }
+        public Face Face { get; }
+        public Gills Gills { get; }
+        public Hair Hair { get; }
+        public Horns Horns { get; }
+        public Neck Neck { get; }
+        public Tongue Tongue { get; }
+
+        public bool HasBeard => Beard != null /* && typeof(Beard) != typeof(new NoBeard) */;
         #endregion Head & Neck
 
         #region Upper Body
-        public abstract Shoulders Shoulders { get; }
-        public abstract Arms Arms { get; }
-        public abstract Claws Claws { get; }
-        public abstract Wings Wings { get; }
-        public abstract SpinalFeature SpinalFeature { get; }
-        public abstract Waist Waist { get; }
+        public Shoulders Shoulders { get; }
+        public Arms Arms { get; }
+        public Claws Claws { get; }
+        public Wings Wings { get; }
+        public SpinalFeature SpinalFeature { get; }
+        public Waist Waist { get; }
         #endregion Upper Body
 
         #region Lower Body
-        public abstract LowerBody LowerBody { get; }
-        public abstract Hips Hips { get; }
-        public abstract Butt Butt { get; }
-        public abstract List<Tail> Tails { get; }
+        public LowerBody LowerBody { get; }
+        public Hips Hips { get; }
+        public Butt Butt { get; }
+        public List<Tail> Tails { get; }
         # endregion Lower Body
 
         #region General Body
-        public abstract Skin Skin { get; }
-        public abstract DorsalArea DorsalArea { get; }
-        public abstract VentralArea VentralArea { get; }
+        public Skin Skin { get; }
+        public DorsalArea DorsalArea { get; }
+        public VentralArea VentralArea { get; }
+
+        public int Height { get; set; }
         #endregion General Body
         #endregion Non-Sexual Characteristics
 
         #region Sexual Characteristics
-        public abstract List<BreastRow> Breasts { get; }
-        public abstract List<Cock> Cocks { get; }
-        public abstract List<Testicle> Balls { get; }
-        public abstract List<Vagina> Vaginas { get; }
-        public abstract Anus Ass { get; }
-        public abstract Udder Udder { get; }
+        public List<BreastRow> Breasts { get; }
+        public List<Cock> Cocks { get; }
+        public List<Testicle> Balls { get; }
+        public List<Vagina> Vaginas { get; }
+        public Anus Ass { get; }
+        public Udder Udder { get; }
+
+        public bool HasBreasts => Breasts.Count > 0;
+        public bool HasCock => Cocks.Count > 0;
+        public bool HasVagina => Vaginas.Count > 0;
         #endregion Sexual Characteristics
 
         #region Body Modifications
         // TODO: Decide if Jewelry and/or Piercings should be moved to Creature
-        public abstract BodyMods.Jewelry Jewelry { get; }
-        public abstract BodyMods.Piercings Piercings { get; }
+        public BodyMods.Jewelry Jewelry { get; }
+        public BodyMods.Piercings Piercings { get; }
         #endregion Body Modifications
 
         public int SpeciesScore(Species.Type type)
@@ -64,6 +72,11 @@ namespace CoC_Lib.Characters
             int score = 0;
             // TODO: Fill in scoring by checking type against each body part.
             return score;
+        }
+
+        public Body(Body copyFrom)
+        {
+            // TODO: Copy from copyFrom to this.
         }
     }
 }

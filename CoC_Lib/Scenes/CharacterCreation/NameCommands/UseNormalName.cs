@@ -6,18 +6,46 @@ using System.Text;
 
 namespace CoC_Lib.Scenes.CharacterCreation
 {
-    class UseSpecialName : Command
+    class UseNormalName : Command
     {
-        public override string ShortName => "SpecialName";
-        public override string LongName => "Use this special name.";
-        public override string CanExecuteDescription => $"This name, like you, is special. Do you choose to live up to your name?  Or will you continue on, assuming it to be coincidence?";
-        public override string CanNotExecuteDescription => "Please choose or type a special name.";
+        public override string ShortName
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(TextBoxContent) && specialCharacters.ContainsKey(TextBoxContent))
+                {
+                    return "Continue On";
+                }
+                else
+                {
+                    return "Set Name";
+                }
+            }
+        }
+        public override string LongName => "Set Name";
+        public override string CanExecuteDescription
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(TextBoxContent) && specialCharacters.ContainsKey(TextBoxContent))
+                {
+                    return $"Set your name to \"{TextBoxContent}\", safe in the knowledge there's absolutely nothing special about you at all.  Yet.";
+                }
+                else
+                {
+                    return $"Set your name to \"{TextBoxContent}\".";
+                }
+            }
+        }
+        public override string CanNotExecuteDescription => "Please enter a name into the textbox.";
 
-        public override bool CanExecute => TextBoxContent != null && specialCharacters.ContainsKey(TextBoxContent);
+        public override bool CanExecute => !string.IsNullOrWhiteSpace(TextBoxContent);
         public override void Execute()
         {
             var player = new Characters.Player() { Name = TextBoxContent };
             Game.Player = player;
+            Game.PushScene(new ChooseSex(Game));
+            Game.NextScene();
         }
 
         protected string nameBoxKey;
@@ -34,6 +62,7 @@ namespace CoC_Lib.Scenes.CharacterCreation
                 {
                     _textBoxContent = value;
                     OnPropertyChanged();
+                    OnPropertyChanged("ShortName");
                     OnPropertyChanged("CanExecute");
                     OnPropertyChanged("Description");
                     ChangeTextBoxEvents[nameBoxKey]?.Invoke(value);
@@ -67,8 +96,8 @@ namespace CoC_Lib.Scenes.CharacterCreation
         public event ChangeTextBoxDelegate ChangeTextBoxEvent;
         public event ChangeComboBoxDelegate ChangeComboBoxEvent;
 
-        public UseSpecialName(Game game, Dictionary<string, SpecialPlayerCharacter> specialCharacters, string nameBoxKey, string comboBoxKey)
-            : base(game)
+        public UseNormalName(Game game, Dictionary<string, SpecialPlayerCharacter> specialCharacters, string nameBoxKey, string comboBoxKey)
+            :base(game)
         {
             this.specialCharacters = specialCharacters;
             this.nameBoxKey = nameBoxKey;

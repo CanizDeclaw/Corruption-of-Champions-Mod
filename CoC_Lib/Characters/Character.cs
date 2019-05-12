@@ -1,6 +1,11 @@
 ﻿namespace CoC_Lib.Characters
 {
-    public class Character : Creature
+    public abstract class Character : Creature
     {
+        public Character(Body body)
+            :base(body)
+        {
+
+        }
     }
 }

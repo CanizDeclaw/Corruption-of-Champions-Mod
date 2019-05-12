@@ -1,9 +1,8 @@
 ﻿namespace CoC_Lib.Characters
 {
-    public class Creature
+    public abstract class Creature : Body
     {
         public string Name { get; set; }
-        public Body Body { get; set; }
         public string RaceString { get; set; }
         public Statistics.RaceStat Race { get; }
         public string GenderString { get; set; }
@@ -37,7 +36,9 @@
         public Statistics.GemsStat Gems { get; }
 
         public Creature()
+            :base(new Bodies.HumanBody())
         {
+            // TODO: Clear test data out
             Name = "Goblin";
             RaceString = "Goblin";
             Race = new Statistics.RaceStat(this);
@@ -60,6 +61,12 @@
             XP = new Statistics.XpStat();
 
             Gems = new Statistics.GemsStat();
+        }
+
+        public Creature(Body body)
+            :base(body)
+        {
+
         }
     }
 }
