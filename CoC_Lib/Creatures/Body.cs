@@ -106,6 +106,7 @@ namespace CoC_Lib.Creatures
             return score;
         }
 
+        public Body() { }
         public Body(Body copyFrom)
         {
             // TODO: Copy from copyFrom to this.

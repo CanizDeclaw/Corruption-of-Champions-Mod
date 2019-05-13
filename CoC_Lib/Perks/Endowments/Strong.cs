@@ -21,9 +21,14 @@ namespace CoC_Lib.Perks.Endowments
             creature.Tone.AdjustBaseValue(7);
             creature.Thickness.AdjustBaseValue(3);
             // TODO: What's with `value1` and `keySlot` in `createPerk`?
+            // Assuming from description and `modStats` in `Player.as`
+            // (for this and other history perks):
+            creature.Strength.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
         }
         public override void OnRemovePerk(Creature creature)
-        { }
+        {
+            creature.Strength.OnBaseValueAdjusting.Remove(this);
+        }
 
         public override bool Qualified(Player player) => true;
     }

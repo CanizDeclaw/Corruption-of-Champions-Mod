@@ -16,9 +16,17 @@ namespace CoC_Lib.Perks.Endowments
             "against you will fail to wound you.";
 
         public override void OnAddPerk(Creature creature)
-        { }
+        {
+            creature.Toughness.AdjustBaseValue(5);
+            creature.Tone.AdjustBaseValue(5);
+            creature.Thickness.AdjustBaseValue(5);
+            creature.Toughness.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
+            // TODO: Restore HP
+        }
         public override void OnRemovePerk(Creature creature)
-        { }
+        {
+            creature.Toughness.OnBaseValueAdjusting.Remove(this);
+        }
 
         public override bool Qualified(Player player) => true;
     }
