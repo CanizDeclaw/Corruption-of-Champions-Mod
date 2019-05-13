@@ -2,12 +2,15 @@
 
 namespace CoC_Lib.Perks.History
 {
-    internal class Smithing : HistoryPerk
+    internal class Smith : HistoryPerk
     {
-        public static string Key => "History Smithing";
+        public static string Key => "History: Smith";
         public override string GetKey => Key;
-        public override string Name => "Smithing";
-        public override string Description =>
+        public override string Name => "History: Smith";
+        public override string ShortName => "Smith";
+        public override string ShortDescription =>
+            "Knowledge of armor and fitting increases armor effectiveness by roughly 10%.";
+        public override string LongDescription =>
             "You managed to get an apprenticeship with the local blacksmith.  " +
             "Because of your time spent at the blacksmith's side, you've learned " +
             "how to fit armor for maximum protection.";
@@ -21,7 +24,7 @@ namespace CoC_Lib.Perks.History
             // TODO: Armor adjustment
         }
 
-        public Smithing()
+        public Smith()
         {
         }
     }

@@ -51,7 +51,10 @@ namespace CoC_Lib.Creatures
         public DorsalArea DorsalArea { get; }
         public VentralArea VentralArea { get; }
 
-        public int Height { get; set; }
+        public Statistics.HeightStat Height { get; protected set; }
+        public Statistics.ToneStat Tone { get; protected set; } // TODO: Should be BoundedIntegerStatistic?
+        public Statistics.ThicknessStat Thickness { get; protected set; }
+        // TODO: Sort out which level each stat should be at.
         #endregion General Body
         #endregion Non-Sexual Characteristics
 

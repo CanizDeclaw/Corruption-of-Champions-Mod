@@ -4,10 +4,14 @@ namespace CoC_Lib.Perks.History
 {
     internal class Fortune : HistoryPerk
     {
-        public static string Key => "History Fortune";
+        public static string Key => "History: Fortune";
         public override string GetKey => Key;
-        public override string Name => "Fortune";
-        public override string Description =>
+        public override string Name => "History: Fortune";
+        public override string ShortName => "Fortune";
+        public override string ShortDescription =>
+            "Your luck and skills at gathering currency allows you to get 15% " +
+            "more gems from victories.";
+        public override string LongDescription =>
             "You always feel lucky when it comes to fortune.  Because of that, " +
             "you have always managed to save up gems until whatever's needed " +
             "and how to make the most out it (+15% gems on victory).  You will " +

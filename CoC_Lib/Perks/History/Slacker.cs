@@ -2,15 +2,18 @@
 
 namespace CoC_Lib.Perks.History
 {
-    internal class Slacking : HistoryPerk
+    internal class Slacker : HistoryPerk
     {
-        public static string Key => "History Slacking";
+        public static string Key => "History: Slacker";
         public override string GetKey => Key;
-        public override string Name => "Slacking";
-        public override string Description =>
+        public override string Name => "History: Slacker";
+        public override string ShortName => "Slacker";
+        public override string ShortDescription =>
+            "Recover from fatigue 20% faster.";
+        public override string LongDescription =>
             "You spent a lot of time slacking, avoiding work, and otherwise " +
             "making a nuisance of yourself.  Your efforts at slacking have made " +
-            "you quite adept at resting, and your fatigue comes back 20% faster.";
+            "you quite adept at resting, and your fatigue reduces 20% faster.";
 
         public override void OnAddPerk(Creature creature)
         {
@@ -21,7 +24,7 @@ namespace CoC_Lib.Perks.History
             creature.Fatigue.OnBaseValueAdjusting.Remove(this);
         }
 
-        public Slacking()
+        public Slacker()
         {
         }
     }

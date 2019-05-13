@@ -126,6 +126,8 @@ namespace CoC_Lib.Creatures.Statistics
         // The unchecked variants do the base calculation and allow the public variants to make sure
         // the boundaries don't overlap. If they do overlap, the average is taken and compared to both
         // the minimum and the maximum to make sure it doesn't exceed them, either.
+
+        // Modifiers are applied on top of the chosen setter/minimum/maximum.
         protected bool BoundsOverlap => UncheckedRestrictedMinimum > UncheckedRestrictedMaximum;
         protected int OverlapAverage => (UncheckedRestrictedMinimum + UncheckedRestrictedMaximum) / 2;
 
@@ -133,13 +135,13 @@ namespace CoC_Lib.Creatures.Statistics
         {
             get
             {
-                var value = Minimum + RestrictedMinimumModifiers.Values.Sum();
+                var value = Minimum;
                 if (RestrictedMinimumSetters.Count > 0)
                 {
                     var maxSetter = RestrictedMinimumSetters.Values.Max();
                     value = Math.Max(value, maxSetter);
                 }
-                return value;
+                return value + RestrictedMinimumModifiers.Values.Sum();
             }
         }
         public virtual int RestrictedMinimum
@@ -160,13 +162,13 @@ namespace CoC_Lib.Creatures.Statistics
         {
             get
             {
-                var value = Minimum + RestrictedMaximumModifiers.Values.Sum();
+                var value = Minimum;
                 if (RestrictedMinimumSetters.Count > 0)
                 {
-                    var maxSetter = RestrictedMaximumSetters.Values.Min();
-                    value = Math.Min(value, maxSetter);
+                    var minSetter = RestrictedMaximumSetters.Values.Min();
+                    value = Math.Min(value, minSetter);
                 }
-                return value;
+                return value + RestrictedMaximumModifiers.Values.Sum();
             }
         }
         public virtual int RestrictedMaximum

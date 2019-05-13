@@ -8,6 +8,7 @@ namespace CoC_Lib.Perks.Endowments
     public abstract class EndowmentPerk : Perk
     {
         public override string Category => "Endowment";
+        public override bool KeepOnAscension => true;
         public abstract bool Qualified(Player player);
     }
 }

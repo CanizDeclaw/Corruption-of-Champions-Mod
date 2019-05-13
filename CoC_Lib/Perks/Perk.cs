@@ -11,8 +11,12 @@ namespace CoC_Lib.Perks
         /// </summary>
         public abstract string GetKey { get; }
         public abstract string Name { get; }
-        public abstract string Description { get; }
+        public abstract string ShortName { get; }
+        public abstract string ShortDescription { get; }
+        public abstract string LongDescription { get; }
         public abstract string Category { get; }
+
+        public abstract bool KeepOnAscension { get; }
 
         public abstract void OnAddPerk(Creatures.Creature creature);
         public abstract void OnRemovePerk(Creatures.Creature creature);

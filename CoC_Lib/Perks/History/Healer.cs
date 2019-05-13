@@ -2,12 +2,15 @@
 
 namespace CoC_Lib.Perks.History
 {
-    internal class Healing : HistoryPerk
+    internal class Healer : HistoryPerk
     {
-        public static string Key => "History Healing";
+        public static string Key => "History: Healer";
         public override string GetKey => Key;
-        public override string Name => "Healing";
-        public override string Description =>
+        public override string Name => "History: Healer";
+        public override string ShortName => "Healer";
+        public override string ShortDescription =>
+            "Healing experience increases HP gains by 20%.";
+        public override string LongDescription =>
             "You often spent your free time with the village healer, learning " +
             "how to tend to wounds.  Healing items and effects are 20% more effective.";
 
@@ -20,7 +23,7 @@ namespace CoC_Lib.Perks.History
             creature.HP.OnBaseValueAdjusting.Remove(this);
         }
 
-        public Healing()
+        public Healer()
         {
         }
     }

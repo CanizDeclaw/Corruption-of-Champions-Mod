@@ -2,12 +2,15 @@
 
 namespace CoC_Lib.Perks.History
 {
-    internal class Fighting : HistoryPerk
+    internal class Fighter : HistoryPerk
     {
-        public static string Key => "History Fighting";
+        public static string Key => "History: Fighter";
         public override string GetKey => Key;
-        public override string Name => "Fighting";
-        public override string Description =>
+        public override string Name => "History: Fighter";
+        public override string ShortName => "Fighter";
+        public override string ShortDescription =>
+            "A Past full of conflict increases physical damage dealt by 10%.";
+        public override string LongDescription =>
             "You spent much of your time fighting other children, and you had " +
             "plans to find work as a guard when you grew up.  You do 10% more " +
             "damage with physical attacks.  You will also start out with 50 gems.";
@@ -19,7 +22,7 @@ namespace CoC_Lib.Perks.History
         public override void OnRemovePerk(Creature creature)
         { }
 
-        public Fighting()
+        public Fighter()
         {
         }
     }

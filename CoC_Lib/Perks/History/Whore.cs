@@ -2,12 +2,15 @@
 
 namespace CoC_Lib.Perks.History
 {
-    internal class Whoring : HistoryPerk
+    internal class Whore : HistoryPerk
     {
-        public static string Key => "History Whoring";
+        public static string Key => "History: Whore";
         public override string GetKey => Key;
-        public override string Name => "Whoring";
-        public override string Description =>
+        public override string Name => "History: Whore";
+        public override string ShortName => "Whore";
+        public override string ShortDescription =>
+            "Seductive experience causes your tease attacks to be 15% more effective.";
+        public override string LongDescription =>
             "You managed to find work as a whore.  Because of your time spent " +
             "trading seduction for profit, you're more effective at teasing " +
             "(+15% tease damage).";
@@ -28,7 +31,7 @@ namespace CoC_Lib.Perks.History
             // TODO: Tease
         }
 
-        public Whoring()
+        public Whore()
         {
         }
     }

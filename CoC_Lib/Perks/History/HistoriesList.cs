@@ -8,16 +8,16 @@ namespace CoC_Lib.Perks.History
     {
         public static List<HistoryPerk> GetList() => new List<HistoryPerk>()
         {
-            new Alchemy(),
-            new Fighting(),
+            new Alchemist(),
+            new Fighter(),
             new Fortune(),
-            new Healing(),
-            new Religion(),
-            new Schooling(),
-            new Slacking(),
-            new Slutting(),
-            new Smithing(),
-            new Whoring(),
+            new Healer(),
+            new Religious(),
+            new Scholar(),
+            new Slacker(),
+            new Slut(),
+            new Smith(),
+            new Whore(),
         };
     }
 }

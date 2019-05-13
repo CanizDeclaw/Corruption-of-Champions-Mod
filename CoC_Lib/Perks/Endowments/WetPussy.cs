@@ -2,21 +2,22 @@
 
 namespace CoC_Lib.Perks.Endowments
 {
-    internal class BigClit : EndowmentPerk
+    internal class WetPussy : EndowmentPerk
     {
-        public static string Key => "Endowment: Big Clit";
+        public static string Key => "Endowment: Wet Pussy";
         public override string GetKey => Key;
-        public override string Name => "Big Clit";
+        public override string Name => "Wet Pussy";
         public override string ShortName => Name;
         public override string ShortDescription =>
-            "Allows your clit to grow larger more easily and faster.";
+            "Keeps your pussy wet and provides a bonus to capacity.";
         public override string LongDescription =>
-            "You have a big clit (1\" Long).<br/><br/>" +
-            "A large enough clit may eventually become as large as a cock.  It " +
-            "also makes you gain lust much faster during oral or manual stimulation.";
+            "Your pussy get particularly wet (+1 Vaginal Wetness).<br/><br/>" +
+            "Vaginal wetness will make it easier to take larger cocks, in turn " +
+            "helping you bring the well-endowed to orgasm quicker.";
 
         public override void OnAddPerk(Creature creature)
-        { }
+        {
+        }
         public override void OnRemovePerk(Creature creature)
         { }
 

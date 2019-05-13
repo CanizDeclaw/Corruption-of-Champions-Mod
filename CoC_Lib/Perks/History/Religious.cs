@@ -2,12 +2,16 @@
 
 namespace CoC_Lib.Perks.History
 {
-    internal class Religion : HistoryPerk
+    internal class Religious : HistoryPerk
     {
-        public static string Key => "History Religion";
+        public static string Key => "History: Religious";
         public override string GetKey => Key;
-        public override string Name => "Religion";
-        public override string Description =>
+        public override string Name => "History: Religious";
+        public override string ShortName => "Religious";
+        public override string ShortDescription =>
+            "Replaces masturbate with meditate when corruption less than or " +
+            "equal to 66. Reduces minimum libido slightly.";
+        public override string LongDescription =>
             "You spent a lot of time at the village temple, and learned how to " +
             "meditate.  The 'masturbation' option is replaced with 'meditate' " +
             "when corruption is at or below 66.";
@@ -21,7 +25,7 @@ namespace CoC_Lib.Perks.History
             creature.Libido.RestrictedMinimumModifiers.Remove(this);
         }
 
-        public Religion()
+        public Religious()
         {
         }
     }

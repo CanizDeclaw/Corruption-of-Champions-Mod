@@ -7,7 +7,7 @@ namespace CoC_Lib.Scenes.CharacterCreation
     {
         public override string ShortName => Endowment.Name;
         public override string LongName => Endowment.Name;
-        public override string CanExecuteDescription => Endowment.Description;
+        public override string CanExecuteDescription => Endowment.LongDescription;
         public override string CanNotExecuteDescription => "";
 
         public override bool CanExecute => true;

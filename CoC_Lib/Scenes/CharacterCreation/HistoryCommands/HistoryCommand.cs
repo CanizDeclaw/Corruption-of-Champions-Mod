@@ -10,7 +10,7 @@ namespace CoC_Lib.Scenes.CharacterCreation
     {
         public override string ShortName => Career.Name;
         public override string LongName => Career.Name;
-        public override string CanExecuteDescription => Career.Description;
+        public override string CanExecuteDescription => Career.LongDescription;
         public override string CanNotExecuteDescription => "";
 
         public override bool CanExecute => true;

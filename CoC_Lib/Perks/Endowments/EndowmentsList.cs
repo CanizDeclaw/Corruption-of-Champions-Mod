@@ -13,7 +13,7 @@ namespace CoC_Lib.Perks.Endowments
             new Tough(),
             new Fast(),
             new Smart(),
-            new Lust(),
+            new Lusty(),
             new Sensitive(),
             new Pervert(),
             // Cock-based
@@ -24,7 +24,7 @@ namespace CoC_Lib.Perks.Endowments
             // Vagina-based
             new BigClit(),
             new Fertile(),
-            new WetVagina(),
+            new WetPussy(),
         };
     }
 }
