@@ -1,4 +1,4 @@
-﻿using CoC_Lib.Characters.BodyParts.Vaginas;
+﻿using CoC_Lib.Creatures.BodyParts.Vaginas;
 using CoC_Lib.Commands;
 
 namespace CoC_Lib.Scenes.CharacterCreation

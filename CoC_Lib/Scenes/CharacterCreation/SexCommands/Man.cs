@@ -1,4 +1,4 @@
-﻿using CoC_Lib.Characters.BodyParts.Cocks;
+﻿using CoC_Lib.Creatures.BodyParts.Cocks;
 using CoC_Lib.Commands;
 
 namespace CoC_Lib.Scenes.CharacterCreation

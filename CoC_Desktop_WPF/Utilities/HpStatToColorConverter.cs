@@ -13,7 +13,7 @@ namespace CoC_Desktop_WPF.Utilities
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is CoC_Lib.Characters.Statistics.HpStat hpStat)
+            if (value is CoC_Lib.Creatures.Statistics.HpStat hpStat)
             {
                 var r = (1 - (hpStat.Value / (float)hpStat.Maximum)) * 0.8f;
                 var g = (hpStat.Value / (float)hpStat.Maximum) * 0.8f;

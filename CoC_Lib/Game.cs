@@ -1,4 +1,4 @@
-﻿using CoC_Lib.Characters;
+﻿using CoC_Lib.Creatures;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,7 +84,13 @@ namespace CoC_Lib
         internal ISaveLoad SaveLoad;
         internal Documents.ISceneDocumentCreator SceneDocumentCreator;
 
+        // Settings
+        internal CoCSettings Settings = new CoCSettings();
+        internal CoCLimits Limits = new CoCLimits();
+
         // Scene Management
+        internal Scenes.Scene HomeScene { get; set; }
+        internal Scenes.Interstitial InterstitialScene { get; set; }
         protected Stack<Scenes.Scene> SceneStack = new Stack<Scenes.Scene>();
         internal void PushScene(Scenes.Scene scene)
         {
@@ -100,11 +106,19 @@ namespace CoC_Lib
             {
                 if (InProgress)
                 {
-
+                    // Clock ticks only registered at HomeScene, to prevent interrupting other ones.
+                    // TODO: change this to be a bit more general and customizable.
+                    ClockChanged?.Invoke(GameTime);
                 }
-                CurrentScene = new Scenes.Camp.CampScene(this);
+                CurrentScene = HomeScene;
             }
         }
+
+        // Game Management
+        internal delegate void TimeAwareDelegate(TimeSpan currentTime);
+        internal delegate Documents.ISceneDocument TimeAwareWithDescriptionDelegate(TimeSpan currentTime);
+        // TODO: Do this in a way that allows output, and that works with sleep-wakes.
+        internal event TimeAwareDelegate ClockChanged;
 
         /// <summary>
         /// Set all game variables to clean, new-game state.  Used to start a new game,
@@ -124,6 +138,15 @@ namespace CoC_Lib
         {
             ResetGame();
             CurrentScene = new Scenes.CharacterCreation.BeginCharacterCreation(this);
+        }
+        /// <summary>
+        /// Start a new game, with bonuses from the past.  Resets the game state and loads up character creation.
+        /// </summary>
+        internal void NewGamePlus()
+        {
+            ResetGame();
+            CurrentScene = new Scenes.CharacterCreation.BeginCharacterCreation(this);
+            throw new NotImplementedException();
         }
         #endregion Internal API
     }

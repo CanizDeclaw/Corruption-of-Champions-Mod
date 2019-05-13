@@ -1,5 +1,5 @@
-﻿using CoC_Lib.Characters;
-using CoC_Lib.Characters.Statistics;
+﻿using CoC_Lib.Creatures;
+using CoC_Lib.Creatures.Statistics;
 
 namespace CoC_Desktop_WPF.ViewModels
 {

@@ -1,4 +1,4 @@
-﻿using CoC_Lib.Characters.PlayerCharacters;
+﻿using CoC_Lib.Creatures.PlayerCharacters;
 using CoC_Lib.Commands;
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,7 @@ namespace CoC_Lib.Scenes.CharacterCreation
         public override bool CanExecute => !string.IsNullOrWhiteSpace(TextBoxContent);
         public override void Execute()
         {
-            var player = new Characters.Player() { Name = TextBoxContent };
+            var player = new Creatures.Player() { Name = TextBoxContent };
             Game.Player = player;
             Game.PushScene(new ChooseSex(Game));
             Game.NextScene();

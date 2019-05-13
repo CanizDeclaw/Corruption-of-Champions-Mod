@@ -1,4 +1,4 @@
-﻿using CoC_Lib.Characters.PlayerCharacters;
+﻿using CoC_Lib.Creatures.PlayerCharacters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

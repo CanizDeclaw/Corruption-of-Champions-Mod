@@ -1,4 +1,4 @@
-﻿using CoC_Lib.Characters;
+﻿using CoC_Lib.Creatures;
 using System;
 using System.Collections.Generic;
 using System.Text;

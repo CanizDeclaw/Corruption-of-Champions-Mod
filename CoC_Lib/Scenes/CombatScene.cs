@@ -8,9 +8,9 @@ namespace CoC_Lib.Scenes
     public sealed class CombatScene : Scene
     {
         // TODO: Just using a Player for testing.
-        public Characters.Creature Opponent { get; }
+        public Creatures.Creature Opponent { get; }
 
-        public CombatScene(Game game, Characters.Creature Opponent)
+        public CombatScene(Game game, Creatures.Creature Opponent)
             : base(game)
         {
             #region UI Hints

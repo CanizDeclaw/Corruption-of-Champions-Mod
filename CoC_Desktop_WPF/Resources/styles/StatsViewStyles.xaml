@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CoC_Desktop_WPF.Resources.styles"
                     xmlns:utils="clr-namespace:CoC_Desktop_WPF.Utilities"
-                    xmlns:cocstats="clr-namespace:CoC_Lib.Characters.Statistics;assembly=CoC_Lib">
+                    xmlns:cocstats="clr-namespace:CoC_Lib.Creatures.Statistics;assembly=CoC_Lib">
     <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
     <utils:HpStatToColorConverter x:Key="HpStatToColorConverter"/>
     <!-- ProgressBar Styles -->
@@ -100,30 +100,6 @@
         </Grid>
     </DataTemplate>
     <DataTemplate DataType="{x:Type cocstats:BoundedScalarIntegerStat}">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="26"/>
-            </Grid.ColumnDefinitions>
-            <ProgressBar Minimum="{Binding Minimum}"
-                         Maximum="{Binding Maximum}"
-                         Value="{Binding Value, Mode=OneWay}"/>
-            <Image VerticalAlignment="Bottom" Source="/CoC_Desktop_WPF;component/Resources/ui/StatsBarBottom.png"/>
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
-                       Style="{StaticResource StatNameStyle}"
-                       Text="{Binding Name, StringFormat={}{0}:}"/>
-            <TextBlock HorizontalAlignment="Right"
-                       Style="{StaticResource StatValueStyle}"
-                       Text="{Binding Value}"/>
-            <Image Grid.Column="1"
-                   Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-up.png"
-                   Visibility="{Binding HasIncreased, Converter={StaticResource VisibilityConverter}}"/>
-            <Image Grid.Column="1"
-                   Source="/CoC_Desktop_WPF;component/Resources/ui/arrow-down.png"
-                   Visibility="{Binding HasDecreased, Converter={StaticResource VisibilityConverter}}"/>
-        </Grid>
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type cocstats:RestrictableBoundedScalarIntegerStat}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

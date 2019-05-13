@@ -1,4 +1,4 @@
-﻿using CoC_Lib.Characters.BodyParts;
+﻿using CoC_Lib.Creatures.BodyParts;
 using CoC_Lib.Commands;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace CoC_Lib.Scenes.CharacterCreation.BreastSizeCommands
         public BreastSizeCommand(Game game, BreastRow.BreastCup cupSize)
             : base(game)
         {
-            BreastRow = new Characters.Bodies.HumanBodyParts.HumanBreastRow();
+            BreastRow = new Creatures.Bodies.HumanBodyParts.HumanBreastRow();
             BreastRow.BreastRating = cupSize;
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using CoC_Lib.Characters.BodyParts;
+using CoC_Lib.Creatures.BodyParts;
 using CoC_Lib.Scenes.CharacterCreation.BreastSizeCommands;
 
 namespace CoC_Lib.Scenes.CharacterCreation

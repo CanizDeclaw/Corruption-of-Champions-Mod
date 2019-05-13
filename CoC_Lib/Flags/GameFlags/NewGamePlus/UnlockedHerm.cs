@@ -6,7 +6,7 @@ namespace CoC_Lib.Flags.GameFlags.NewGamePlus
 {
     public class UnlockedHerm : GameFlag
     {
-        public override string Key => "NEW_GAME_PLUS_BONUS_UNLOCKED_HERM";
+        public static string Key => @"NewGamePlus UnlockedHerm";
         public override string UnlockText => "Congratulations! You have unlocked hermaphrodite option on character creation, accessible from New Game Plus!";
         public override string Description => "Unlocked hermaphrodite gender option in character creation.";
 
