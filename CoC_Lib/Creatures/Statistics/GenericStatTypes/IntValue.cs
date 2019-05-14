@@ -5,6 +5,8 @@ using System.Text;
 
 namespace CoC_Lib.Creatures.Statistics
 {
+    // You can use an instance of this class directly as a readonly int.  Setting should 
+    // be done through `Set(int)`.
     public class IntValue
     {
         protected virtual int BaseValue { get; set; }
@@ -41,16 +43,6 @@ namespace CoC_Lib.Creatures.Statistics
         {
             var iv = new IntValue();
             iv.BaseValue = i;
-            return iv;
-        }
-        public static IntValue operator+(IntValue iv, int value)
-        {
-            iv.AdjustBaseValue(value);
-            return iv;
-        }
-        public static IntValue operator-(IntValue iv, int value)
-        {
-            iv.AdjustBaseValue(-value);
             return iv;
         }
 
