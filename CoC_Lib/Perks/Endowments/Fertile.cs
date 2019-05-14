@@ -17,9 +17,13 @@ namespace CoC_Lib.Perks.Endowments
             "a bigger ass, and other weirdness.";
 
         public override void OnAddPerk(Creature creature)
-        { }
+        {
+
+        }
         public override void OnRemovePerk(Creature creature)
-        { }
+        {
+
+        }
 
         public override bool Qualified(Player player) => player.HasVagina;
     }

@@ -8,8 +8,8 @@ namespace CoC_Lib.Creatures.Statistics
     {
         public abstract string Value { get; }
 
-        public StringStatistic(Creature creature)
-            : base(creature)
+        public StringStatistic(Game game, Creature creature)
+            : base(game, creature)
         { }
     }
 }

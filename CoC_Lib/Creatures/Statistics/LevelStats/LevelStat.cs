@@ -5,8 +5,8 @@
         public override string Name => "Level";
         public override string Description => "";
 
-        public LevelStat(Creature creature)
-            : base(creature)
+        public LevelStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(1);
             SetBaseMaximum(120);

@@ -2,6 +2,7 @@
 
 namespace CoC_Lib.Perks.Endowments
 {
+    // Note: Renamed from "MessyOrgasms" to be more clear about what it applies to.
     internal class LotsOfJizz : EndowmentPerk
     {
         public static string Key => "Endowment: Lots of Jizz";
@@ -15,9 +16,13 @@ namespace CoC_Lib.Perks.Endowments
             "A higher cum multiplier will cause your orgasms to be messier.";
 
         public override void OnAddPerk(Creature creature)
-        { }
+        {
+
+        }
         public override void OnRemovePerk(Creature creature)
-        { }
+        {
+
+        }
 
         public override bool Qualified(Player player) => player.HasCock;
     }

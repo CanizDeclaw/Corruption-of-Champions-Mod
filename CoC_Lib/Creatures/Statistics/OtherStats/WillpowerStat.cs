@@ -5,8 +5,8 @@
         public override string Name => "Willpower";
         public override string Description => "";
 
-        public WillpowerStat(Creature creature)
-            : base(creature)
+        public WillpowerStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(80);
             SetBaseMaximum(100);

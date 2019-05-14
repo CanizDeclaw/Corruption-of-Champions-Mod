@@ -2,6 +2,10 @@
 {
     public abstract class Creature : Body
     {
+        // TODO: Many of these stats are the same code with different
+        //       config.  Reduce them to a common parameterized constructor
+        //       or leave as is for UI differentiation?
+        // TODO: Non-`Statistic` info => `Statistic` derivative?
         public string Name { get; set; }
         public string RaceString { get; set; }
         public Statistics.RaceStat Race { get; }
@@ -35,45 +39,52 @@
         // Items & Gems
         public Statistics.GemsStat Gems { get; }
 
-        public Creature()
+        // Game Info
+        protected readonly Game game;
+        public Creature(Game game)
             :base(new Bodies.HumanBody())
         {
+            this.game = game;
+
             // TODO: Clear test data out
             Name = "Goblin";
             RaceString = "Goblin";
-            Race = new Statistics.RaceStat(this);
+            Race = new Statistics.RaceStat(game, this);
             GenderString = "Female";
-            Gender = new Statistics.GenderStat(this);
+            Gender = new Statistics.GenderStat(game, this);
 
-            Strength = new Statistics.StrengthStat(this);
-            Toughness = new Statistics.ToughnessStat(this);
-            Speed = new Statistics.SpeedStat(this);
-            Intelligence = new Statistics.IntelligenceStat(this);
-            Libido = new Statistics.LibidoStat(this);
-            Sensitivity = new Statistics.SensitivityStat(this);
+            Strength = new Statistics.StrengthStat(game, this);
+            Toughness = new Statistics.ToughnessStat(game, this);
+            Speed = new Statistics.SpeedStat(game, this);
+            Intelligence = new Statistics.IntelligenceStat(game, this);
+            Libido = new Statistics.LibidoStat(game, this);
+            Sensitivity = new Statistics.SensitivityStat(game, this);
 
-            Corruption = new Statistics.CorruptionStat(this);
-            Hunger = new Statistics.HungerStat(this);
-            Obedience = new Statistics.ObedienceStat(this);
-            SelfEsteem = new Statistics.SelfEsteemStat(this);
-            Willpower = new Statistics.WillpowerStat(this);
+            Corruption = new Statistics.CorruptionStat(game, this);
+            Hunger = new Statistics.HungerStat(game, this);
+            Obedience = new Statistics.ObedienceStat(game, this);
+            SelfEsteem = new Statistics.SelfEsteemStat(game, this);
+            Willpower = new Statistics.WillpowerStat(game, this);
 
-            Lust = new Statistics.LustStat(this);
-            Fatigue = new Statistics.FatigueStat(this);
+            Lust = new Statistics.LustStat(game, this);
+            Fatigue = new Statistics.FatigueStat(game, this);
 
-            Level = new Statistics.LevelStat(this);
-            XP = new Statistics.XpStat(this);
+            Level = new Statistics.LevelStat(game, this);
+            XP = new Statistics.XpStat(game, this);
 
-            Gems = new Statistics.GemsStat(this);
+            Gems = new Statistics.GemsStat(game, this);
 
             // TODO: This (along with other stats) needs to consider other character stats + perks
-            HP = new Statistics.HpStat(this);
+            // HP needs to go last because it subscribes to events from other stats to keep its Maximum
+            // updated.
+            // TODO: Maybe just propagate stat changes and force re-read?
+            HP = new Statistics.HpStat(game, this);
         }
 
-        public Creature(Body body)
+        public Creature(Game game, Body body)
             :base(body)
         {
-
+            this.game = game;
         }
     }
 }

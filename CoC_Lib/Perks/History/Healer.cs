@@ -16,7 +16,7 @@ namespace CoC_Lib.Perks.History
 
         public override void OnAddPerk(Creature creature)
         {
-            creature.HP.OnBaseValueAdjusting.Add(this, (adjustment) => adjustment * 0.2m);
+            creature.HP.OnBaseValueAdjusting.Add(this, (adjustment) => (adjustment > 0) ? (adjustment * 0.2m) : 0);
         }
         public override void OnRemovePerk(Creature creature)
         {

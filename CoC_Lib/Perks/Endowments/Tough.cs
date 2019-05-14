@@ -21,7 +21,7 @@ namespace CoC_Lib.Perks.Endowments
             creature.Tone.AdjustBaseValue(5);
             creature.Thickness.AdjustBaseValue(5);
             creature.Toughness.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
-            // TODO: Restore HP
+            creature.HP.RestoreHP();
         }
         public override void OnRemovePerk(Creature creature)
         {

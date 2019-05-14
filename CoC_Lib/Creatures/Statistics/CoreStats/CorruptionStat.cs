@@ -5,8 +5,8 @@
         public override string Name => "Corruption";
         public override string Description => "";
 
-        public CorruptionStat(Creature creature)
-            : base(creature)
+        public CorruptionStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(15);
             SetBaseMaximum(100);

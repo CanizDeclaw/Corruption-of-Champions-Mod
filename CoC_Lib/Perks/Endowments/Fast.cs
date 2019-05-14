@@ -17,9 +17,15 @@ namespace CoC_Lib.Perks.Endowments
             "catching up to enemies who try to run.";
 
         public override void OnAddPerk(Creature creature)
-        { }
+        {
+            creature.Speed.AdjustBaseValue(5);
+            creature.Tone.AdjustBaseValue(10);
+            creature.Speed.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
+        }
         public override void OnRemovePerk(Creature creature)
-        { }
+        {
+            creature.Speed.OnBaseValueAdjusting.Remove(this);
+        }
 
         public override bool Qualified(Player player) => true;
     }

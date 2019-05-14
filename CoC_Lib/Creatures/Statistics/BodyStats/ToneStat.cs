@@ -9,8 +9,8 @@ namespace CoC_Lib.Creatures.Statistics
         public override string Name => "Tone";
         public override string Description => ""; // TODO: Finish writing stat.
 
-        public ToneStat(Creature creature)
-            :base(creature)
+        public ToneStat(Game game, Creature creature)
+            :base(game, creature)
         {
             SetBaseValue(0); // TODO: Figure out actual default.
         }

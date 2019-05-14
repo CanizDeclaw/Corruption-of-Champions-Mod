@@ -16,9 +16,13 @@ namespace CoC_Lib.Perks.Endowments
             "also makes you gain lust much faster during oral or manual stimulation.";
 
         public override void OnAddPerk(Creature creature)
-        { }
+        {
+
+        }
         public override void OnRemovePerk(Creature creature)
-        { }
+        {
+
+        }
 
         public override bool Qualified(Player player) => player.HasVagina;
     }

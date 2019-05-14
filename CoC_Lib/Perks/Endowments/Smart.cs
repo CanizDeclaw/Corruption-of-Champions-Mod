@@ -17,9 +17,15 @@ namespace CoC_Lib.Perks.Endowments
             "learn in your travels.";
 
         public override void OnAddPerk(Creature creature)
-        { }
+        {
+            creature.Intelligence.AdjustBaseValue(5);
+            creature.Thickness.AdjustBaseValue(-5);
+            creature.Intelligence.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
+        }
         public override void OnRemovePerk(Creature creature)
-        { }
+        {
+            creature.Intelligence.OnBaseValueAdjusting.Remove(this);
+        }
 
         public override bool Qualified(Player player) => true;
     }

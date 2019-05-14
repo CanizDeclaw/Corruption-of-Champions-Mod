@@ -9,8 +9,8 @@ namespace CoC_Lib.Creatures.Statistics
         public override string Name => "Gems";
         public override string Description => "";
 
-        public GemsStat(Creature creature)
-            : base(creature)
+        public GemsStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(0);
         }

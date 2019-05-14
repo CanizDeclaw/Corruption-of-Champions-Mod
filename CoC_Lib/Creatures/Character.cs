@@ -2,8 +2,8 @@
 {
     public abstract class Character : Creature
     {
-        public Character(Body body)
-            :base(body)
+        public Character(Game game, Body body)
+            :base(game, body)
         {
 
         }

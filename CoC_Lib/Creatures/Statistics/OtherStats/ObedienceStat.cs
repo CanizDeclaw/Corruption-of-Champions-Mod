@@ -5,8 +5,8 @@
         public override string Name => "Obedience";
         public override string Description => "";
 
-        public ObedienceStat(Creature creature)
-            : base(creature)
+        public ObedienceStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(10);
             SetBaseMaximum(100);

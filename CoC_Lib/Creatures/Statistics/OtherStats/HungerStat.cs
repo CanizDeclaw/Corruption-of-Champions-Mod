@@ -5,8 +5,8 @@
         public override string Name => "Hunger";
         public override string Description => "";
 
-        public HungerStat(Creature creature)
-            : base(creature)
+        public HungerStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(80);
             SetBaseMaximum(100);

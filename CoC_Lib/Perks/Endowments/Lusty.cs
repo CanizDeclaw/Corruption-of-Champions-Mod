@@ -16,9 +16,14 @@ namespace CoC_Lib.Perks.Endowments
             "find a high libido to be more trouble than it's worth...";
 
         public override void OnAddPerk(Creature creature)
-        { }
+        {
+            creature.Libido.AdjustBaseValue(5);
+            creature.Libido.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
+        }
         public override void OnRemovePerk(Creature creature)
-        { }
+        {
+            creature.Libido.OnBaseValueAdjusting.Remove(this);
+        }
 
         public override bool Qualified(Player player) => true;
     }

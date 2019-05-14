@@ -5,8 +5,8 @@
         public override string Name => "Lust";
         public override string Description => "";
 
-        public LustStat(Creature creature)
-            : base(creature)
+        public LustStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(15);
             SetBaseMaximum(100);

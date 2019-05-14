@@ -12,8 +12,8 @@ namespace CoC_Lib.Creatures.Statistics
         // TODO: Rename?
         // TODO: Fix description.
 
-        public ThicknessStat(Creature creature)
-            : base(creature)
+        public ThicknessStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(52);
         }

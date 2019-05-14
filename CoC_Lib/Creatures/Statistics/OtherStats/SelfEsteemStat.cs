@@ -5,8 +5,8 @@
         public override string Name => "Self Esteem";
         public override string Description => "";
 
-        public SelfEsteemStat(Creature creature)
-            : base(creature)
+        public SelfEsteemStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(50);
             SetBaseMaximum(100);

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CoC_Lib.Creatures.Statistics
 {
+    // TODO: Reimplement Value, Minimum, and Maximum to be self-contained,
+    //       with the latter two including their temporary limiters.
+    //       Should also have multipart modifier (pre-setter, post-setter, etc).
     public abstract class BoundedIntegerStat : IntegerStat
     {
         #region Value
@@ -73,6 +76,9 @@ namespace CoC_Lib.Creatures.Statistics
 
         #region Maximum
         // The absolute upper limit of a stat. Can't be lower than BaseMinimum.
+        // TODO: Make use of these limits
+        protected virtual int LowerLimitOfMax { get; set; } = 50;
+        protected virtual int UpperLimitOfMax { get; set; } = 9999;
         protected virtual int BaseMaximum { get; set; }
         public virtual void AdjustBaseMaximum(int relativeAdjustment)
         {
@@ -194,8 +200,8 @@ namespace CoC_Lib.Creatures.Statistics
         public Dictionary<object, int> RestrictedMaximumSetters;
         #endregion Restricted Minimum & Restricted Maximum
 
-        public BoundedIntegerStat(Creature creature)
-            :base(creature)
+        public BoundedIntegerStat(Game game, Creature creature)
+            :base(game, creature)
         {
             MaximumModifiers = new Dictionary<object, int>();
             RestrictedMinimumModifiers = new Dictionary<object, int>();

@@ -100,7 +100,9 @@ namespace CoC_Lib
         {
             if (SceneStack.Count > 0)
             {
-                CurrentScene = SceneStack.Pop();
+                var next = SceneStack.Pop();
+                next.Run();
+                CurrentScene = next;
             }
             else
             {
@@ -110,7 +112,9 @@ namespace CoC_Lib
                     // TODO: change this to be a bit more general and customizable.
                     ClockChanged?.Invoke(GameTime);
                 }
-                CurrentScene = HomeScene;
+                var next = HomeScene;
+                next.Run();
+                CurrentScene = next;
             }
         }
 

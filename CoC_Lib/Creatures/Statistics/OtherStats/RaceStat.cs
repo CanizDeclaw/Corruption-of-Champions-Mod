@@ -10,8 +10,8 @@ namespace CoC_Lib.Creatures.Statistics
         public override string Description => "Your race.";
         public override string Value => creature.RaceString;
 
-        public RaceStat(Creature creature)
-            : base(creature)
+        public RaceStat(Game game, Creature creature)
+            : base(game, creature)
         { }
     }
 }

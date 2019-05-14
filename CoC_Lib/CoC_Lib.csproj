@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Characters\Creatures\" />
+    <Compile Remove="Characters\**" />
+    <EmbeddedResource Remove="Characters\**" />
+    <None Remove="Characters\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Items\Clothing\" />
     <Folder Include="Items\" />
     <Folder Include="Scenes\MenuScreens\" />

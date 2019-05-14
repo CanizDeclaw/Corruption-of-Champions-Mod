@@ -5,8 +5,8 @@
         public override string Name => "Fatigue";
         public override string Description => "";
 
-        public FatigueStat(Creature creature)
-            : base(creature)
+        public FatigueStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(0);
             SetBaseMaximum(100);

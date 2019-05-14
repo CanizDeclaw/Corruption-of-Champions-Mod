@@ -5,8 +5,8 @@
         public override string Name => "Strength";
         public override string Description => "";
 
-        public StrengthStat(Creature creature)
-            : base(creature)
+        public StrengthStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(15);
             SetBaseMaximum(100);

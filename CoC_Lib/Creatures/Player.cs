@@ -4,8 +4,8 @@ namespace CoC_Lib.Creatures
 {
     public class Player : Character
     {
-        public Player()
-            :base(new Bodies.HumanBody())
+        public Player(Game game)
+            :base(game, new Bodies.HumanBody())
         {
             Perks = new Perks.PerkCollection(this);
             Name = "Player";

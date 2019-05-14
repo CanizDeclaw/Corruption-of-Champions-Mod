@@ -10,8 +10,8 @@ namespace CoC_Lib.Creatures.Statistics
         public override string Description => "Your gender.";
         public override string Value => creature.GenderString;
 
-        public GenderStat(Creature creature)
-            :base(creature)
+        public GenderStat(Game game, Creature creature)
+            :base(game, creature)
         { }
     }
 }

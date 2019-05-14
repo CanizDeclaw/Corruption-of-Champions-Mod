@@ -7,8 +7,8 @@
 
         public bool CanLevelUp => Value >= Maximum;
 
-        public XpStat(Creature creature)
-            : base(creature)
+        public XpStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(0);
             SetBaseMaximum(100);

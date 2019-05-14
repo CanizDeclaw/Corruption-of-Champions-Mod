@@ -5,8 +5,8 @@
         public override string Name => "Libido";
         public override string Description => "";
 
-        public LibidoStat(Creature creature)
-            : base(creature)
+        public LibidoStat(Game game, Creature creature)
+            : base(game, creature)
         {
             SetBaseValue(15);
             SetBaseMaximum(100);

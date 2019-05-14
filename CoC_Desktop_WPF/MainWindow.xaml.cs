@@ -23,6 +23,7 @@ namespace CoC_Desktop_WPF
         public MainWindow()
         {
             InitializeComponent();
+            // TODO: In combat scenes, add creature image as header over opponent stats?
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

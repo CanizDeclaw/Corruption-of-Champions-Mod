@@ -17,9 +17,16 @@ namespace CoC_Lib.Perks.Endowments
             "makes you more prone to Bad Ends.";
 
         public override void OnAddPerk(Creature creature)
-        { }
+        {
+            creature.Corruption.AdjustBaseValue(5);
+            // Not in original.  Assuming it was excluded by error.
+            // TODO: Check if intentional.
+            creature.Corruption.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
+        }
         public override void OnRemovePerk(Creature creature)
-        { }
+        {
+            creature.Corruption.OnBaseValueAdjusting.Remove(this);
+        }
 
         public override bool Qualified(Player player) => true;
     }

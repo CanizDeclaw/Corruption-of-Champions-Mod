@@ -46,6 +46,13 @@ namespace CoC_Lib.Scenes
         /// </summary>
         public Command[] Commands { get; } = new Command[15];
 
+        /// <summary>
+        /// Game state may change between when a scene is created and when it's time to view it,
+        /// so any prep work that depends on game state should be executed inside this function, which
+        /// will be called when a scene is popped into CurrentScene.
+        /// </summary>
+        public abstract void Run();
+
         public Scene(Game game)
         {
             Game = game;

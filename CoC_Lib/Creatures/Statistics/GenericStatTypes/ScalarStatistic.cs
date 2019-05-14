@@ -5,8 +5,8 @@
         public bool HasIncreased { get; }
         public bool HasDecreased { get; }
 
-        public ScalarStatistic(Creature creature)
-            : base(creature)
+        public ScalarStatistic(Game game, Creature creature)
+            : base(game, creature)
         { }
     }
 }

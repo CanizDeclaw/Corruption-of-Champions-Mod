@@ -17,9 +17,12 @@ namespace CoC_Lib.Perks.Endowments
 
         public override void OnAddPerk(Creature creature)
         {
+
         }
         public override void OnRemovePerk(Creature creature)
-        { }
+        {
+
+        }
 
         public override bool Qualified(Player player) => player.HasVagina;
     }
