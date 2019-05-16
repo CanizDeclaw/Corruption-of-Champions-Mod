@@ -15,32 +15,32 @@ namespace CoC_Lib.Creatures.Statistics
     /// </remarks>
     public abstract class BoundedIntegerStat : IntegerStat
     {
-        public override IntValue Value { get; }
+        public override IntValue Value { get; protected set; }
         /// <summary>
         /// The absolute lower limit of the stat.
         /// </summary>
-        public virtual object LowerBound { get; }
+        public virtual IntLowerBound LowerBound { get; protected set; }
         /// <summary>
         /// The effective lower limit of the stat.
         /// </summary>
-        public virtual int Minimum { get; }
+        public virtual IntMinimum Minimum { get; protected set; }
         /// <summary>
         /// The effective upper limit of the stat.
         /// </summary>
-        public virtual int Maximum { get; }
+        public virtual IntMaximum Maximum { get; protected set; }
         /// <summary>
         /// The absolute upper limit of the stat.
         /// </summary>
-        public virtual object UpperBound { get; }
+        public virtual IntUpperBound UpperBound { get; protected set; }
 
         public BoundedIntegerStat(Game game, Creature creature)
             :base(game, creature)
         {
+            LowerBound = new IntLowerBound();
+            Minimum = new IntMinimum(this);
+            UpperBound = new IntUpperBound();
+            Maximum = new IntMaximum(this);
             Value = new BoundedIntValue(this, 0);
-            LowerBound = new object();
-            //Minimum = new object();
-            UpperBound = new object();
-            //Maximum = new object();
         }
     }       
 }           

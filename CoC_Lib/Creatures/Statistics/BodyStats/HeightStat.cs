@@ -12,10 +12,9 @@ namespace CoC_Lib.Creatures.Statistics
         public HeightStat(Game game, Creature creature)
             : base(game, creature)
         {
-            // TODO: Implement mutable minimum
             // TODO: Figure out what the actual restrictions and defaults are.
-            SetBaseValue(52);
-            SetBaseMaximum(100);
+            Value = 52;
+            LowerBound = new IntLowerBound(0);
         }
     }
 }
