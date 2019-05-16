@@ -18,7 +18,8 @@ namespace CoC_Lib.Perks
 
         public abstract bool KeepOnAscension { get; }
 
-        public abstract void OnAddPerk(Creatures.Creature creature);
+        public abstract void OnFirstTimeAdd(Creatures.Creature creature);
+        public abstract void OnAddPerk(Creatures.Creature creature, bool firstTime = true);
         public abstract void OnRemovePerk(Creatures.Creature creature);
     }
 }

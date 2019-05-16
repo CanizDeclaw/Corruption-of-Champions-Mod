@@ -5,7 +5,7 @@
         public override string Name => "XP";
         public override string Description => "";
 
-        public bool CanLevelUp => Value >= Maximum;
+        public bool CanLevelUp => Value >= UpperBound;
 
         public XpStat(Game game, Creature creature)
             : base(game, creature)

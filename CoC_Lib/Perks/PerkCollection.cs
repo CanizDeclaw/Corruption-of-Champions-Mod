@@ -7,7 +7,7 @@ namespace CoC_Lib.Perks
 {
     public class PerkCollection : IDictionary<string, Perk>
     {
-        protected Creatures.Player Owner;
+        protected readonly Creatures.Player owner;
         protected Dictionary<string, Perk> Perks = new Dictionary<string, Perk>();
 
         #region Default IDictionary Implementation
@@ -65,7 +65,15 @@ namespace CoC_Lib.Perks
         }
         public void Add(string key, Perk perk)
         {
-            perk.OnAddPerk(Owner);
+            Add(key, perk, restoringSave: false);
+        }
+        public void Add(string key, Perk perk, bool restoringSave = false)
+        {
+            if (restoringSave == false)
+            {
+                perk.OnFirstTimeAdd(owner);
+            }
+            perk.OnAddPerk(owner);
             ((IDictionary<string, Perk>)Perks).Add(key, perk);
         }
 
@@ -84,7 +92,7 @@ namespace CoC_Lib.Perks
         }
         public bool Remove(KeyValuePair<string, Perk> item)
         {
-            item.Value.OnRemovePerk(Owner);
+            item.Value.OnRemovePerk(owner);
             return ((IDictionary<string, Perk>)Perks).Remove(item);
         }
         #endregion Customized IDictionary Implementation
@@ -95,9 +103,27 @@ namespace CoC_Lib.Perks
             Add(key, replacement);
         }
 
+        /// <summary>
+        /// This should return XML listing each perk present in this collection
+        /// by its key.
+        /// </summary>
+        /// <returns>XML listing each perk in this collection by key.</returns>
+        public object Save()
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// Given the XML output from Save() this clears the collection and restores
+        /// all the perks in the list.
+        /// </summary>
+        public void Restore()
+        {
+            throw new NotImplementedException();
+        }
+
         public PerkCollection(Creatures.Player owner)
         {
-            Owner = owner;
+            this.owner = owner;
         }
     }
 }
