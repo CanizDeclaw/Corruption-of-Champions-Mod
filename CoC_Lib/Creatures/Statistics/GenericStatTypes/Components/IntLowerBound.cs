@@ -4,6 +4,7 @@ using System.Text;
 
 namespace CoC_Lib.Creatures.Statistics
 {
+    // TODO: Figure out how Minimum and Maximum interact with everything else.
     public class IntLowerBound
     {
         public virtual int Value { get; }

@@ -37,8 +37,8 @@ namespace CoC_Lib.Creatures.Statistics
             :base(game, creature)
         {
             LowerBound = new IntLowerBound();
-            Minimum = new IntMinimum(this);
             UpperBound = new IntUpperBound();
+            Minimum = new IntMinimum(this);
             Maximum = new IntMaximum(this);
             Value = new BoundedIntValue(this, 0);
         }
