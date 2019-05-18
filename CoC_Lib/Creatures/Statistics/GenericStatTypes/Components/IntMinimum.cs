@@ -22,7 +22,7 @@ namespace CoC_Lib.Creatures.Statistics
             }
         }
         /// <summary>
-        /// Final value is calculate as follows:
+        /// Final value is calculated as follows:
         /// PreSetterStaticModifiers are summed and added to UpperBound.
         /// This is compared to all StaticSetters to find the highest value.
         /// Highest value is selected and added to the sum of the PostSetterStaticModifiers.

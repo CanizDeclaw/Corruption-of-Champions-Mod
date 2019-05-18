@@ -8,8 +8,9 @@
         public FatigueStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(0);
-            SetBaseMaximum(100);
+            Value = 0;
+            LowerBound = new IntLowerBound(maximum: 100);
+            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 999);
         }
     }
 }

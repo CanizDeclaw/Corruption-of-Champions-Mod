@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CoC_Lib.Creatures.Statistics
@@ -7,32 +8,52 @@ namespace CoC_Lib.Creatures.Statistics
     // TODO: Figure out how Minimum and Maximum interact with everything else.
     public class IntLowerBound
     {
-        public virtual int Value { get; }
+        protected virtual int BaseValue { get; set; }
+        public virtual int Value
+        {
+            get
+            {
+                var value = BaseValue + (int)StaticModifiers.Values.Sum();
+                if (value > Maximum)
+                {
+                    value = Maximum;
+                }
+                if (value < Minimum)
+                {
+                    value = Minimum;
+                }
+                return value;
+            }
+        }
         public virtual int Minimum { get; }
         public virtual int Maximum { get; }
+
+
+        /// <summary>
+        /// StaticModifiers are summed and added to the underlying value
+        /// for output.
+        /// </summary>
+        public Dictionary<object, decimal> StaticModifiers;
 
         public static implicit operator int(IntLowerBound bound)
         {
             return bound.Value;
         }
 
-        public IntLowerBound()
+        public IntLowerBound(int value = 0, int minimum = 0, int maximum = 9999)
         {
-            Value = 0;
-            Minimum = 0;
-            Maximum = 9999;
-        }
-        public IntLowerBound(int value)
-        {
-            Value = value;
-            Minimum = value;
-            Maximum = value;
-        }
-        public IntLowerBound(int value, int minimum, int maximum)
-        {
-            Value = value;
             Minimum = minimum;
             Maximum = maximum;
+
+            if (value > Maximum)
+            {
+                value = Maximum;
+            }
+            if (value < Minimum)
+            {
+                value = Minimum;
+            }
+            BaseValue = value;
         }
     }
 }
