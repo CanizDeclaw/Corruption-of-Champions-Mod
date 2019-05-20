@@ -11,5 +11,13 @@ namespace CoC_Lib.Creatures.Bodies
     /// </summary>
     public class HumanBody : Body
     {
+        public HumanBody(Game game, Creature creature)
+            :base(game, creature)
+        {
+        }
+        public HumanBody(Game game, Creature creature, Body body)
+            : base(game, creature, body)
+        {
+        }
     }
 }

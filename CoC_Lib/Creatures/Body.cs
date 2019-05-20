@@ -14,6 +14,11 @@ namespace CoC_Lib.Creatures
     }
     public abstract class Body
     {
+        // Game Info
+        protected readonly Game game;
+        // Bodies don't exist on their own outside a derivative creature
+        protected readonly Creature creature;
+
         #region Non-Sexual Characteristics
         #region Head & Neck
         public Antennae Antennae { get; }
@@ -106,9 +111,15 @@ namespace CoC_Lib.Creatures
             return score;
         }
 
-        public Body() { }
-        public Body(Body copyFrom)
+        public Body(Game game, Creature creature)
         {
+            this.game = game;
+            this.creature = creature;
+        }
+        public Body(Game game, Creature creature, Body copyFrom)
+        {
+            this.game = game;
+            this.creature = creature;
             // TODO: Copy from copyFrom to this.
         }
     }

@@ -11,5 +11,13 @@ namespace CoC_Lib.Creatures.Bodies
     /// </summary>
     public class NoBody : Body
     {
+        public NoBody(Game game, Creature creature)
+            : base(game, creature)
+        {
+        }
+        public NoBody(Game game, Creature creature, Body body)
+            : base(game, creature, body)
+        {
+        }
     }
 }

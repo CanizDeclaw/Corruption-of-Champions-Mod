@@ -2,6 +2,10 @@
 
 namespace CoC_Lib.Creatures
 {
+    // TODO: Dynamic player sprite.
+    //       Might take position of previous enemy sprite (which would then go on the right), given wider GUI.
+    // TODO: Default skin color based on the Fitzpatrick scale?
+    // TODO: Ovipositor tails, not just abdomens.
     public class Player : Character
     {
         public Player(Game game)

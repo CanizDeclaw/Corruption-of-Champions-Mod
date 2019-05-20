@@ -1,7 +1,13 @@
 ﻿namespace CoC_Lib.Creatures
 {
-    public abstract class Creature : Body
+    public abstract class Creature
     {
+        // Game Info
+        protected readonly Game game;
+
+        // Body Info
+        public Body Body { get; protected set; }
+
         // TODO: Many of these stats are the same code with different
         //       config.  Reduce them to a common parameterized constructor
         //       or leave as is for UI differentiation?
@@ -39,12 +45,10 @@
         // Items & Gems
         public Statistics.GemsStat Gems { get; }
 
-        // Game Info
-        protected readonly Game game;
         public Creature(Game game)
-            :base(new Bodies.HumanBody())
         {
             this.game = game;
+            Body = new Bodies.HumanBody(game, this);
 
             // TODO: Clear test data out
             Name = "Goblin";
@@ -82,9 +86,10 @@
         }
 
         public Creature(Game game, Body body)
-            :base(body)
         {
             this.game = game;
+            // Human body is default body.
+            Body = new Bodies.HumanBody(game, this, body);
         }
     }
 }

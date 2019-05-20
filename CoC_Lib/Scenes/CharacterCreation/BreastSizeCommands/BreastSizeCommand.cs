@@ -9,9 +9,9 @@ namespace CoC_Lib.Scenes.CharacterCreation.BreastSizeCommands
     public class BreastSizeCommand : Command
     {
         // TODO: BreastRow.BreastRating => string
-        public override string ShortName => BreastRow.BreastRating.ToString();
-        public override string LongName => BreastRow.BreastRating.ToString();
-        public override string CanExecuteDescription => $"Set your breast size to {BreastRow.BreastRating.ToString()}";
+        public override string ShortName => BreastRow.Size.ToString();
+        public override string LongName => BreastRow.Size.ToString();
+        public override string CanExecuteDescription => $"Set your breast size to {BreastRow.Size.ToString()}";
         public override string CanNotExecuteDescription => "";
 
         public override bool CanExecute => true;
@@ -27,7 +27,7 @@ namespace CoC_Lib.Scenes.CharacterCreation.BreastSizeCommands
             : base(game)
         {
             BreastRow = new Creatures.Bodies.HumanBodyParts.HumanBreastRow();
-            BreastRow.BreastRating = cupSize;
+            BreastRow.Size = cupSize;
         }
     }
 }

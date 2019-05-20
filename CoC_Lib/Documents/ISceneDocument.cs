@@ -5,6 +5,9 @@ using System.Text;
 namespace CoC_Lib.Documents
 {
     // TODO: Tables, <p></p> tags
+    // TODO: Late assembly - evaluate doc for correctness only when doc is requested, not on building.
+    // TODO: Partial assembly - make sure elements can be added in parts across calls, so conditional additions
+    //       can be done in a less cluttered manner.
     /// <summary>
     /// This class provides the methods to construct a scene, as well as generating the final output for use.
     ///  

@@ -32,7 +32,7 @@ namespace CoC_Lib.Creatures.Statistics
         /// to BaseValue.
         /// </summary>
         /// <param name="relativeAdjustment">The amount to adjust the value by.</param>
-        protected virtual void AdjustValue(int relativeAdjustment)
+        public virtual void AdjustValue(int relativeAdjustment)
         {
             // Decimal values used to allow easy percentage modifications.
             decimal modifier = 0;
