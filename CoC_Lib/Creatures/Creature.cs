@@ -48,7 +48,7 @@
         public Creature(Game game)
         {
             this.game = game;
-            Body = new Bodies.HumanBody(game, this);
+            Body = new Bodies.HumanBody();
 
             // TODO: Clear test data out
             Name = "Goblin";
@@ -89,7 +89,7 @@
         {
             this.game = game;
             // Human body is default body.
-            Body = new Bodies.HumanBody(game, this, body);
+            Body = new Bodies.HumanBody(body);
         }
     }
 }

@@ -3,7 +3,7 @@
     public class ToughnessStat : BoundedIntegerStat
     {
         public override string Name => "Toughness";
-        public override string Description => "";
+        public override string Description => "Toughness";
 
         public ToughnessStat(Game game, Creature creature)
             : base(game, creature)

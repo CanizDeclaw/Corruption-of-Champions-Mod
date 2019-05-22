@@ -13,6 +13,7 @@ namespace CoC_Lib.Creatures.Statistics
             get
             {
                 var value = BaseValue + (int)StaticModifiers.Values.Sum();
+                value += (int)DynamicModifiers.Values.Sum(dm => dm(value));
                 if (value > Maximum)
                 {
                     value = Maximum;
@@ -33,6 +34,17 @@ namespace CoC_Lib.Creatures.Statistics
         /// for output.
         /// </summary>
         public Dictionary<object, decimal> StaticModifiers;
+
+        /// <summary>
+        /// Delegate for modifying the value.  Applied after static modifiers.
+        /// </summary>
+        /// <param name="value">The base adjustment value.</param>
+        /// <returns>The amount to adjust the adjustment value.</returns>
+        public delegate decimal DynamicModifier(decimal value);
+        /// <summary>
+        /// Dynamic modifiers are summed and added to the value after static modifiers.
+        /// </summary>
+        public Dictionary<object, DynamicModifier> DynamicModifiers;
 
         public static implicit operator int(IntUpperBound bound)
         {

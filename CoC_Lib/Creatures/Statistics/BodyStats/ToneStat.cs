@@ -15,8 +15,8 @@ namespace CoC_Lib.Creatures.Statistics
             // TODO: ThicknessStat: Figure out what the actual restrictions and defaults are.
             // Assuming 0..100 here based on usage in original.
             Value = 50;
-            LowerBound = new IntLowerBound(maximum: 100);
-            UpperBound = new IntUpperBound(value: 100, maximum: 100);
+            LowerBound = new IntLowerBound(maximum: 0);
+            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 100);
         }
     }
 }

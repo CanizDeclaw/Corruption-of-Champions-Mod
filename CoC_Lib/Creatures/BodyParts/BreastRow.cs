@@ -9,7 +9,7 @@ namespace CoC_Lib.Creatures.BodyParts
         public int Breasts;
         public int NipplesPerBreast;
         public BreastSize Size { get; protected set; }
-        public BreastCup CupSize => Size.CupSize();
+        public BreastCup CupSize => Size.CupSize;
         public decimal LactationMultiplier;
         //Fullness used for lactation....if 75 or greater warning bells start going off!
         //If it reaches 100 it reduces lactation multiplier.

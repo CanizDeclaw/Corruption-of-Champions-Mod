@@ -1,4 +1,7 @@
-﻿namespace CoC_Lib.Creatures.Statistics
+﻿using System;
+using static CoC_Lib.Creatures.Statistics.IntUpperBound;
+
+namespace CoC_Lib.Creatures.Statistics
 {
     public class HpStat : BoundedIntegerStat
     {
@@ -11,38 +14,43 @@
         //
         //       Other stats should be checked for similar info.
         public override string Name => "HP";
-        public override string Description => "";
+        public override string Description => "HP";
 
-        protected override int BaseMaximum
-        {
-            get
-            {
-                var value = creature.Toughness.Value * 2 + 50;
-                if (game.Settings.GrimDarkMode)
-                {
-                    value += creature.Level.Value * 5;
-                }
-                else
-                {
-                    value += creature.Level.Value * 15;
-                }
-                return value;
-            }
-        }
         /// <summary>
         /// Used to restore the HP value to max available.  Use `AdjustBaseValue`
         /// if you need to move it up or down by a certain amount.
         /// </summary>
         public void RestoreHP()
         {
-            AdjustBaseValue(UpperLimitOfMax);
+            Value.Set(Maximum);
+        }
+
+        protected string ToughnessModifierKey = "HpStat ToughnessModifier";
+        protected decimal ToughnessModifier()
+        {
+            return creature.Toughness * 2m;
+        }
+        protected string LevelModifierKey = "HpStat LevelModifier";
+        protected decimal LevelModifier()
+        {
+            if (game.Settings.GrimDarkMode == true)
+            {
+                return creature.Level * 5m;
+            }
+            else
+            {
+                return creature.Level * 15m;
+            }
         }
 
         public HpStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(100);
-            SetBaseMaximum(100);
+            LowerBound = new IntLowerBound(maximum: 0);
+            UpperBound = new IntUpperBound(value: 50, minimum: 50, maximum: 9999);
+            UpperBound.DynamicModifiers.Add(ToughnessModifierKey, (_) => ToughnessModifier());
+            UpperBound.DynamicModifiers.Add(LevelModifierKey, (_) => LevelModifier());
+            RestoreHP();
         }
     }
 }

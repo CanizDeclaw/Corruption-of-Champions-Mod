@@ -34,6 +34,11 @@ namespace CoC_Lib.Creatures.Statistics
             get
             {
                 var value = UncheckedValue;
+                if (DynamicUpperBounds.Count > 0 &&
+                    value > DynamicUpperBounds.Values.Min(dub => dub()))
+                {
+                    value = DynamicUpperBounds.Values.Min(dub => dub());
+                }
                 if (value > Parent.Maximum.UncheckedValue)
                 {
                     value = (UncheckedValue + Parent.Maximum.UncheckedValue) / 2;
@@ -53,7 +58,10 @@ namespace CoC_Lib.Creatures.Statistics
 
         public Dictionary<object, int> PreSetterStaticModifiers;
         public Dictionary<object, int> StaticSetters;
+        public Dictionary<object, Func<int>> DynamicSetters;
         public Dictionary<object, int> PostSetterStaticModifiers;
+
+        public Dictionary<object, Func<int>> DynamicUpperBounds;
 
         public static implicit operator int(IntMinimum bound)
         {

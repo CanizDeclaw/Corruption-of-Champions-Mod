@@ -3,13 +3,38 @@
     public class LibidoStat : BoundedIntegerStat
     {
         public override string Name => "Libido";
-        public override string Description => "";
+        public override string Description => "Libido";
 
         public LibidoStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(15);
-            SetBaseMaximum(100);
+            LowerBound = new IntLowerBound(maximum: 0);
+            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 100);
+            Minimum.StaticSetters.Add("LibidoStat Libido Minimum", 1);
+            Minimum.DynamicSetters.Add("LibidoStat Player Libido Minimum", () =>
+            {
+                if (creature is Player)
+                {
+                    if (creature.Body.Sex == Sex.Sexless)
+                    {
+                        return 10;
+                    }
+                    else
+                    {
+                        return 15;
+                    }
+                }
+                return 0;
+            });
+            Minimum.DynamicSetters.Add("LibidoStat Player Libido-Lust Relation", () =>
+            {
+                if (creature is Player)
+                {
+                    return creature.Lust.Minimum * 2 / 3;
+                }
+                return 0;
+            });
+            Value.Set(15);
         }
     }
 }

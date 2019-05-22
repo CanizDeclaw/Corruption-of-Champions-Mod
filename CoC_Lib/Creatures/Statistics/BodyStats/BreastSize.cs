@@ -215,12 +215,15 @@ namespace CoC_Lib.Creatures.Statistics
 
         public virtual int Set(BreastCup cup) => Set((int)cup);
         // TODO: Surely there's a better way...
-        public virtual BreastCup CupSize() => (BreastCup)(int)Value;
+        public virtual BreastCup CupSize => (BreastCup)(int)Value;
 
         public BreastSize(Game game, Creature creature)
             :base(game, creature)
         {
             // TODO: Set everything up
+            LowerBound = new IntLowerBound(value: 0, minimum: 0, maximum: 0);
+            UpperBound = new IntUpperBound(value: 199, minimum: 199, maximum: 199);
+            Set(BreastCup.Flat);
             // TODO: Breast size <-> cup conversions
         }
     }

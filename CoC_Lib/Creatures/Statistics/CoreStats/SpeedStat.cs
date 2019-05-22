@@ -3,13 +3,14 @@
     public class SpeedStat : BoundedIntegerStat
     {
         public override string Name => "Speed";
-        public override string Description => "";
+        public override string Description => "Speed";
 
         public SpeedStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(15);
-            SetBaseMaximum(100);
+            LowerBound = new IntLowerBound(maximum: 0);
+            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 100);
+            Value.Set(15);
         }
     }
 }

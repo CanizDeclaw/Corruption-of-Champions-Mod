@@ -3,13 +3,16 @@
     public class IntelligenceStat : BoundedIntegerStat
     {
         public override string Name => "Intelligence";
-        public override string Description => "";
+        public override string Description => "Intelligence";
 
         public IntelligenceStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(15);
-            SetBaseMaximum(100);
+            // TODO: All stats need better checked for implementation.
+            //       Just doing basic implementation for now, for the most part.
+            LowerBound = new IntLowerBound(maximum: 0);
+            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 100);
+            Value.Set(15);
         }
     }
 }

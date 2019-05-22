@@ -12,11 +12,12 @@ namespace CoC_Lib.Creatures
         Hermaphrodite,
         Sexless
     }
+
     public abstract class Body
     {
         // Game Info
         protected readonly Game game;
-        // Bodies don't exist on their own outside a derivative creature
+        // Bodies don't exist on their own outside a creature
         protected readonly Creature creature;
 
         #region Non-Sexual Characteristics
@@ -111,15 +112,11 @@ namespace CoC_Lib.Creatures
             return score;
         }
 
-        public Body(Game game, Creature creature)
+        public Body()
         {
-            this.game = game;
-            this.creature = creature;
         }
-        public Body(Game game, Creature creature, Body copyFrom)
+        public Body(Body copyFrom)
         {
-            this.game = game;
-            this.creature = creature;
             // TODO: Copy from copyFrom to this.
         }
     }

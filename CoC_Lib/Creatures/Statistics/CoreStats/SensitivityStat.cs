@@ -3,13 +3,15 @@
     public class SensitivityStat : BoundedIntegerStat
     {
         public override string Name => "Sensitivity";
-        public override string Description => "";
+        public override string Description => "Sensitivity";
 
         public SensitivityStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(15);
-            SetBaseMaximum(100);
+            LowerBound = new IntLowerBound(maximum: 0);
+            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 100);
+            Minimum.StaticSetters.Add("SensitivityStat Sensitivity Minimum", 10);
+            Value.Set(15);
         }
     }
 }
