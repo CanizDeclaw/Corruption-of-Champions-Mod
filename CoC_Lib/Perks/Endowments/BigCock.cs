@@ -15,15 +15,21 @@ namespace CoC_Lib.Perks.Endowments
             "A bigger cock will make it easier to get off any sexual partners, " +
             "but only if they can take your size.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
 
         }
+
         public override void OnRemovePerk(Creature creature)
         {
 
         }
 
-        public override bool Qualified(Player player) => player.HasCock;
+        public override bool Qualified(Player player) => player.Body.HasCock;
     }
 }
