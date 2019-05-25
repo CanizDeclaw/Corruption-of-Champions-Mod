@@ -41,6 +41,7 @@ namespace CoC_Lib.Creatures.Statistics
             }
             BaseValue += relativeAdjustment + (int)modifier;
         }
+        public virtual int Set(int value) => Value = value;
 
         public static implicit operator int(IntValue iv)
         {
