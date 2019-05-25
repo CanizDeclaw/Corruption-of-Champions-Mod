@@ -9,18 +9,62 @@ namespace CoC_Lib.Creatures.Statistics
     {
         protected virtual BoundedIntegerStat Parent { get; }
         protected virtual int BaseValue { get => Parent.UpperBound; }
+        protected virtual int BaseLowerLimit { get => Parent.LowerBound; }
+        protected virtual int BaseUpperLimit { get => Parent.UpperBound; }
 
+        /// <summary>
+        /// Upper limit of the minimum.
+        /// </summary>
+        protected int LowerLimit
+        {
+            get
+            {
+                var lowerLimit = BaseLowerLimit;
+                if (LowerLimitStaticSetters.Count > 0)
+                {
+                    var highestSetter = LowerLimitStaticSetters.Values.Max();
+                    lowerLimit = Math.Max(lowerLimit, highestSetter);
+                }
+
+                return lowerLimit;
+            }
+        }
+
+        // UpperLimit modifiers
+        public Dictionary<string, int> LowerLimitStaticSetters;
+
+        /// <summary>
+        /// The value of Maximum before checking against Minimum.
+        /// </summary>
         internal virtual int UncheckedValue
         {
             get
             {
-                var premodifier = BaseValue + PreSetterStaticModifiers.Values.Sum();
-                var maxSetter = StaticSetters.Values.Min();
-                var value = Math.Min(premodifier, maxSetter);
+                var value = BaseValue + PreSetterStaticModifiers.Values.Sum();
+                if (StaticSetters.Count > 0)
+                {
+                    var minSetter = StaticSetters.Values.Min();
+                    value = Math.Min(value, minSetter);
+                }
+                if (DynamicSetters.Count > 0)
+                {
+                    var minDynamicSetter = DynamicSetters.Values.Min(ds => ds());
+                    value = Math.Min(value, minDynamicSetter);
+                }
                 value += PostSetterStaticModifiers.Values.Sum();
+
+                if (value < LowerLimit)
+                {
+                    value = LowerLimit;
+                }
+                if (value > BaseUpperLimit)
+                {
+                    value = BaseUpperLimit;
+                }
                 return value;
             }
         }
+
         /// <summary>
         /// Final value is calculated as follows:
         /// PreSetterStaticModifiers are summed and added to UpperBound.
@@ -38,22 +82,16 @@ namespace CoC_Lib.Creatures.Statistics
                 {
                     value = (UncheckedValue + Parent.Minimum.UncheckedValue) / 2;
                 }
-
-                if (value > Parent.UpperBound)
-                {
-                    value = Parent.UpperBound;
-                }
-                else if (value < Parent.LowerBound)
-                {
-                    value = Parent.LowerBound;
-                }
                 return value;
             }
         }
 
-        public Dictionary<object, int> PreSetterStaticModifiers;
-        public Dictionary<object, int> StaticSetters;
-        public Dictionary<object, int> PostSetterStaticModifiers;
+        // Value modifiers
+        public Dictionary<string, int> PreSetterStaticModifiers;
+        public Dictionary<string, int> StaticSetters;
+        public Dictionary<string, DynamicSetter> DynamicSetters;
+        public Dictionary<string, int> PostSetterStaticModifiers;
+        public Dictionary<string, DynamicModifier> PostSetterDynamicModifiers;
 
         public static implicit operator int(IntMaximum bound)
         {
@@ -62,6 +100,14 @@ namespace CoC_Lib.Creatures.Statistics
 
         public IntMaximum(BoundedIntegerStat parent)
         {
+            LowerLimitStaticSetters = new Dictionary<string, int>();
+
+            PreSetterStaticModifiers = new Dictionary<string, int>();
+            StaticSetters = new Dictionary<string, int>();
+            DynamicSetters = new Dictionary<string, DynamicSetter>();
+            PostSetterStaticModifiers = new Dictionary<string, int>();
+            PostSetterDynamicModifiers = new Dictionary<string, DynamicModifier>();
+
             Parent = parent;
         }
     }

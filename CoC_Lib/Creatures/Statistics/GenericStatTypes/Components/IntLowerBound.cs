@@ -28,12 +28,11 @@ namespace CoC_Lib.Creatures.Statistics
         public virtual int Minimum { get; }
         public virtual int Maximum { get; }
 
-
         /// <summary>
         /// StaticModifiers are summed and added to the underlying value
         /// for output.
         /// </summary>
-        public Dictionary<object, decimal> StaticModifiers;
+        public Dictionary<string, decimal> StaticModifiers;
 
         public static implicit operator int(IntLowerBound bound)
         {
@@ -42,6 +41,8 @@ namespace CoC_Lib.Creatures.Statistics
 
         public IntLowerBound(int value = 0, int minimum = 0, int maximum = 9999)
         {
+            StaticModifiers = new Dictionary<string, decimal>();
+
             Minimum = minimum;
             Maximum = maximum;
 

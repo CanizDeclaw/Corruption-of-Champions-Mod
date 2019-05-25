@@ -5,8 +5,7 @@ using System.Text;
 
 namespace CoC_Lib.Creatures.Statistics
 {
-    // You can use an instance of this class directly as a readonly int.  Setting should 
-    // be done through `Set(int)`.
+    // You can use an instance of this class directly as a readonly int.
     public class IntValue
     {
         protected virtual int BaseValue { get; set; }
@@ -22,7 +21,7 @@ namespace CoC_Lib.Creatures.Statistics
             {
                 return BaseValue + (int)StaticModifiers.Values.Sum();
             }
-            set
+            protected set
             {
                 BaseValue = value - (int)StaticModifiers.Values.Sum();
             }
@@ -42,8 +41,6 @@ namespace CoC_Lib.Creatures.Statistics
             }
             BaseValue += relativeAdjustment + (int)modifier;
         }
-        public virtual int Get() => Value;
-        public virtual int Set(int value) => Value = value;
 
         public static implicit operator int(IntValue iv)
         {
@@ -62,25 +59,19 @@ namespace CoC_Lib.Creatures.Statistics
         /// StaticModifiers are summed and added to the underlying value
         /// for output.
         /// </summary>
-        public Dictionary<object, decimal> StaticModifiers;
+        public Dictionary<string, decimal> StaticModifiers;
 
-        /// <summary>
-        /// Delegate for modifying incoming adjustments.
-        /// </summary>
-        /// <param name="value">The base adjustment value.</param>
-        /// <returns>The amount to adjust the adjustment value.</returns>
-        public delegate decimal AdjustmentModifier(decimal adjustment);
         /// <summary>
         /// When adjustments (adding or subtracting a value) are made to this,
         /// these are summed and added to the adjustment before setting the new
         /// value.
         /// </summary>
-        public Dictionary<object, AdjustmentModifier> OnAdjusting;
+        public Dictionary<string, AdjustmentModifier> OnAdjusting;
 
         public IntValue()
         {
-            StaticModifiers = new Dictionary<object, decimal>();
-            OnAdjusting = new Dictionary<object, AdjustmentModifier>();
+            StaticModifiers = new Dictionary<string, decimal>();
+            OnAdjusting = new Dictionary<string, AdjustmentModifier>();
         }
     }
 }

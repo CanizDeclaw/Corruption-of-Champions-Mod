@@ -9,18 +9,62 @@ namespace CoC_Lib.Creatures.Statistics
     {
         protected virtual BoundedIntegerStat Parent { get; }
         protected virtual int BaseValue { get => Parent.LowerBound; }
+        protected virtual int BaseLowerLimit { get => Parent.LowerBound; }
+        protected virtual int BaseUpperLimit { get => Parent.UpperBound; }
 
+        /// <summary>
+        /// Upper limit of the minimum.
+        /// </summary>
+        protected int UpperLimit
+        {
+            get
+            {
+                var upperLimit = BaseUpperLimit;
+                if (UpperLimitStaticSetters.Count > 0)
+                {
+                    var lowestSetter = UpperLimitStaticSetters.Values.Min();
+                    upperLimit = Math.Min(upperLimit, lowestSetter);
+                }
+
+                return upperLimit;
+            }
+        }
+
+        // UpperLimit modifiers
+        public Dictionary<string, int> UpperLimitStaticSetters;
+
+        /// <summary>
+        /// The value of Minimum before checking against Maximum.
+        /// </summary>
         internal virtual int UncheckedValue
         {
             get
             {
-                var premodifier = BaseValue + PreSetterStaticModifiers.Values.Sum();
-                var maxSetter = StaticSetters.Values.Max();
-                var value = Math.Max(premodifier, maxSetter);
+                var value = BaseValue + PreSetterStaticModifiers.Values.Sum();
+                if (StaticSetters.Count > 0)
+                {
+                    var maxStaticSetter = StaticSetters.Values.Max();
+                    value = Math.Max(value, maxStaticSetter);
+                }
+                if (DynamicSetters.Count > 0)
+                {
+                    var maxDynamicSetter = DynamicSetters.Values.Max(ds => ds());
+                    value = Math.Max(value, maxDynamicSetter);
+                }
                 value += PostSetterStaticModifiers.Values.Sum();
+
+                if (value > UpperLimit)
+                {
+                    value = UpperLimit;
+                }
+                if (value < BaseLowerLimit)
+                {
+                    value = BaseLowerLimit;
+                }
                 return value;
             }
         }
+
         /// <summary>
         /// Final value is calculated as follows:
         /// PreSetterStaticModifiers are summed and added to UpperBound.
@@ -34,34 +78,20 @@ namespace CoC_Lib.Creatures.Statistics
             get
             {
                 var value = UncheckedValue;
-                if (DynamicUpperBounds.Count > 0 &&
-                    value > DynamicUpperBounds.Values.Min(dub => dub()))
-                {
-                    value = DynamicUpperBounds.Values.Min(dub => dub());
-                }
                 if (value > Parent.Maximum.UncheckedValue)
                 {
                     value = (UncheckedValue + Parent.Maximum.UncheckedValue) / 2;
-                }
-
-                if (value > Parent.UpperBound)
-                {
-                    value = Parent.UpperBound;
-                }
-                else if (value < Parent.LowerBound)
-                {
-                    value = Parent.LowerBound;
                 }
                 return value;
             }
         }
 
-        public Dictionary<object, int> PreSetterStaticModifiers;
-        public Dictionary<object, int> StaticSetters;
-        public Dictionary<object, Func<int>> DynamicSetters;
-        public Dictionary<object, int> PostSetterStaticModifiers;
-
-        public Dictionary<object, Func<int>> DynamicUpperBounds;
+        // Value modifiers
+        public Dictionary<string, int> PreSetterStaticModifiers;
+        public Dictionary<string, int> StaticSetters;
+        public Dictionary<string, DynamicSetter> DynamicSetters;
+        public Dictionary<string, int> PostSetterStaticModifiers;
+        public Dictionary<string, DynamicModifier> PostSetterDynamicModifiers;
 
         public static implicit operator int(IntMinimum bound)
         {
@@ -70,6 +100,14 @@ namespace CoC_Lib.Creatures.Statistics
 
         public IntMinimum(BoundedIntegerStat parent)
         {
+            UpperLimitStaticSetters = new Dictionary<string, int>();
+
+            PreSetterStaticModifiers = new Dictionary<string, int>();
+            StaticSetters = new Dictionary<string, int>();
+            DynamicSetters = new Dictionary<string, DynamicSetter>();
+            PostSetterStaticModifiers = new Dictionary<string, int>();
+            PostSetterDynamicModifiers = new Dictionary<string, DynamicModifier>();
+
             Parent = parent;
         }
     }

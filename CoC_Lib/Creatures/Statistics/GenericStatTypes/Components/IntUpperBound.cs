@@ -7,7 +7,10 @@ namespace CoC_Lib.Creatures.Statistics
 {
     public class IntUpperBound
     {
+        protected virtual BoundedIntegerStat Parent { get; }
         protected virtual int BaseValue { get; set; }
+        public virtual int Minimum { get; }
+        public virtual int Maximum { get; }
         public virtual int Value
         {
             get
@@ -22,49 +25,35 @@ namespace CoC_Lib.Creatures.Statistics
                 {
                     value = Minimum;
                 }
+                if (value < Parent.LowerBound)
+                {
+                    value = Parent.LowerBound;
+                }
                 return value;
             }
         }
-        public virtual int Minimum { get; }
-        public virtual int Maximum { get; }
-
 
         /// <summary>
         /// StaticModifiers are summed and added to the underlying value
         /// for output.
         /// </summary>
-        public Dictionary<object, decimal> StaticModifiers;
-
-        /// <summary>
-        /// Delegate for modifying the value.  Applied after static modifiers.
-        /// </summary>
-        /// <param name="value">The base adjustment value.</param>
-        /// <returns>The amount to adjust the adjustment value.</returns>
-        public delegate decimal DynamicModifier(decimal value);
+        public Dictionary<string, decimal> StaticModifiers;
         /// <summary>
         /// Dynamic modifiers are summed and added to the value after static modifiers.
         /// </summary>
-        public Dictionary<object, DynamicModifier> DynamicModifiers;
+        public Dictionary<string, DynamicModifier> DynamicModifiers;
 
         public static implicit operator int(IntUpperBound bound)
         {
             return bound.Value;
         }
 
-        public IntUpperBound()
+        public IntUpperBound(BoundedIntegerStat parent, int value = 9999, int minimum = 0, int maximum = 9999)
         {
-            BaseValue = 9999;
-            Minimum = 0;
-            Maximum = 9999;
-        }
-        public IntUpperBound(int value)
-        {
-            BaseValue = value;
-            Minimum = 0;
-            Maximum = 9999;
-        }
-        public IntUpperBound(int value = 9999, int minimum = 0, int maximum = 9999)
-        {
+            StaticModifiers = new Dictionary<string, decimal>();
+            DynamicModifiers = new Dictionary<string, DynamicModifier>();
+
+            Parent = parent;
             BaseValue = value;
             Minimum = minimum;
             Maximum = maximum;

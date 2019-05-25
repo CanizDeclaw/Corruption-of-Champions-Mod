@@ -7,10 +7,8 @@ namespace CoC_Lib.Creatures.Statistics
 {
     public class BoundedIntValue : IntValue
     {
-        protected virtual BoundedIntegerStat Parent
-        { get; }
-        protected override int BaseValue
-        { get; set; }
+        protected virtual BoundedIntegerStat Parent { get; }
+        protected override int BaseValue { get; set; }
 
         protected virtual int FindBaseValue(int value)
         {
@@ -36,13 +34,25 @@ namespace CoC_Lib.Creatures.Statistics
         {
             get
             {
-                return BaseValue + (int)StaticModifiers.Values.Sum();
+                var value = BaseValue + (int)StaticModifiers.Values.Sum();
+                if (value > Parent.Maximum)
+                {
+                    value = Parent.Maximum;
+                    Value = value;
+                }
+                else if (value < Parent.Minimum)
+                {
+                    value = Parent.Minimum;
+                    Value = value;
+                }
+                return value;
             }
-            set
+            protected set
             {
                 BaseValue = FindBaseValue(value);
             }
         }
+
         /// <summary>
         /// Adds the sum of relativeAdjustment and all OnAdjusting delegates
         /// to BaseValue.
@@ -50,15 +60,11 @@ namespace CoC_Lib.Creatures.Statistics
         /// If Value would exceed Minimum or Maximum, BaseValue is adjusted so it fits.
         /// </summary>
         /// <param name="relativeAdjustment">The amount to adjust the value by.</param>
-        protected override void AdjustValue(int relativeAdjustment)
+        public override void AdjustValue(int relativeAdjustment)
         {
             // Decimal values used to allow easy percentage modifications.
-            decimal modifier = 0;
-            foreach (var modFunction in OnAdjusting.Values)
-            {
-                modifier += modFunction(relativeAdjustment);
-            }
-            var value = Value + relativeAdjustment + (int)modifier;
+            var mods = OnAdjusting.Values.Sum(oa => oa(relativeAdjustment));
+            var value = Value + relativeAdjustment + (int)mods;
             BaseValue = FindBaseValue(value);
         }
 
