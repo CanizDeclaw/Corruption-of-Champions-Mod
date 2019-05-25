@@ -9,7 +9,9 @@
             : base(game, creature)
         {
             LowerBound = new IntLowerBound(maximum: 0);
-            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 100);
+            // TODO: This (and probably others) has a min. UpperBound of 50.
+            // TODO: Ascension modifies this, str, tou, and int.
+            UpperBound = new IntUpperBound(this, value: 100, minimum: 100, maximum: 200);
             Value.Set(15);
         }
     }

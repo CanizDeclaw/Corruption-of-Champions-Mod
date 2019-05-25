@@ -27,7 +27,7 @@ namespace CoC_Lib.Creatures.Statistics
              */
             Value = 50;
             LowerBound = new IntLowerBound(maximum: 0);
-            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 100);
+            UpperBound = new IntUpperBound(this, value: 100, minimum: 100, maximum: 100);
         }
     }
 }

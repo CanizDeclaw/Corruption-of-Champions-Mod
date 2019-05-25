@@ -8,8 +8,9 @@
         public ToughnessStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(15);
-            SetBaseMaximum(100);
+            LowerBound = new IntLowerBound(maximum: 0);
+            UpperBound = new IntUpperBound(this, value: 100, minimum: 100, maximum: 200);
+            Value.Set(15);
         }
     }
 }

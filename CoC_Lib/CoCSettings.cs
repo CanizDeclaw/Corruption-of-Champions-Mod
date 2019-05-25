@@ -6,6 +6,8 @@ namespace CoC_Lib
 {
     class CoCSettings
     {
+        public int LevelMax { get; } = 120;
+
         public bool SillyMode { get; set; } = false;
         public bool GrimDarkMode { get; set; } = false;
 

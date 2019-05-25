@@ -9,7 +9,7 @@
             : base(game, creature)
         {
             LowerBound = new IntLowerBound(maximum: 0);
-            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 999);
+            UpperBound = new IntUpperBound(this, value: 100, minimum: 100, maximum: 999);
             Value.Set(15);
         }
     }

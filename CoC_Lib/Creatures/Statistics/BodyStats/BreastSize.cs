@@ -222,7 +222,7 @@ namespace CoC_Lib.Creatures.Statistics
         {
             // TODO: Set everything up
             LowerBound = new IntLowerBound(value: 0, minimum: 0, maximum: 0);
-            UpperBound = new IntUpperBound(value: 199, minimum: 199, maximum: 199);
+            UpperBound = new IntUpperBound(this, value: 199, minimum: 199, maximum: 199);
             Set(BreastCup.Flat);
             // TODO: Breast size <-> cup conversions
         }

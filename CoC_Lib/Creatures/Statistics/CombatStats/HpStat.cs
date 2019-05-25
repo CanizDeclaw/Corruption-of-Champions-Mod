@@ -14,7 +14,7 @@ namespace CoC_Lib.Creatures.Statistics
         //
         //       Other stats should be checked for similar info.
         public override string Name => "HP";
-        public override string Description => "HP";
+        public override string Description => "How much health you have.  Higher is better.";
 
         /// <summary>
         /// Used to restore the HP value to max available.  Use `AdjustBaseValue`
@@ -47,7 +47,7 @@ namespace CoC_Lib.Creatures.Statistics
             : base(game, creature)
         {
             LowerBound = new IntLowerBound(maximum: 0);
-            UpperBound = new IntUpperBound(value: 50, minimum: 50, maximum: 9999);
+            UpperBound = new IntUpperBound(this, value: 50, minimum: 50, maximum: 9999);
             UpperBound.DynamicModifiers.Add(ToughnessModifierKey, (_) => ToughnessModifier());
             UpperBound.DynamicModifiers.Add(LevelModifierKey, (_) => LevelModifier());
             RestoreHP();

@@ -15,8 +15,8 @@ namespace CoC_Desktop_WPF.Utilities
         {
             if (value is CoC_Lib.Creatures.Statistics.HpStat hpStat)
             {
-                var r = (1 - (hpStat.Value / (float)hpStat.Maximum)) * 0.8f;
-                var g = (hpStat.Value / (float)hpStat.Maximum) * 0.8f;
+                var r = (1 - (hpStat.Value / (float)hpStat.UpperBound)) * 0.8f;
+                var g = (hpStat.Value / (float)hpStat.UpperBound) * 0.8f;
                 var b = 0.0f;
                 return new SolidColorBrush(Color.FromScRgb(1, r, g, b));
             }

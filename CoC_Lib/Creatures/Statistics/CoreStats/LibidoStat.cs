@@ -9,7 +9,7 @@
             : base(game, creature)
         {
             LowerBound = new IntLowerBound(maximum: 0);
-            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 100);
+            UpperBound = new IntUpperBound(this, value: 100, minimum: 100, maximum: 100);
             Minimum.StaticSetters.Add("LibidoStat Libido Minimum", 1);
             Minimum.DynamicSetters.Add("LibidoStat Player Libido Minimum", () =>
             {

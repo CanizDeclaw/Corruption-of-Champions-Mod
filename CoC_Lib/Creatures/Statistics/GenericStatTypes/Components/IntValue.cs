@@ -47,14 +47,6 @@ namespace CoC_Lib.Creatures.Statistics
         {
             return iv.Value;
         }
-        public static implicit operator IntValue(int i)
-        {
-            var iv = new IntValue
-            {
-                BaseValue = i
-            };
-            return iv;
-        }
 
         /// <summary>
         /// StaticModifiers are summed and added to the underlying value

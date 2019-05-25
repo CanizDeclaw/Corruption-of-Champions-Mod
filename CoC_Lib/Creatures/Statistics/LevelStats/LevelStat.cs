@@ -3,13 +3,15 @@
     public class LevelStat : BoundedIntegerStat
     {
         public override string Name => "Level";
-        public override string Description => "";
+        public override string Description => "Level";
 
         public LevelStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(1);
-            SetBaseMaximum(120);
+            var levelMax = game.Settings.LevelMax;
+            LowerBound = new IntLowerBound(value: 1, minimum: 1, maximum: levelMax);
+            UpperBound = new IntUpperBound(this, value: levelMax, maximum: levelMax);
+            Value.Set(1);
         }
     }
 }

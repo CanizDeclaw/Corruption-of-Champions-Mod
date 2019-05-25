@@ -10,7 +10,10 @@
         public XpStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(0);
+            LowerBound = new IntLowerBound(value: 0, minimum: 0, maximum: 0);
+            UpperBound = new IntUpperBound(this);
+            Value = new BoundedIntValue(this, 0);
+            Value.Set(0);
             SetBaseMaximum(100);
         }
     }

@@ -3,7 +3,7 @@
     public class LustStat : BoundedIntegerStat
     {
         public override string Name => "Lust";
-        public override string Description => "Lust";
+        public override string Description => "How horny you are right now.  Being full equals a loss in combat.";
 
         protected string DemonicModifierKey = "LustStat DemonicModifier";
         protected decimal DemonicModifier()
@@ -21,25 +21,14 @@
         {
             // TODO: minLust mods
             LowerBound = new IntLowerBound(maximum: 0);
-            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 999);
+            UpperBound = new IntUpperBound(this, value: 100, minimum: 100, maximum: 999);
             UpperBound.DynamicModifiers.Add(DemonicModifierKey, (_) => DemonicModifier());
-            // TODO: Fix this
+            // TODO: Complex cap on Minimum interplay in Player.as minLust().
             if (creature is Player)
             {
-                Minimum.DynamicUpperBounds.Add("LustStat Player Maximal Minimum", () => 95);
+                // TODO: This probably isn't player specific.
+                Minimum.UpperLimitStaticSetters.Add("LustStat Player Maximal Minimum", 95);
             }
-            Minimum.DynamicUpperBounds.Add("LustStat Player Maximal Minimum", () =>
-            {
-                if (creature is Player)
-                {
-                    return 95;
-                }
-                else
-                {
-                    return 999;
-                }
-            });
-            Value.Set(15);
         }
     }
 }

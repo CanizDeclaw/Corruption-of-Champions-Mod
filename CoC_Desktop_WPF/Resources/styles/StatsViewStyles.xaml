@@ -6,6 +6,7 @@
     <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
     <utils:HpStatToColorConverter x:Key="HpStatToColorConverter"/>
     <!-- ProgressBar Styles -->
+    <!-- TODO: Make sure overfull XP progress bar doesn't cause problems. -->
     <Style x:Key="{x:Type ProgressBar}" TargetType="{x:Type ProgressBar}">
         <Setter Property="Template">
             <Setter.Value>

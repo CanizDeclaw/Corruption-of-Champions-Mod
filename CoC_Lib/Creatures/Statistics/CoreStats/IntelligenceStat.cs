@@ -11,7 +11,7 @@
             // TODO: All stats need better checked for implementation.
             //       Just doing basic implementation for now, for the most part.
             LowerBound = new IntLowerBound(maximum: 0);
-            UpperBound = new IntUpperBound(value: 100, minimum: 100, maximum: 100);
+            UpperBound = new IntUpperBound(this, value: 100, minimum: 100, maximum: 200);
             Value.Set(15);
         }
     }
