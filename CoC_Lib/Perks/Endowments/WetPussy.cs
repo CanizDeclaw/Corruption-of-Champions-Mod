@@ -15,10 +15,16 @@ namespace CoC_Lib.Perks.Endowments
             "Vaginal wetness will make it easier to take larger cocks, in turn " +
             "helping you bring the well-endowed to orgasm quicker.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
 
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
 

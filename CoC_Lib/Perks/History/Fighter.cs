@@ -15,10 +15,16 @@ namespace CoC_Lib.Perks.History
             "plans to find work as a guard when you grew up.  You do 10% more " +
             "damage with physical attacks.  You will also start out with 50 gems.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             creature.Gems.AdjustBaseValue(50);
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         { }
 

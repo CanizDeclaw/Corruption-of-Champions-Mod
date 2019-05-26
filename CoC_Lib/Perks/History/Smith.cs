@@ -15,10 +15,16 @@ namespace CoC_Lib.Perks.History
             "Because of your time spent at the blacksmith's side, you've learned " +
             "how to fit armor for maximum protection.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             // TODO: Armor adjustment
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
             // TODO: Armor adjustment

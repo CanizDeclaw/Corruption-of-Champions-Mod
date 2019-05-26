@@ -14,10 +14,16 @@ namespace CoC_Lib.Perks.History
             "You often spent your free time with the village healer, learning " +
             "how to tend to wounds.  Healing items and effects are 20% more effective.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             creature.HP.OnBaseValueAdjusting.Add(this, (adjustment) => (adjustment > 0) ? (adjustment * 0.2m) : 0);
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
             creature.HP.OnBaseValueAdjusting.Remove(this);

@@ -16,10 +16,16 @@ namespace CoC_Lib.Perks.Endowments
             "Pregnancy may result in: Strange children, larger bust, larger hips, " +
             "a bigger ass, and other weirdness.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
 
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
 

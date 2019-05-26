@@ -15,10 +15,16 @@ namespace CoC_Lib.Perks.History
             "making a nuisance of yourself.  Your efforts at slacking have made " +
             "you quite adept at resting, and your fatigue reduces 20% faster.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             creature.Fatigue.OnBaseValueAdjusting.Add(this, (adjustment) => (adjustment < 0) ? (adjustment * 0.2m) : 0);
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
             creature.Fatigue.OnBaseValueAdjusting.Remove(this);

@@ -16,12 +16,18 @@ namespace CoC_Lib.Perks.Endowments
             "machinery.  It will also boost the power of any spells you may " +
             "learn in your travels.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             creature.Intelligence.AdjustBaseValue(5);
             creature.Thickness.AdjustBaseValue(-5);
             creature.Intelligence.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
             creature.Intelligence.OnBaseValueAdjusting.Remove(this);

@@ -18,7 +18,7 @@ namespace CoC_Lib.Perks.History
             "penetrative stretching, and has a higher upper limit on what exactly " +
             "can be inserted.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             if (creature.HasVagina)
             {
@@ -29,6 +29,12 @@ namespace CoC_Lib.Perks.History
             // TODO: Anal Capacity
             // TODO: Vaginal Capacity
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
             // TODO: Anal Capacity

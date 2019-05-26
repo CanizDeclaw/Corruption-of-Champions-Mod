@@ -15,15 +15,21 @@ namespace CoC_Lib.Perks.Endowments
             "Your orgasms are particularly messy (+50% Cum Multiplier).<br/><br/>" +
             "A higher cum multiplier will cause your orgasms to be messier.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
 
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
 
         }
 
-        public override bool Qualified(Player player) => player.HasCock;
+        public override bool Qualified(Player player) => player.Body.HasCock;
     }
 }

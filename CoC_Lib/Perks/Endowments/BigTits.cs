@@ -15,15 +15,21 @@ namespace CoC_Lib.Perks.Endowments
             "Larger breasts will allow you to lactate greater amounts, tit-fuck " +
             "larger cocks, and generally be a sexy bitch.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
 
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
 
         }
 
-        public override bool Qualified(Player player) => player.HasBreasts;
+        public override bool Qualified(Player player) => player.Body.HasBreasts;
     }
 }

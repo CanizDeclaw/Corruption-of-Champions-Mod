@@ -17,10 +17,16 @@ namespace CoC_Lib.Perks.History
             "and how to make the most out it (+15% gems on victory).  You will " +
             "also start out with 250 gems.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             creature.Gems.AdjustBaseValue(250);
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         { }
 

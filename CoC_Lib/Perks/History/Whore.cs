@@ -15,7 +15,7 @@ namespace CoC_Lib.Perks.History
             "trading seduction for profit, you're more effective at teasing " +
             "(+15% tease damage).";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             if (creature.HasVagina)
             {
@@ -26,6 +26,12 @@ namespace CoC_Lib.Perks.History
             creature.Gems.AdjustBaseValue(50);
             // TODO: Tease
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
             // TODO: Tease

@@ -20,7 +20,7 @@ namespace CoC_Lib.Perks.Endowments
             new BigCock(),
             new LotsOfJizz(),
             // Breast-based
-            new BigBreasts(),
+            new BigTits(),
             // Vagina-based
             new BigClit(),
             new Fertile(),

@@ -16,10 +16,16 @@ namespace CoC_Lib.Perks.History
             "meditate.  The 'masturbation' option is replaced with 'meditate' " +
             "when corruption is at or below 66.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             creature.Libido.RestrictedMinimumModifiers.Add(this, -2);
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
             creature.Libido.RestrictedMinimumModifiers.Remove(this);

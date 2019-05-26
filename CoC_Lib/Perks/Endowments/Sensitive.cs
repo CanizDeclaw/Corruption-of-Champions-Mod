@@ -15,11 +15,17 @@ namespace CoC_Lib.Perks.Endowments
             "Sensitivity affects how easily touches and certain magics will " +
             "raise your lust.  Very low sensitivity will make it difficult to orgasm.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             creature.Sensitivity.AdjustBaseValue(5);
             creature.Sensitivity.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
             creature.Sensitivity.OnBaseValueAdjusting.Remove(this);

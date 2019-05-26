@@ -16,10 +16,16 @@ namespace CoC_Lib.Perks.History
             ", to let you read some of his books.  You are much better at " +
             "focusing, and spellcasting uses 20% less fatigue.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             // TODO: SpellCost
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
             // TODO: SpellCost

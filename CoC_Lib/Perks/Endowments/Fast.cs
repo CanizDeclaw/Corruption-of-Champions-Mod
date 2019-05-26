@@ -16,15 +16,24 @@ namespace CoC_Lib.Perks.Endowments
             "boosts your chances of evading an enemy attack and successfully " +
             "catching up to enemies who try to run.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
-            creature.Speed.AdjustBaseValue(5);
-            creature.Tone.AdjustBaseValue(10);
-            creature.Speed.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
+            if (firstTime)
+            {
+                OnFirstTimeAdd(creature);
+            }
+            creature.Speed.Value.OnAdjusting.Add(Key, (value) => (value > 0) ? (value * 0.25m) : 0);
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            creature.Speed.Increase(5);
+            creature.Body.Tone.Increase(10);
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
-            creature.Speed.OnBaseValueAdjusting.Remove(this);
+            creature.Speed.Value.OnAdjusting.Remove(Key);
         }
 
         public override bool Qualified(Player player) => true;

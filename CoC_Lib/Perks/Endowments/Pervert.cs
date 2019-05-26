@@ -16,13 +16,19 @@ namespace CoC_Lib.Perks.Endowments
             "Corruption affects certain scenes and having a higher corruption " +
             "makes you more prone to Bad Ends.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
             creature.Corruption.AdjustBaseValue(5);
             // Not in original.  Assuming it was excluded by error.
             // TODO: Check if intentional.
             creature.Corruption.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
         }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         {
             creature.Corruption.OnBaseValueAdjusting.Remove(this);

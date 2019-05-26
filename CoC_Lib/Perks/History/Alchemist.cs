@@ -14,8 +14,14 @@ namespace CoC_Lib.Perks.History
             "You spent some time as an alchemist's assistant, and alchemical " +
             "items always seem to be more reactive in your hands.";
 
-        public override void OnAddPerk(Creature creature)
+        public override void OnAddPerk(Creature creature, bool firstTime = true)
         { }
+
+        public override void OnFirstTimeAdd(Creature creature)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnRemovePerk(Creature creature)
         { }
 
