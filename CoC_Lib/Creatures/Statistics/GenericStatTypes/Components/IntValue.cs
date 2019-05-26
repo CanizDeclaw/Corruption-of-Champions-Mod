@@ -8,7 +8,18 @@ namespace CoC_Lib.Creatures.Statistics
     // You can use an instance of this class directly as a readonly int.
     public class IntValue
     {
+        protected virtual bool NoNegatives { get; }
         protected virtual int BaseValue { get; set; }
+
+        protected virtual int FindBaseValue(int value)
+        {
+            if (NoNegatives && value < 0)
+            {
+                value = 0;
+            }
+            return value - (int)StaticModifiers.Values.Sum();
+        }
+
         /// <summary>
         /// Returns the sum of BaseValue and all StaticModifiers.
         /// 
@@ -19,11 +30,17 @@ namespace CoC_Lib.Creatures.Statistics
         {
             get
             {
-                return BaseValue + (int)StaticModifiers.Values.Sum();
+                var value = BaseValue + (int)StaticModifiers.Values.Sum();
+                if (NoNegatives && value < 0)
+                {
+                    value = 0;
+                    Value = value;
+                }
+                return value;
             }
             protected set
             {
-                BaseValue = value - (int)StaticModifiers.Values.Sum();
+                BaseValue = FindBaseValue(value);
             }
         }
         /// <summary>
@@ -34,12 +51,9 @@ namespace CoC_Lib.Creatures.Statistics
         public virtual void AdjustValue(int relativeAdjustment)
         {
             // Decimal values used to allow easy percentage modifications.
-            decimal modifier = 0;
-            foreach (var modFunction in OnAdjusting.Values)
-            {
-                modifier += modFunction(relativeAdjustment);
-            }
-            BaseValue += relativeAdjustment + (int)modifier;
+            var mods = OnAdjusting.Values.Sum(oa => oa(relativeAdjustment));
+            var value = BaseValue + relativeAdjustment + (int)mods;
+            BaseValue = FindBaseValue(value);
         }
         public virtual int Set(int value) => Value = value;
 
@@ -61,10 +75,12 @@ namespace CoC_Lib.Creatures.Statistics
         /// </summary>
         public Dictionary<string, AdjustmentModifier> OnAdjusting;
 
-        public IntValue()
+        public IntValue(int initialValue = 0, bool noNegatives = false)
         {
+            NoNegatives = noNegatives;
             StaticModifiers = new Dictionary<string, decimal>();
             OnAdjusting = new Dictionary<string, AdjustmentModifier>();
+            Value = initialValue;
         }
     }
 }

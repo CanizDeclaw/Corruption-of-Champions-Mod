@@ -3,13 +3,14 @@
     public class HungerStat : BoundedIntegerStat
     {
         public override string Name => "Hunger";
-        public override string Description => "";
+        public override string Description => "Hunger";
 
         public HungerStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(80);
-            SetBaseMaximum(100);
+            LowerBound = new IntLowerBound();
+            UpperBound = new IntUpperBound(this, value: 100);
+            Value.Set(80);
         }
     }
 }

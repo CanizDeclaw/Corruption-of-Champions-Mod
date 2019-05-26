@@ -8,8 +8,9 @@
         public WillpowerStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(80);
-            SetBaseMaximum(100);
+            LowerBound = new IntLowerBound();
+            UpperBound = new IntUpperBound(this, value: 100);
+            Value.Set(80);
         }
     }
 }

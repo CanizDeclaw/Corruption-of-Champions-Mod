@@ -8,8 +8,9 @@
         public SelfEsteemStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(50);
-            SetBaseMaximum(100);
+            LowerBound = new IntLowerBound();
+            UpperBound = new IntUpperBound(this, value: 100);
+            Value.Set(50);
         }
     }
 }

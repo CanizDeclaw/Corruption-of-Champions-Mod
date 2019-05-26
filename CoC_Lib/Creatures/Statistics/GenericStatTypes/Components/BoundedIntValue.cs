@@ -9,10 +9,12 @@ namespace CoC_Lib.Creatures.Statistics
     {
         protected virtual BoundedIntegerStat Parent { get; }
         protected override int BaseValue { get; set; }
+        protected virtual bool CanOverflow { get; }
+        protected bool NoOverflow => !CanOverflow;
 
-        protected virtual int FindBaseValue(int value)
+        protected override int FindBaseValue(int value)
         {
-            if (value > Parent.Maximum)
+            if (NoOverflow && value > Parent.Maximum)
             {
                 value = Parent.Maximum;
             }
@@ -35,7 +37,7 @@ namespace CoC_Lib.Creatures.Statistics
             get
             {
                 var value = BaseValue + (int)StaticModifiers.Values.Sum();
-                if (value > Parent.Maximum)
+                if (NoOverflow && value > Parent.Maximum)
                 {
                     value = Parent.Maximum;
                     Value = value;
@@ -73,10 +75,11 @@ namespace CoC_Lib.Creatures.Statistics
             return iv.Value;
         }
 
-        public BoundedIntValue(BoundedIntegerStat parent, int initialValue)
+        public BoundedIntValue(BoundedIntegerStat parent, int initialValue, bool canOverflow = false)
         {
             Parent = parent;
             BaseValue = initialValue;
+            CanOverflow = canOverflow;
         }
     }
 }

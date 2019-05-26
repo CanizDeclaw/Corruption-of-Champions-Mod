@@ -7,12 +7,12 @@ namespace CoC_Lib.Creatures.Statistics
     public class GemsStat : IntegerStat
     {
         public override string Name => "Gems";
-        public override string Description => "";
+        public override string Description => "Gems";
 
         public GemsStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(0);
+            Value = new IntValue(noNegatives: true);
         }
     }
 }

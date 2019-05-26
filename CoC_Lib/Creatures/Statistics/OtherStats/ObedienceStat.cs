@@ -3,13 +3,14 @@
     public class ObedienceStat : BoundedIntegerStat
     {
         public override string Name => "Obedience";
-        public override string Description => "";
+        public override string Description => "Obedience";
 
         public ObedienceStat(Game game, Creature creature)
             : base(game, creature)
         {
-            SetBaseValue(10);
-            SetBaseMaximum(100);
+            LowerBound = new IntLowerBound();
+            UpperBound = new IntUpperBound(this, value: 100);
+            Value.Set(10);
         }
     }
 }
