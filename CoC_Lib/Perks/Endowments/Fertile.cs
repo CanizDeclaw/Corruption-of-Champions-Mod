@@ -18,6 +18,10 @@ namespace CoC_Lib.Perks.Endowments
 
         public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
+            if (firstTime)
+            {
+                OnFirstTimeAdd(creature);
+            }
 
         }
 

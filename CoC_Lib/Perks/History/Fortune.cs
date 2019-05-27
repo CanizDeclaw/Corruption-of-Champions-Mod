@@ -19,6 +19,10 @@ namespace CoC_Lib.Perks.History
 
         public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
+            if (firstTime)
+            {
+                OnFirstTimeAdd(creature);
+            }
             creature.Gems.AdjustBaseValue(250);
         }
 

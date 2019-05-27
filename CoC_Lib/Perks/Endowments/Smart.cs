@@ -18,19 +18,22 @@ namespace CoC_Lib.Perks.Endowments
 
         public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
-            creature.Intelligence.AdjustBaseValue(5);
-            creature.Thickness.AdjustBaseValue(-5);
-            creature.Intelligence.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
+            if (firstTime)
+            {
+                OnFirstTimeAdd(creature);
+            }
+            creature.Intelligence.Value.OnAdjusting.Add(Key, (value) => (value > 0) ? (value * 0.25m) : 0);
         }
 
         public override void OnFirstTimeAdd(Creature creature)
         {
-            throw new System.NotImplementedException();
+            creature.Intelligence.Increase(5);
+            creature.Body.Thickness.Decrease(5);
         }
 
         public override void OnRemovePerk(Creature creature)
         {
-            creature.Intelligence.OnBaseValueAdjusting.Remove(this);
+            creature.Intelligence.Value.OnAdjusting.Remove(Key);
         }
 
         public override bool Qualified(Player player) => true;

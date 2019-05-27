@@ -18,20 +18,23 @@ namespace CoC_Lib.Perks.Endowments
 
         public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
-            creature.Corruption.AdjustBaseValue(5);
+            if (firstTime)
+            {
+                OnFirstTimeAdd(creature);
+            }
             // Not in original.  Assuming it was excluded by error.
             // TODO: Check if intentional.
-            creature.Corruption.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
+            creature.Corruption.Value.OnAdjusting.Add(Key, (value) => (value > 0) ? (value * 0.25m) : 0);
         }
 
         public override void OnFirstTimeAdd(Creature creature)
         {
-            throw new System.NotImplementedException();
+            creature.Corruption.Increase(5);
         }
 
         public override void OnRemovePerk(Creature creature)
         {
-            creature.Corruption.OnBaseValueAdjusting.Remove(this);
+            creature.Corruption.Value.OnAdjusting.Remove(Key);
         }
 
         public override bool Qualified(Player player) => true;

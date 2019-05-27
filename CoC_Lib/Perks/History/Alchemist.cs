@@ -15,7 +15,12 @@ namespace CoC_Lib.Perks.History
             "items always seem to be more reactive in your hands.";
 
         public override void OnAddPerk(Creature creature, bool firstTime = true)
-        { }
+        {
+            if (firstTime)
+            {
+                OnFirstTimeAdd(creature);
+            }
+        }
 
         public override void OnFirstTimeAdd(Creature creature)
         {

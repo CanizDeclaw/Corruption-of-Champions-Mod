@@ -17,18 +17,21 @@ namespace CoC_Lib.Perks.Endowments
 
         public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
-            creature.Sensitivity.AdjustBaseValue(5);
-            creature.Sensitivity.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
+            if (firstTime)
+            {
+                OnFirstTimeAdd(creature);
+            }
+            creature.Sensitivity.Value.OnAdjusting.Add(Key, (value) => (value > 0) ? (value * 0.25m) : 0);
         }
 
         public override void OnFirstTimeAdd(Creature creature)
         {
-            throw new System.NotImplementedException();
+            creature.Sensitivity.Increase(5);
         }
 
         public override void OnRemovePerk(Creature creature)
         {
-            creature.Sensitivity.OnBaseValueAdjusting.Remove(this);
+            creature.Sensitivity.Value.OnAdjusting.Remove(Key);
         }
 
         public override bool Qualified(Player player) => true;

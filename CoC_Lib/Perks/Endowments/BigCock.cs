@@ -17,12 +17,17 @@ namespace CoC_Lib.Perks.Endowments
 
         public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
+            if (firstTime)
+            {
+                OnFirstTimeAdd(creature);
+            }
 
         }
 
         public override void OnFirstTimeAdd(Creature creature)
         {
-            throw new System.NotImplementedException();
+            creature.Presentation.IncreaseMasculinity(5);
+
         }
 
         public override void OnRemovePerk(Creature creature)

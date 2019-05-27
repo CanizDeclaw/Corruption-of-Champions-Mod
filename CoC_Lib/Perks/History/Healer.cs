@@ -16,6 +16,10 @@ namespace CoC_Lib.Perks.History
 
         public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
+            if (firstTime)
+            {
+                OnFirstTimeAdd(creature);
+            }
             creature.HP.OnBaseValueAdjusting.Add(this, (adjustment) => (adjustment > 0) ? (adjustment * 0.2m) : 0);
         }
 

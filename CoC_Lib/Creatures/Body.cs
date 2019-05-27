@@ -112,11 +112,15 @@ namespace CoC_Lib.Creatures
             return score;
         }
 
-        public Body()
+        public Body(Game game, Creature creature)
         {
+            this.game = game;
+            this.creature = creature;
         }
-        public Body(Body copyFrom)
+        public Body(Game game, Creature creature, Body copyFrom)
         {
+            this.game = game;
+            this.creature = creature;
             // TODO: Copy from copyFrom to this.
         }
     }

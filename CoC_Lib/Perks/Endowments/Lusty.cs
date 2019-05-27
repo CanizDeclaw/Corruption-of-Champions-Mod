@@ -17,18 +17,21 @@ namespace CoC_Lib.Perks.Endowments
 
         public override void OnAddPerk(Creature creature, bool firstTime = true)
         {
-            creature.Libido.AdjustBaseValue(5);
-            creature.Libido.OnBaseValueAdjusting.Add(this, (value) => (value > 0) ? (value * 0.25m) : 0);
+            if (firstTime)
+            {
+                OnFirstTimeAdd(creature);
+            }
+            creature.Libido.Value.OnAdjusting.Add(Key, (value) => (value > 0) ? (value * 0.25m) : 0);
         }
 
         public override void OnFirstTimeAdd(Creature creature)
         {
-            throw new System.NotImplementedException();
+            creature.Libido.Increase(5);
         }
 
         public override void OnRemovePerk(Creature creature)
         {
-            creature.Libido.OnBaseValueAdjusting.Remove(this);
+            creature.Libido.Value.OnAdjusting.Remove(Key);
         }
 
         public override bool Qualified(Player player) => true;

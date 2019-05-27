@@ -2,9 +2,57 @@
 
 namespace CoC_Lib.Creatures.BodyParts
 {
-    // TODO: This whole class feels wrong somehow.
-    public abstract class Cock : AbstractBodyPart
+    // TODO: Modifiers that affect all cocks (and vaginas, and breasts, and...)
+    //       Property of parent collection, fed in by constructors?
+    public class CockLengthStat : Statistics.BoundedDecimalStat
     {
+        public override string Name => "Cock Length";
+        public override string Description => "Cock Length";
+        protected Cock Parent { get; }
+
+        public CockLengthStat(Game game, Creature creature, Cock parent)
+            :base(game, creature)
+        {
+            Parent = parent;
+            LowerBound = new Statistics.DecimalLowerBound();
+            UpperBound = new Statistics.DecimalUpperBound(this);
+        }
+    }
+
+    public class CockThicknessStat : Statistics.BoundedDecimalStat
+    {
+        public override string Name => "Cock Thickness";
+        public override string Description => "Cock Thickness";
+        protected Cock Parent { get; }
+
+        public CockThicknessStat(Game game, Creature creature, Cock parent)
+            : base(game, creature)
+        {
+            Parent = parent;
+            LowerBound = new Statistics.DecimalLowerBound();
+            UpperBound = new Statistics.DecimalUpperBound(this);
+        }
+    }
+
+    public class KnotMultiplierStat : Statistics.BoundedDecimalStat
+    {
+        public override string Name => "Knot Multiplier";
+        public override string Description => "How thick the knot is relative to the cock thickness";
+        protected Cock Parent { get; }
+
+        public KnotMultiplierStat(Game game, Creature creature, Cock parent)
+            : base(game, creature)
+        {
+            Parent = parent;
+            LowerBound = new Statistics.DecimalLowerBound();
+            UpperBound = new Statistics.DecimalUpperBound(this);
+        }
+    }
+
+    // TODO: This whole class feels wrong somehow.
+    public abstract class Cock : AbstractBodyPart, ICollectibleBodyPart<Cock>
+    {
+        protected CockCollection ParentCollection { get; set; }
         /*
 		 Group Types used for general description code (eventually)
 		 * human  	        - obvious
@@ -33,20 +81,21 @@ namespace CoC_Lib.Creatures.BodyParts
             Avian        = 256,
         }
 
-        protected const double MaxLength = 9999.9;
-        protected const double MaxThickness = 999.9;
-        protected const double KnotMultiplierDefault = 1;
+        protected const decimal MaxLength = 9999.9m;
+        protected const decimal MaxThickness = 999.9m;
+        protected const decimal KnotMultiplierDefault = 1;
 
-        public double Length;
-        public double Thickness;
-        public double KnotMultiplier;
+        public CockLengthStat Length;
+        public CockThicknessStat Thickness;
+        public KnotMultiplierStat KnotMultiplier;
         public bool IsVirgin;
         public abstract bool SupportsKnot { get; }
 
-        public double Area => Length * Thickness;
+        public decimal Area => Length * Thickness;
         public bool HasKnot => SupportsKnot && KnotMultiplier > KnotMultiplierDefault;
 
-        public Cock()
+        public Cock(Game game, Creature creature)
+            :base(game, creature)
         {
             SetToDefault();
         }
@@ -54,10 +103,18 @@ namespace CoC_Lib.Creatures.BodyParts
         public override void SetToDefault()
         {
             base.SetToDefault();
-            Length = 5.5;
-            Thickness = 1;
-            KnotMultiplier = KnotMultiplierDefault;
+            Length.Set(5.5m);
+            Thickness.Set(1);
+            KnotMultiplier.Set(KnotMultiplierDefault);
             IsVirgin = true;
+        }
+
+        public void SetCollector(BodyPartCollection<Cock> collector)
+        {
+            if (collector is CockCollection cc)
+            {
+                ParentCollection = cc;
+            }
         }
     }
 }
