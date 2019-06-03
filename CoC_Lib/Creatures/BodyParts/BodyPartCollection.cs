@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CoC_Lib.Creatures.BodyParts
 {
-    public class BodyPartCollection<T> : IList<T> where T: ICollectibleBodyPart<T>
+    public abstract class BodyPartCollection<T> : IList<T> where T: AbstractBodyPart
     {
         protected List<T> Collection { get; }
 
@@ -13,7 +13,10 @@ namespace CoC_Lib.Creatures.BodyParts
         public T this[int index]
         {
             get => ((IList<T>)Collection)[index];
-            set => ((IList<T>)Collection)[index] = value;
+            set
+            {
+                ((IList<T>)Collection)[index] = value;
+            }
         }
 
         public int Count => ((IList<T>)Collection).Count;

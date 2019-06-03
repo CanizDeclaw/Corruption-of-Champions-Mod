@@ -66,7 +66,7 @@ namespace CoC_Lib.Creatures
 
         #region Sexual Characteristics
         public List<BreastRow> Breasts { get; }
-        public List<Cock> Cocks { get; }
+        public CockCollection Cocks { get; }
         public List<Testicle> Balls { get; }
         public List<Vagina> Vaginas { get; }
         public Anus Ass { get; }

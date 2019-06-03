@@ -54,7 +54,6 @@ namespace CoC_Lib.Creatures.Statistics
             DynamicModifiers = new Dictionary<string, DynamicModifier>();
 
             Parent = parent;
-            BaseValue = value;
             Minimum = minimum;
             Maximum = maximum;
 

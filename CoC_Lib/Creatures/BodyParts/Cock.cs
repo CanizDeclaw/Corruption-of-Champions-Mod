@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CoC_Lib.Creatures.BodyParts
 {
@@ -8,14 +10,23 @@ namespace CoC_Lib.Creatures.BodyParts
     {
         public override string Name => "Cock Length";
         public override string Description => "Cock Length";
-        protected Cock Parent { get; }
 
-        public CockLengthStat(Game game, Creature creature, Cock parent)
+        protected string CockCollectionOnAdjustingKey = "CockLengthStat CockCollection OnAdjusting";
+        protected decimal CockCollectionOnAdjusting(decimal adjustment)
+        {
+            var adjusters = creature.Body.Cocks.OnAdjustingLength;
+            var total = adjusters.Values.Sum(adj => adj(adjustment));
+            return total;
+        }
+
+        public CockLengthStat(Game game, Creature creature, decimal length = 5.5m)
             :base(game, creature)
         {
-            Parent = parent;
-            LowerBound = new Statistics.DecimalLowerBound();
-            UpperBound = new Statistics.DecimalUpperBound(this);
+            LowerBound = new Statistics.DecimalLowerBound(maximum: 0);
+            UpperBound = new Statistics.DecimalUpperBound(this, value: 9999.9m, minimum: 9999.9m, maximum: 9999.9m);
+            // TODO: Check this works as expected when changing ParentCollection and ParentCollection.OnAdjustingLength
+            Value.OnAdjusting.Add(CockCollectionOnAdjustingKey, new Statistics.AdjustmentModifier(CockCollectionOnAdjusting));
+            Value.Set(length);
         }
     }
 
@@ -23,36 +34,28 @@ namespace CoC_Lib.Creatures.BodyParts
     {
         public override string Name => "Cock Thickness";
         public override string Description => "Cock Thickness";
-        protected Cock Parent { get; }
 
-        public CockThicknessStat(Game game, Creature creature, Cock parent)
-            : base(game, creature)
+        protected string CockCollectionOnAdjustingKey = "CockThicknessStat CockCollection OnAdjusting";
+        protected decimal CockCollectionOnAdjusting(decimal adjustment)
         {
-            Parent = parent;
-            LowerBound = new Statistics.DecimalLowerBound();
-            UpperBound = new Statistics.DecimalUpperBound(this);
+            var adjusters = creature.Body.Cocks.OnAdjustingThickness;
+            var total = adjusters.Values.Sum(adj => adj(adjustment));
+            return total;
         }
-    }
 
-    public class KnotMultiplierStat : Statistics.BoundedDecimalStat
-    {
-        public override string Name => "Knot Multiplier";
-        public override string Description => "How thick the knot is relative to the cock thickness";
-        protected Cock Parent { get; }
-
-        public KnotMultiplierStat(Game game, Creature creature, Cock parent)
+        public CockThicknessStat(Game game, Creature creature, decimal thickness = 1)
             : base(game, creature)
         {
-            Parent = parent;
-            LowerBound = new Statistics.DecimalLowerBound();
-            UpperBound = new Statistics.DecimalUpperBound(this);
+            LowerBound = new Statistics.DecimalLowerBound(maximum: 0);
+            UpperBound = new Statistics.DecimalUpperBound(this, value: 999.9m, minimum: 999.9m, maximum: 999.9m);
+            Value.OnAdjusting.Add(CockCollectionOnAdjustingKey, new Statistics.AdjustmentModifier(CockCollectionOnAdjusting));
+            Value.Set(thickness);
         }
     }
 
     // TODO: This whole class feels wrong somehow.
-    public abstract class Cock : AbstractBodyPart, ICollectibleBodyPart<Cock>
+    public abstract class Cock : AbstractBodyPart
     {
-        protected CockCollection ParentCollection { get; set; }
         /*
 		 Group Types used for general description code (eventually)
 		 * human  	        - obvious
@@ -81,40 +84,52 @@ namespace CoC_Lib.Creatures.BodyParts
             Avian        = 256,
         }
 
-        protected const decimal MaxLength = 9999.9m;
-        protected const decimal MaxThickness = 999.9m;
-        protected const decimal KnotMultiplierDefault = 1;
+        // General Cock info
+        protected decimal DefaultLength = 5.5m;
+        protected decimal DefaultThickness = 1;
+        public CockLengthStat Length { get; protected set; }
+        public CockThicknessStat Thickness { get; protected set; }
+        public bool IsVirgin { get; set; }
 
-        public CockLengthStat Length;
-        public CockThicknessStat Thickness;
-        public KnotMultiplierStat KnotMultiplier;
-        public bool IsVirgin;
+        // Derivative Cock dimensions
+        /// <summary>
+        /// Area of the 2D top-down projection of the cock (length * width). Assumes rectangular profile.
+        /// </summary>
+        public virtual decimal Area => Length * Thickness;
+        /// <summary>
+        /// Area of the front-to-back 2D cross-section of the cock. Default assumes a circular profile.
+        /// </summary>
+        public virtual decimal CrossSection => (decimal)Math.PI * (Thickness / 2) * (Thickness / 2);
+        /// <summary>
+        /// Volume of the cock. Default assumes a circular cross-section.
+        /// </summary>
+        public virtual decimal Volume => CrossSection * Length;
+
+        // Knot info
         public abstract bool SupportsKnot { get; }
-
-        public decimal Area => Length * Thickness;
-        public bool HasKnot => SupportsKnot && KnotMultiplier > KnotMultiplierDefault;
+        public virtual CockKnotCollection Knots
+        {
+            get;
+            protected set;
+        }
+        public bool HasKnot => Knots.Count > 0;
 
         public Cock(Game game, Creature creature)
             :base(game, creature)
         {
+            Length = new CockLengthStat(game, creature);
+            Thickness = new CockThicknessStat(game, creature);
+            Knots = new CockKnotCollection();
+            IsVirgin = true;
             SetToDefault();
         }
 
         public override void SetToDefault()
         {
             base.SetToDefault();
-            Length.Set(5.5m);
-            Thickness.Set(1);
-            KnotMultiplier.Set(KnotMultiplierDefault);
-            IsVirgin = true;
-        }
-
-        public void SetCollector(BodyPartCollection<Cock> collector)
-        {
-            if (collector is CockCollection cc)
-            {
-                ParentCollection = cc;
-            }
+            Length.Set(DefaultLength);
+            Thickness.Set(DefaultThickness);
+            Knots.Clear();
         }
     }
 }
