@@ -248,12 +248,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoC_Lib\CoC_Lib.csproj">
-      <Project>{5cfc8720-58ab-47c0-acb1-38edfa4e4c9b}</Project>
-      <Name>CoC_Lib</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\charview\body.png" />
     <Resource Include="Resources\charview\extra.png" />
     <Resource Include="Resources\charview\hair.png" />
@@ -546,7 +540,16 @@
     <Resource Include="Resources\ui\tooltip.png" />
     <Resource Include="Resources\ui\warning.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CoC_UEE\CoC_UEE.csproj">
+      <Project>{7c21e364-6b9b-484f-ab1e-8d9a202cc87c}</Project>
+      <Name>CoC_UEE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common_Game\Common_Game.csproj">
+      <Project>{41c515f0-3398-497b-bed9-a5cb10a313fe}</Project>
+      <Name>Common_Game</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\exclude\monster-goblin_4.jpg" />
   </ItemGroup>

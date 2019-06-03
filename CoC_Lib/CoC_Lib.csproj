@@ -12,12 +12,4 @@
     <None Remove="Characters\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Creatures\Statistics\BodyPartStats\" />
-    <Folder Include="Items\Clothing\" />
-    <Folder Include="Items\" />
-    <Folder Include="Scenes\MenuScreens\" />
-    <Folder Include="Scenes\Ingnam\" />
-  </ItemGroup>
-
 </Project>

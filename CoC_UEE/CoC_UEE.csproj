@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Scenes\Ingnam\" />
+    <Folder Include="Scenes\MenuScreens\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoC_Common\CoC_Common.csproj" />
+    <ProjectReference Include="..\Common_Game\Common_Game.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Bodies\" />
+    <Folder Include="Creatures\" />
+    <Folder Include="Scenes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common_Game\Common_Game.csproj" />
+  </ItemGroup>
+
+</Project>
