@@ -5,8 +5,7 @@ using System.Text;
 
 namespace CoC_Common
 {
-    public abstract class CoCSettings : Settings
+    public class CoCLimits : Limits
     {
-        public bool SillyMode = false;
     }
 }

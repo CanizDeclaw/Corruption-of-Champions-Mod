@@ -1,9 +1,9 @@
-﻿using CoC_Lib.Creatures;
+﻿using CoC_Common.Creatures;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoC_Lib.Perks.Endowments
+namespace CoC_Common.Perks.Endowments
 {
     public abstract class EndowmentPerk : Perk
     {

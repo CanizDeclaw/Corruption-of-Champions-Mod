@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoC_Lib.Perks.Endowments
+namespace CoC_Common.Perks.Endowments
 {
     public class EndowmentsList
     {

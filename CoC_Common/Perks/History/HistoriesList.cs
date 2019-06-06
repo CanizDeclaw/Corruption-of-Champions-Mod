@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoC_Lib.Perks.History
+namespace CoC_Common.Perks.History
 {
     class HistoriesList
     {

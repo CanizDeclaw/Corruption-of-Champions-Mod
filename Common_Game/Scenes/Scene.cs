@@ -10,6 +10,7 @@ namespace Common_Game.Scenes
     /// </summary>
     public abstract class Scene : NotifyPropertyChangedBase
     {
+        // TODO: Replace with derivable UIHints class?
         #region UI Hints
         /// <summary>
         /// Whether or not the player's stats should be shown.
@@ -25,7 +26,7 @@ namespace Common_Game.Scenes
         public bool ShowCommonMenu { get; protected set; } = false;
         #endregion UI Hints
 
-        public Game Game { get; }
+        protected readonly Game game;
 
         /// <summary>
         /// The rich text (or HTML?) describing the scene and/or its events.
@@ -36,6 +37,8 @@ namespace Common_Game.Scenes
         /// classes may need to set up special IO or load date in their constructors.
         /// </summary>
         protected abstract void SetDescription();
+
+        public abstract TimeSpan ElapsedTime { get; protected set; }
 
         /// <summary>
         /// Each scene has a max of 15 non-default action choices, not including the static(-ish)
@@ -55,8 +58,8 @@ namespace Common_Game.Scenes
 
         public Scene(Game game)
         {
-            Game = game;
-            SceneDescription = Game.SceneDocumentCreator.NewSceneDocument();
+            this.game = game;
+            SceneDescription = game.SceneDocumentCreator.NewSceneDocument();
         }
     }
 }

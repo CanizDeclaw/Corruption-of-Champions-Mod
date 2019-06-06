@@ -5,9 +5,15 @@ using System.Text;
 
 namespace CoC_Common
 {
-    public class CoC : Common_Game.Game
+    public abstract class CoC : Game
     {
-        public CoC(Common_Game.ISaveLoad saveLoad, Common_Game.Documents.ISceneDocumentCreator sdc)
+        public abstract CoCSettings CoCSettings { get; }
+        public abstract CoCLimits CoCLimits { get; }
+
+        public override Settings Settings => CoCSettings;
+        public override Limits Limits => CoCLimits;
+
+        public CoC(ISaveLoad saveLoad, Common_Game.Documents.ISceneDocumentCreator sdc)
             :base(saveLoad, sdc)
         {
         }

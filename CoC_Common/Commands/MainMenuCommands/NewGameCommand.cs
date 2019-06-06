@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoC_Lib.Commands.MainMenuCommands
+namespace CoC_Common.Commands.MainMenuCommands
 {
     public class NewGameCommand : Command
     {

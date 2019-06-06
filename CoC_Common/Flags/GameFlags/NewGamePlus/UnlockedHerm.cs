@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Common_Game.Flags;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common_Game.Flags.GameFlags.NewGamePlus
+namespace CoC_Common.Flags.GameFlags.NewGamePlus
 {
     public class UnlockedHerm : GameFlag
     {

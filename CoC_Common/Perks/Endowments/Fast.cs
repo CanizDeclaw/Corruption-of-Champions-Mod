@@ -1,6 +1,6 @@
-﻿using CoC_Lib.Creatures;
+﻿using CoC_Common.Creatures;
 
-namespace CoC_Lib.Perks.Endowments
+namespace CoC_Common.Perks.Endowments
 {
     internal class Fast : EndowmentPerk
     {

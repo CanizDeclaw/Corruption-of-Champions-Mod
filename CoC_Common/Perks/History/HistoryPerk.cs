@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Common_Game.Perks;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoC_Lib.Perks.History
+namespace CoC_Common.Perks.History
 {
     public abstract class HistoryPerk : Perk
     {

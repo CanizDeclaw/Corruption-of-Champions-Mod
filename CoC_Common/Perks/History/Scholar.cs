@@ -1,6 +1,7 @@
-﻿using CoC_Lib.Creatures;
+﻿using Common_Game;
+using Common_Game.Creatures;
 
-namespace CoC_Lib.Perks.History
+namespace CoC_Common.Perks.History
 {
     internal class Scholar : HistoryPerk
     {
@@ -12,7 +13,7 @@ namespace CoC_Lib.Perks.History
             "Time spent focusing your mind makes spellcasting 20% less fatiguing.";
         public override string LongDescription =>
             "You spent much of your time in school, and even begged the richest" +
-            " man in town, Mr. " + (Game.Settings.SillyMode ? "Savin" : "Sellet") +
+            " man in town, Mr. " + (Game.CoCSettings.SillyMode ? "Savin" : "Sellet") +
             ", to let you read some of his books.  You are much better at " +
             "focusing, and spellcasting uses 20% less fatigue.";
 
@@ -35,9 +36,9 @@ namespace CoC_Lib.Perks.History
             // TODO: SpellCost
         }
 
-        protected Game Game;
+        protected CoC Game;
 
-        public Scholar(Game game)
+        public Scholar(CoC game)
         {
             Game = game;
         }

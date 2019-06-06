@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoC_Lib.Commands.CommonSceneMenuCommands
+namespace CoC_Common.Commands.CommonSceneMenuCommands
 {
     public class AppearanceCommand : Command
     {

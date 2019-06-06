@@ -1,6 +1,6 @@
-﻿using CoC_Lib.Creatures;
+﻿using CoC_Common.Creatures;
 
-namespace CoC_Lib.Perks.History
+namespace CoC_Common.Perks.History
 {
     internal class Healer : HistoryPerk
     {

@@ -1,6 +1,6 @@
-﻿using CoC_Lib.Creatures;
+﻿using CoC_Common.Creatures;
 
-namespace CoC_Lib.Perks.Endowments
+namespace CoC_Common.Perks.Endowments
 {
     // Note: Renamed from "MessyOrgasms" to be more clear about what it applies to.
     internal class LotsOfJizz : EndowmentPerk

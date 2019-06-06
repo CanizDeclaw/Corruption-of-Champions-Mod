@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoC_Lib
+namespace CoC_UEE
 {
-    class CoCLimits
+    public class CoC_UEE_Limits : CoC_Common.CoCLimits
     {
         // General limits
         public int ToleranceMax = 20;
