@@ -27,6 +27,9 @@ namespace Common_Game
             }
         }
 
+        public List<Documents.ISceneDocument> History { get; } = new List<Documents.ISceneDocument>();
+        public bool InHistory { get; protected set; } = false;
+
         protected internal HomeScene HomeScene { get; set; }
         protected Stack<Scene> SceneStack { get; } = new Stack<Scene>();
 
@@ -45,9 +48,14 @@ namespace Common_Game
         }
         internal void NextScene()
         {
+            if (InHistory)
+            {
+
+            }
             if (_currentScene != null)
             {
                 game.GameTime.Add(_currentScene.ElapsedTime);
+                History.Add(_currentScene.SceneDescription);
             }
             OnChangeScene?.Invoke();
             if (SceneStack.Count == 0 || SceneStack.Peek() is HomeScene)
@@ -62,6 +70,17 @@ namespace Common_Game
             var next = SceneStack.Pop();
             next.Run();
             CurrentScene = next;
+        }
+
+        internal void Reset()
+        {
+            _currentScene = null;
+            History.Clear();
+            InHistory = false;
+            HomeScene = null;
+            SceneStack.Clear();
+            OnChangeScene = null;
+            OnGotoHomeScene = null;
         }
     }
 }

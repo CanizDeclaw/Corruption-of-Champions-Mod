@@ -61,11 +61,10 @@ namespace Common_Game
             GameFlags = new Dictionary<string, Flags.GameFlag>();
 
             SceneManager = new SceneManager(this);
-            // Clock ticks only registered at HomeScene, to prevent interrupting other ones.
-            SceneManager.OnGotoHomeScene += new Action(OnGotoHomeScene);
 
             ResetGame();
-            SceneManager.PushScene(new Scenes.MainMenu(this));
+            SceneManager.PushScene(Settings.DefaultHomeScene);
+            //SceneManager.PushScene(new Scenes.MainMenu(this));
             //SceneManager.PushScene(new Scenes.CommonScene(this));
             //SceneManager.PushScene(new Scenes.CombatScene(this));
             //SceneManager.PushScene(NewGameScene(this));
@@ -101,6 +100,10 @@ namespace Common_Game
             OnClockChanged = null;
             OnClockChangedReturnsDescription = null;
             OnClockChangedReturnsScene = null;
+
+            SceneManager.Reset();
+            // Clock ticks only registered at HomeScene, to prevent interrupting other ones.
+            SceneManager.OnGotoHomeScene += new Action(OnGotoHomeScene);
         }
 
         /// <summary>
