@@ -27,7 +27,7 @@ namespace Common_Game
             }
         }
 
-        public List<Documents.ISceneDocument> History { get; } = new List<Documents.ISceneDocument>();
+        public List<HistoryItem> History { get; } = new List<HistoryItem>();
         public bool InHistory { get; protected set; } = false;
 
         protected internal HomeScene HomeScene { get; set; }
@@ -48,14 +48,24 @@ namespace Common_Game
         }
         internal void NextScene()
         {
-            if (InHistory)
+            if (_currentScene != null && _currentScene is HistoryScene hs)
             {
-
             }
-            if (_currentScene != null)
+            else
             {
-                game.GameTime.Add(_currentScene.ElapsedTime);
-                History.Add(_currentScene.SceneDescription);
+                OnChangeScene?.Invoke();
+                if (_currentScene != null)
+                {
+                    game.GameTime.Add(_currentScene.ElapsedTime);
+                    if (_currentScene.IncludeInHistory)
+                    {
+                        History.Add(new HistoryItem(_currentScene.SceneDescription));
+                    }
+                }
+                else
+                {
+
+                }
             }
             OnChangeScene?.Invoke();
             if (SceneStack.Count == 0 || SceneStack.Peek() is HomeScene)

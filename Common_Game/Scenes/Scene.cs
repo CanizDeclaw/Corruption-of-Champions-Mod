@@ -27,11 +27,25 @@ namespace Common_Game.Scenes
         #endregion UI Hints
 
         protected readonly Game game;
+        public abstract bool IncludeInHistory { get; }
 
+        protected Documents.ISceneDocument _sceneDescription;
         /// <summary>
         /// The rich text (or HTML?) describing the scene and/or its events.
         /// </summary>
-        public Documents.ISceneDocument SceneDescription { get; }
+        public Documents.ISceneDocument SceneDescription
+        {
+            // TODO: Might have to put this back to get-only to avoid accidental multi-description IncludeInHistory scenes.
+            // Or just prevent setting if IncludeInHistory is true and _sceneDescription is not null.
+            // But how to deal with scenes with mutable sections?
+            // SceneDocument probably needs a "getHistoryDescription" property.
+            get => _sceneDescription;
+            protected set
+            {
+                _sceneDescription = value;
+                OnPropertyChanged();
+            }
+        }
         /// <summary>
         /// Set the scene description.  This should *NOT* be called by base classes, as derived
         /// classes may need to set up special IO or load date in their constructors.
