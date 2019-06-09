@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Common_Game.Commands;
 
+// TODO: Add History menu item to common menu
 namespace Common_Game.Scenes
 {
     /// <summary>
@@ -29,6 +30,36 @@ namespace Common_Game.Scenes
         protected readonly Game game;
         public abstract bool IncludeInHistory { get; }
 
+        public abstract TimeSpan ElapsedTime { get; protected set; }
+
+        /// <summary>
+        /// Each scene has a max of 15 non-default action choices, not including the static(-ish)
+        /// choices like "Main Menu" and "Appearance".  Scenes are not guaranteed to use all
+        /// slots, nor to use them sequentially.
+        /// 
+        /// In a GUI these should probably be layed out as 3 rows of 5 buttons each.
+        /// </summary>
+        public Command[] Commands { get; } = new Command[15];
+
+        public Scene(Game game)
+        {
+            this.game = game;
+            SceneDescription = game.SceneDocumentCreator.NewSceneDocument();
+        }
+
+        /// <summary>
+        /// Get the HistoryItems from this scene to add to the History.
+        /// </summary>
+        /// <returns>A list of HistoryItems, or null if none should be added.</returns>
+        public abstract List<HistoryItem> GetHistoryItems();
+
+        /// <summary>
+        /// Game state may change between when a scene is created and when it's time to view it,
+        /// so any prep work that depends on game state should be executed inside this function, which
+        /// will be called when a scene is popped into CurrentScene.
+        /// </summary>
+        public abstract void Run();
+
         protected Documents.ISceneDocument _sceneDescription;
         /// <summary>
         /// The rich text (or HTML?) describing the scene and/or its events.
@@ -51,29 +82,5 @@ namespace Common_Game.Scenes
         /// classes may need to set up special IO or load date in their constructors.
         /// </summary>
         protected abstract void SetDescription();
-
-        public abstract TimeSpan ElapsedTime { get; protected set; }
-
-        /// <summary>
-        /// Each scene has a max of 15 non-default action choices, not including the static(-ish)
-        /// choices like "Main Menu" and "Appearance".  Scenes are not guaranteed to use all
-        /// slots, nor to use them sequentially.
-        /// 
-        /// In a GUI these should probably be layed out as 3 rows of 5 buttons each.
-        /// </summary>
-        public Command[] Commands { get; } = new Command[15];
-
-        /// <summary>
-        /// Game state may change between when a scene is created and when it's time to view it,
-        /// so any prep work that depends on game state should be executed inside this function, which
-        /// will be called when a scene is popped into CurrentScene.
-        /// </summary>
-        public abstract void Run();
-
-        public Scene(Game game)
-        {
-            this.game = game;
-            SceneDescription = game.SceneDocumentCreator.NewSceneDocument();
-        }
     }
 }

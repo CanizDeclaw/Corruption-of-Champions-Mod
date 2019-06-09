@@ -28,7 +28,6 @@ namespace Common_Game
         }
 
         public List<HistoryItem> History { get; } = new List<HistoryItem>();
-        public bool InHistory { get; protected set; } = false;
 
         protected internal HomeScene HomeScene { get; set; }
         protected Stack<Scene> SceneStack { get; } = new Stack<Scene>();
@@ -42,29 +41,25 @@ namespace Common_Game
         public event Action OnChangeScene;
         public event Action OnGotoHomeScene;
 
-        internal void PushScene(Scene scene)
+        public void BrowseHistory(int startIndex = int.MaxValue)
+        {
+            var currentScene = _currentScene;
+            var exitAction = new Action(() => CurrentScene = currentScene);
+            CurrentScene = new HistoryBrowser(game, History, startIndex, exitAction);
+        }
+        public void PushScene(Scene scene)
         {
             SceneStack.Push(scene);
         }
-        internal void NextScene()
+        public void NextScene()
         {
-            if (_currentScene != null && _currentScene is HistoryScene hs)
+            // Use _currentScene instead of CurrentScene to avoid cyclical behaviour.
+            if (_currentScene != null && !(_currentScene is HistoryBrowser))
             {
-            }
-            else
-            {
-                OnChangeScene?.Invoke();
-                if (_currentScene != null)
+                game.GameTime.Add(_currentScene.ElapsedTime);
+                if (_currentScene.IncludeInHistory)
                 {
-                    game.GameTime.Add(_currentScene.ElapsedTime);
-                    if (_currentScene.IncludeInHistory)
-                    {
-                        History.Add(new HistoryItem(_currentScene.SceneDescription));
-                    }
-                }
-                else
-                {
-
+                    History.AddRange(_currentScene.GetHistoryItems());
                 }
             }
             OnChangeScene?.Invoke();
@@ -86,7 +81,6 @@ namespace Common_Game
         {
             _currentScene = null;
             History.Clear();
-            InHistory = false;
             HomeScene = null;
             SceneStack.Clear();
             OnChangeScene = null;
