@@ -32,6 +32,24 @@ namespace Common_Game.Scenes
 
         public abstract TimeSpan ElapsedTime { get; protected set; }
 
+        protected Documents.ISceneDocument _sceneDescription;
+        /// <summary>
+        /// The rich text (or HTML?) describing the scene and/or its events.
+        /// </summary>
+        public Documents.ISceneDocument SceneDescription
+        {
+            // TODO: Might have to put this back to get-only to avoid accidental multi-description IncludeInHistory scenes.
+            // Or just prevent setting if IncludeInHistory is true and _sceneDescription is not null.
+            // But how to deal with scenes with mutable sections?
+            // SceneDocument probably needs a "getHistoryDescription" property.
+            get => _sceneDescription;
+            protected set
+            {
+                _sceneDescription = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Each scene has a max of 15 non-default action choices, not including the static(-ish)
         /// choices like "Main Menu" and "Appearance".  Scenes are not guaranteed to use all
@@ -59,27 +77,9 @@ namespace Common_Game.Scenes
         /// will be called when a scene is popped into CurrentScene.
         /// </summary>
         public abstract void Run();
-
-        protected Documents.ISceneDocument _sceneDescription;
-        /// <summary>
-        /// The rich text (or HTML?) describing the scene and/or its events.
-        /// </summary>
-        public Documents.ISceneDocument SceneDescription
-        {
-            // TODO: Might have to put this back to get-only to avoid accidental multi-description IncludeInHistory scenes.
-            // Or just prevent setting if IncludeInHistory is true and _sceneDescription is not null.
-            // But how to deal with scenes with mutable sections?
-            // SceneDocument probably needs a "getHistoryDescription" property.
-            get => _sceneDescription;
-            protected set
-            {
-                _sceneDescription = value;
-                OnPropertyChanged();
-            }
-        }
         /// <summary>
         /// Set the scene description.  This should *NOT* be called by base classes, as derived
-        /// classes may need to set up special IO or load date in their constructors.
+        /// classes may need to set up special IO or load data in their constructors.
         /// </summary>
         protected abstract void SetDescription();
     }

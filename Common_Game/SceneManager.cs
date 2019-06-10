@@ -9,7 +9,7 @@ namespace Common_Game
     {
         protected readonly Game game;
 
-        private Scene _currentScene;
+        protected Scene _currentScene;
         public Scene CurrentScene
         {
             get

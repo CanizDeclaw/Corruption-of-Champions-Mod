@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Common_Game.Documents;
 
 namespace Common_Game.Scenes
 {
@@ -83,21 +84,42 @@ namespace Common_Game.Scenes
             protected set => _;
         }
 
+        protected ISceneDocument NoHistoryDoc
+        {
+            get
+            {
+                var doc = game.SceneDocumentCreator.NewSceneDocument();
+                doc.AddParagraph("No history to show.");
+                return doc;
+            }
+        }
+
         // Need to make a history manager to deal with all of this?
         // Make sure scenes can link forward without having to have all scenes instantiated.
-        public HistoryBrowser(Game game, List<HistoryItem> history, int startIndex, Action exitAction)
+        internal HistoryBrowser(Game game, List<HistoryItem> history, int startIndex, Action exitAction)
             :base(game)
         {
-            History = history;
-            if (startIndex < 0)
+            if (history.Count == 0)
             {
-                startIndex = 0;
+                History = new List<HistoryItem>
+                {
+                    new HistoryItem(NoHistoryDoc)
+                };
+                CurrentIndex = 0;
             }
-            else if (startIndex >= history.Count)
+            else
             {
-                startIndex = history.Count - 1;
+                History = history;
+                if (startIndex < 0)
+                {
+                    startIndex = 0;
+                }
+                else if (startIndex >= history.Count)
+                {
+                    startIndex = history.Count - 1;
+                }
+                CurrentIndex = startIndex;
             }
-            CurrentIndex = startIndex;
 
             Commands[0] = new HistoryNavPrevious(game, this);
             Commands[1] = new HistoryNavNext(game, this);
